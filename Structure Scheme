@@ -1,0 +1,61 @@
+<mxfile host="app.diagrams.net" modified="2024-07-10T18:33:26.302Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 Edg/126.0.0.0" etag="XHUwr2at0H6iGjMg3eqQ" version="24.6.4" type="github">
+  <diagram name="Page-1" id="aMLODfyBbPml9WNSrziH">
+    <mxGraphModel dx="1688" dy="954" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="#ffffff" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="qGnNm-mWoS3EAWCqlksS-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="qGnNm-mWoS3EAWCqlksS-1" target="qGnNm-mWoS3EAWCqlksS-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qGnNm-mWoS3EAWCqlksS-1" value="&lt;div&gt;Date&lt;/div&gt;&lt;div&gt;- int Year&lt;/div&gt;&lt;div&gt;- int Month&lt;/div&gt;&lt;div&gt;- int Day&lt;/div&gt;&lt;div&gt;- int Hour&lt;/div&gt;&lt;div&gt;- int Min&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="140" y="780" width="170" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="qGnNm-mWoS3EAWCqlksS-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="qGnNm-mWoS3EAWCqlksS-2" target="qGnNm-mWoS3EAWCqlksS-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qGnNm-mWoS3EAWCqlksS-2" value="&lt;div&gt;&lt;div&gt;Doc&lt;/div&gt;&lt;div&gt;- char* Name&lt;/div&gt;&lt;div&gt;- char nLicense[7]&lt;/div&gt;&lt;div&gt;- int nPatients&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="140" y="380" width="170" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="qGnNm-mWoS3EAWCqlksS-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=-0.027;entryY=0.578;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="qGnNm-mWoS3EAWCqlksS-3" target="qGnNm-mWoS3EAWCqlksS-4">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="380" y="260" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="370" y="655" />
+              <mxPoint x="370" y="265" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qGnNm-mWoS3EAWCqlksS-3" value="&lt;div&gt;&lt;div&gt;Visit&lt;/div&gt;&lt;div&gt;- Date tArrival&lt;/div&gt;&lt;div&gt;- Date tDismissed&lt;/div&gt;&lt;div&gt;- float Duration&lt;/div&gt;&lt;div&gt;- Doc* Doctor&lt;/div&gt;&lt;div&gt;- char* vSummary&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="140" y="590" width="170" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="qGnNm-mWoS3EAWCqlksS-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="qGnNm-mWoS3EAWCqlksS-4" target="qGnNm-mWoS3EAWCqlksS-6">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="730" y="690" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="720" y="255" />
+              <mxPoint x="720" y="655" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qGnNm-mWoS3EAWCqlksS-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="qGnNm-mWoS3EAWCqlksS-4" target="qGnNm-mWoS3EAWCqlksS-5">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="620" y="430" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="670" y="255" />
+              <mxPoint x="670" y="445" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qGnNm-mWoS3EAWCqlksS-4" value="&lt;div&gt;&lt;div&gt;Patient&lt;/div&gt;&lt;div&gt;- char* Name&lt;/div&gt;&lt;div&gt;- char ID[10]&lt;/div&gt;&lt;div&gt;- char Allergies&lt;/div&gt;&lt;div&gt;- Stack* Visits&lt;/div&gt;&lt;div&gt;- int nVisits&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="440" y="190" width="170" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="qGnNm-mWoS3EAWCqlksS-5" value="&lt;div&gt;&lt;div&gt;pInTree&lt;/div&gt;&lt;div&gt;- Patient patient&lt;/div&gt;&lt;div&gt;&lt;div&gt;- pInTree *left;&lt;/div&gt;&lt;div&gt;- pInTree *right;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="440" y="380" width="170" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="qGnNm-mWoS3EAWCqlksS-6" value="&lt;div&gt;&lt;div&gt;&lt;div&gt;InLine&lt;/div&gt;&lt;div&gt;- Patient* patient&lt;/div&gt;&lt;div&gt;- InLine* next&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="440" y="590" width="170" height="130" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
