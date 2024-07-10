@@ -2,4 +2,5 @@
 
 int main(){
     printf("Hello, from Final_Matala!\n");
+    int a;
 }
