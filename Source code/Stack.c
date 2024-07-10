@@ -1,4 +1,5 @@
 #include "Stack.h"
+#include "../Headers/Stack.h"
 
 void initStack(Stack* s)
 {
