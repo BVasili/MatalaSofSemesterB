@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int main(){
+int main() {
     printf("Hello, from Final_Matala!\n");
-
+  
 }

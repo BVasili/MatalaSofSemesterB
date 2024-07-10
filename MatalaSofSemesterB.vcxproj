@@ -21,10 +21,16 @@
   <ItemGroup>
     <ClInclude Include="Headers\pline.h" />
     <ClInclude Include="Headers\ptree.h" />
+    <ClInclude Include="Headers\Queue.h" />
+    <ClInclude Include="Headers\SLL.h" />
+    <ClInclude Include="Headers\Stack.h" />
     <ClInclude Include="Headers\Structure.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source code\main.c" />
+    <ClCompile Include="Source code\Queue.c" />
+    <ClCompile Include="Source code\SLL.c" />
+    <ClCompile Include="Source code\Stack.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

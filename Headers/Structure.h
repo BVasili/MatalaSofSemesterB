@@ -1,4 +1,5 @@
 #define ID_SIZE 8
+#define AllergiesSize 8
 typedef struct Date
 {
     unsigned int Year;
@@ -28,5 +29,7 @@ typedef struct Patient
 {
     char *Name;
     char ID[ID_SIZE];
-    char Allergies[ID_SIZE];
+    char Allergies[AllergiesSize];
+
+    int nVisits
 } Patient;
