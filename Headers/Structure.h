@@ -1,4 +1,4 @@
-#define ID_SIZE 8
+﻿#define ID_SIZE 8
 #define AllergiesSize 8
 typedef struct Date
 {
@@ -25,11 +25,32 @@ typedef struct Visit
     char *vSummary;
 } Visit;
 
+// to be changed
+typedef struct Node
+{
+    Visit VisitData;
+    struct Node* next;
+}Node;
+
+
+typedef struct List
+{
+    Node* head;
+} List;
+
+typedef struct Stack
+{
+    List sList;
+    int size;
+}Stack;
+
+// until here
+
 typedef struct Patient
 {
     char *Name;
     char ID[ID_SIZE];
     char Allergies[AllergiesSize];
-
-    int nVisits
+    Stack* Visits;
+    int nVisits;
 } Patient;

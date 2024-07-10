@@ -20,7 +20,6 @@ typedef struct Node
 typedef struct List
 {
 	Node* head;
-	Node* tail;
 } List;
 
 void checkNullLogExit(const void* object, const char* message);
