@@ -1,5 +1,5 @@
 #define _CRT_SECURE_NO_WARNINGS
-#include "SLL.h"
+//#include "SLL.h"
 #include "../Headers/SLL.h"
 
 void initList(List* list)
