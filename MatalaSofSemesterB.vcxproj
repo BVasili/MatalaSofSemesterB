@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AuxiliaryFunctions.h" />
     <ClInclude Include="Headers\pline.h" />
     <ClInclude Include="Headers\ptree.h" />
     <ClInclude Include="Headers\Queue.h" />
@@ -27,6 +28,7 @@
     <ClInclude Include="Headers\Structure.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AuxiliaryFunctions.c" />
     <ClCompile Include="Source code\main.c" />
     <ClCompile Include="Source code\Queue.c" />
     <ClCompile Include="Source code\SLL.c" />

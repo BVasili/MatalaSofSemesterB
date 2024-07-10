@@ -1,4 +1,5 @@
-﻿#define ID_SIZE 8
+﻿#pragma once
+#define ID_SIZE 8
 #define AllergiesSize 8
 typedef struct Date
 {

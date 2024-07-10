@@ -1,3 +1,4 @@
+#pragma once
 #include "Structure.h"
 
 typedef struct pInTree

@@ -33,6 +33,9 @@
     <ClInclude Include="Headers\Stack.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="AuxiliaryFunctions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source code\main.c">
@@ -45,6 +48,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source code\Stack.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AuxiliaryFunctions.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
