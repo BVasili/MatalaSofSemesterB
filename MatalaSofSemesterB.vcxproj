@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source code\AuxiliaryFunctions.c" />
+    <ClCompile Include="Source code\BST.c" />
     <ClCompile Include="Source code\main.c" />
     <ClCompile Include="Source code\Queue.c" />
     <ClCompile Include="Source code\SLL.c" />
@@ -27,6 +28,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source code\AuxiliaryFunctions.h" />
+    <ClInclude Include="Source code\BST.h" />
     <ClInclude Include="Source code\Pline.h" />
     <ClInclude Include="Source code\Ptree.h" />
     <ClInclude Include="Source code\Queue.h" />

@@ -1,5 +1,5 @@
 #include "AuxiliaryFunctions.h"
-
+#include "Structure.h"
 
 int printMenu(void)
 {
@@ -27,5 +27,34 @@ int printMenu(void)
 
 void loadPatients()
 {
-    FILE* PtrPatients = fopen("Patients.txt", "rb");
+#ifdef DEBUG
+    Patient PatientPlaceHolder = { 0 };
+    Visit VisitPlaceHolder[10] = { 0 };
+
+    FILE* PtrPatients = fopen("Patients.txt", "r");
+    FILE* PtrPatientsTemp = PtrPatients;
+
+    if (!PtrPatients) {
+        printf("Error: Cannot Reach Memory Address\n");
+        exit(1);
+    }
+
+    fseek(PtrPatientsTemp, 49, SEEK_CUR);
+
+    PatientPlaceHolder.Name = malloc(sizeof(char*));
+
+    if (!PatientPlaceHolder.Name) {
+        printf("Cannot allocate memory");
+        exit(1);
+    }
+
+
+    char ch;
+
+    while ((ch = fgetc(PtrPatientsTemp)) != EOF)
+        putchar(ch);
+
+#endif // DEBUG
+
+  
 }

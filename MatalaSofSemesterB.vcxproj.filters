@@ -18,6 +18,9 @@
     <ClCompile Include="Source code\main.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source code\AuxiliaryFunctions.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="Source code\Queue.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -27,7 +30,7 @@
     <ClCompile Include="Source code\Stack.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source code\AuxiliaryFunctions.c">
+    <ClCompile Include="Source code\BST.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -41,16 +44,19 @@
     <ClInclude Include="Source code\Ptree.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source code\Queue.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source code\SLL.h">
+    <ClInclude Include="Source code\Structure.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source code\Stack.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source code\Structure.h">
+    <ClInclude Include="Source code\SLL.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source code\Queue.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source code\BST.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

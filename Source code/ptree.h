@@ -7,6 +7,7 @@ typedef struct pInTree
     pInTree *left;
     pInTree *right;
 } pInTree;
+
 typedef struct pTree
 {
     pInTree *root;

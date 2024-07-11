@@ -1,6 +1,18 @@
 ﻿#pragma once
+
 #define ID_SIZE 8
 #define AllergiesSize 8
+
+//Define for allergies
+#define NONE 00000000
+#define PENICILLIN 00000001
+#define SULFA 00000010
+#define OPIOIDS 00000100
+#define ANESTHETICS 00001000
+#define EGGS 00010000
+#define LATEX 00100000
+#define PRESERVATIVES 01000000
+
 typedef struct Date
 {
 	unsigned int Year;
@@ -17,6 +29,7 @@ typedef struct Doc
 	int nPatients;
 } Doc;
 
+
 typedef struct Visit
 {
 	Date tArrival;
@@ -26,10 +39,11 @@ typedef struct Visit
 	char* vSummary;
 } Visit;
 
-// to be changed
+
 typedef struct Node
 {
-	Visit VisitData;
+	int data;
+	Visit Visit;
 	struct Node* next;
 }Node;
 
@@ -37,6 +51,7 @@ typedef struct Node
 typedef struct List
 {
 	Node* head;
+	Node* tail;
 } List;
 
 typedef struct Stack
@@ -44,8 +59,6 @@ typedef struct Stack
 	List sList;
 	int size;
 }Stack;
-
-// until here
 
 typedef struct Patient
 {
