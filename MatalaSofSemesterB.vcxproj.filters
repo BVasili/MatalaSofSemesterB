@@ -38,12 +38,6 @@
     <ClInclude Include="Source code\AuxiliaryFunctions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source code\Pline.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source code\Ptree.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source code\Structure.h">
       <Filter>Header Files</Filter>
     </ClInclude>

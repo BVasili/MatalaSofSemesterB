@@ -1,6 +1,6 @@
 #pragma once
-#ifndef __MY_QUEUE_HEADER_
-#define __MY_QUEUE_HEADER_
+#ifndef QUEUE_HEADER__
+#define QUEUE_HEADER__
 
 #include "SLL.h"
 
@@ -20,4 +20,4 @@ int isEmptyQueue(const Queue* q);
 void printQueue(const Queue* q);
 int getQueueSize(const Queue* q);
 
-#endif // !__MY_QUEUE_HEADER_
+#endif // QUEUE_HEADER__

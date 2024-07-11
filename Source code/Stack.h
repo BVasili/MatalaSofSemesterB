@@ -1,11 +1,11 @@
 #pragma once
-#ifndef __MY_STACK_HEADER_
-#define __MY_STACK_HEADER_
-
+#ifndef STACK_HEADER__
+#define STACK_HEADER__
+#include "Structure.h"
 #include "SLL.h"
 
 
-//This was defined in "Structure.h" to prevent conflicts
+//This was defined in "Structure.h" b
 //typedef struct Stack
 //{
 //	List sList;
@@ -32,4 +32,4 @@ int VisitisEmptyStack(const Stack* s);
 void VisitprintStack(Stack* s);
 int VisitgetStackSize(const Stack* s);
 
-#endif // !__MY_STACK_HEADER_
+#endif // STACK_HEADER__

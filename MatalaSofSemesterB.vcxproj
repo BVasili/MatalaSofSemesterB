@@ -29,8 +29,6 @@
   <ItemGroup>
     <ClInclude Include="Source code\AuxiliaryFunctions.h" />
     <ClInclude Include="Source code\BST.h" />
-    <ClInclude Include="Source code\Pline.h" />
-    <ClInclude Include="Source code\Ptree.h" />
     <ClInclude Include="Source code\Queue.h" />
     <ClInclude Include="Source code\SLL.h" />
     <ClInclude Include="Source code\Stack.h" />

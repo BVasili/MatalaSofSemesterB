@@ -1,5 +1,7 @@
 #include "AuxiliaryFunctions.h"
 #include "Structure.h"
+#define MENU_DEFAULT -1
+
 
 int printMenu(void)
 {

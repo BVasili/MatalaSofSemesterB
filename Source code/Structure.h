@@ -1,4 +1,6 @@
 ﻿#pragma once
+#ifndef STRUCTURE_HEADER__
+#define STRUCTURE_HEADER__
 
 #define ID_SIZE 8
 #define AllergiesSize 8
@@ -68,3 +70,5 @@ typedef struct Patient
 	Stack* Visits;
 	int nVisits;
 }Patient;
+ 
+#endif // STRUCTURE_HEADER__

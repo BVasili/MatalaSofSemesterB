@@ -1,6 +1,6 @@
 #pragma once
-#ifndef _BST_HEADER__
-#define _BST_HEADER__
+#ifndef BST_HEADER
+#define BST_HEADER
 
 #include "Structure.h"
 

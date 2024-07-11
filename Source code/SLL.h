@@ -1,4 +1,7 @@
 #pragma once
+#ifndef SLL_HEADER__
+#define SLL_HEADER__
+
 #include "Structure.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -47,3 +50,5 @@ Visit VisitremoveFromTail(List* list);
 void VisitprintList(const List* list, const char* delimiter);
 int VisitisEmptyList(const List* list);
 void VisitdestroyList(List* list);
+
+#endif // SLL_HEADER__
