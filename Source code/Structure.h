@@ -67,4 +67,4 @@ typedef struct Patient
 	char Allergies[AllergiesSize];
 	Stack* Visits;
 	int nVisits;
-} Patient;
+}Patient;

@@ -1,15 +1,21 @@
 #pragma once
 #ifndef _BST_HEADER__
 #define _BST_HEADER__
-#include"Structure.h"
 
+#include "Structure.h"
+
+// Forward declaration
+struct pInTree;
+
+// Typedef for tree node
 typedef struct pInTree
 {
 	Patient tpatient;
-	pInTree* left;
-	pInTree* right;
+	struct pInTree* left;
+	struct pInTree* right;
 } pInTree;
 
+// Typedef for tree
 typedef struct pTree
 {
 	pInTree* root;

@@ -6,6 +6,7 @@
 
 
 
+
 #define FALSE 0
 #define TRUE 1
 
@@ -121,7 +122,7 @@ void printParent(BST* tree, int child)
 	}
 }
 
-// for Patient 
+ //functions for Patient 
 
 pInTree* PatientcreateBstNode(pInTree* left, pInTree* right, Patient PatientToBeInserted)
 {
