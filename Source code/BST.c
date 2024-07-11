@@ -189,7 +189,16 @@ int PatientisBstEmpty(pTree* tree)
 
 void PatientprintBST(pTree* tree)
 {
-	//print_ascii_tree(tree->root);
+	if (tree != NULL) {
+		// Traverse the left subtree
+		PatientprintBST(tree->root->left);
+
+		// Print the root node's id
+		printf("%s\n", tree->root->tpatient.ID);
+
+		// Traverse the right subtree
+		PatientprintBST(tree->root->right);
+	}
 }
 
 int Patientfind(pTree* tree, Patient PatientToBeFound)

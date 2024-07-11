@@ -66,7 +66,7 @@ typedef struct Patient
 {
 	char* Name;
 	char ID[ID_SIZE];
-	char Allergies[AllergiesSize];
+	char Allergies;
 	Stack* Visits;
 	int nVisits;
 }Patient;

@@ -1,7 +1,11 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
+#include<string.h>
+#include"BST.h"
 #include "Structure.h"
-#include "Stack.h"
+#include"Stack.h"
+
+
 #define TESTVISIT
 int main() {
     loadPatients();
@@ -31,6 +35,17 @@ int main() {
     printf("%d",VisitgetStackSize(VisitList));
 #endif // TESTVISIT
 
+#ifdef PATIENTTEST
+    Patient inna = { 0 };
+    inna.Name = "inna gefen";
+    strcpy(&inna.ID, "12345678");
+    inna.Allergies = 0x0;
+
+    pTree* tree = malloc(sizeof(pTree));
+    PatientinitBST(tree);
+    PatientinsertBST(tree, inna);
+    PatientprintBST(tree);
+#endif // PATIENTTEST
 
     
 }
