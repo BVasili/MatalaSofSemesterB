@@ -6,14 +6,14 @@
 #define AllergiesSize 8
 
 //Define for allergies
-#define NONE 00000000
-#define PENICILLIN 00000001
-#define SULFA 00000010
-#define OPIOIDS 00000100
-#define ANESTHETICS 00001000
-#define EGGS 00010000
-#define LATEX 00100000
-#define PRESERVATIVES 01000000
+#define NONE 0x0
+#define PENICILLIN 0x1
+#define SULFA 0x2
+#define OPIOIDS 0x3
+#define ANESTHETICS 0x4
+#define EGGS 0x5
+#define LATEX 0x6
+#define PRESERVATIVES 0x7
 
 typedef struct Date
 {
