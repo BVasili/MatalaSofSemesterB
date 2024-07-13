@@ -2,6 +2,7 @@
 #include "Structure.h"
 #define DEBUG
 
+
 int printMenu(void)
 {
 	int action = MENU_DEFAULT;
