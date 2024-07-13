@@ -1,12 +1,11 @@
 #pragma once
 #ifndef AUXILIARY_FUNCTIONS_HEADER__
 #define AUXILIARY_FUNCTIONS_HEADER__
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <time.h>
-#define MENU_DEFAULT -1
-
+#define _CRT_SECURE_NO_WARNINGS
+#define NAME_SIZE 100
+#define ID_SIZE 9
+#define AllergiesSize 8
+char getAllergyBit(const char* allergy);
 //loadDoctors
 //loadLine
 //updatefiles

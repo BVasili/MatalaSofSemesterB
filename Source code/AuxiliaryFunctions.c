@@ -1,14 +1,15 @@
 #include "AuxiliaryFunctions.h"
 #include "Structure.h"
+#include <stdlib.h>
+#include <stdio.h>
 #define DEBUG
-
 
 int printMenu(void)
 {
-	int action = MENU_DEFAULT;
-	/*while (action < 0 && action>12)*/
-	/*{*/
-	printf("\tMENU:\n\n\
+	int action = -1;
+	while (action < 0 && action > 12)
+	{
+		printf("\tMENU:\n\n\
       0. Exit Program\n\n\
       1. Admit Patient\n\n\
       2. Check fot patient's allergies\n\n\
@@ -22,7 +23,7 @@ int printMenu(void)
       10. Remove visit\n\n\
       11. Remove patient\n\n\
       12. Close the hospital\n");
-	/*}*/
+	}
 
 	return action;
 }
@@ -43,22 +44,22 @@ void loadPatients()
 		exit(1);
 	}
 
-	//the first three loops is only to get to the first letter of the name, it will be different and optimized
+	// the first three loops is only to get to the first letter of the name, it will be different and optimized //fseek
 	while ((tempLetter = fgetc(PtrPatients)) != '=')
-	{
+
 		countLetters++;
-	}
+
 	while ((tempLetter = fgetc(PtrPatients)) == '=')
-	{
+
 		countLetters++;
-	}
+
 	while (((tempLetter = fgetc(PtrPatients)) == '\n') || ((tempLetter = fgetc(PtrPatients)) == '1'))
-	{
+
 		countLetters++;
-	}
+
 	countLetters = 0;
 
-	//extracting the name out of the file
+	// extracting the name out of the file
 	while ((tempLetter = fgetc(PtrPatients)) != ';')
 	{
 		temp[countLetters] = tempLetter;
@@ -74,13 +75,10 @@ void loadPatients()
 		exit(1);
 	}
 
-	for (int i = 0; i <= countLetters; i++)
-	{
+	for (int i = 0; i <= countLetters; i++) // try strcpy
 		PatientPlaceHolder.Name[i] = temp[i];
-	}
 
-
-	//extracting the id out of the file
+	// extracting the id out of the file
 	countLetters = 0;
 	while ((tempLetter = fgetc(PtrPatients)) != ';')
 	{
@@ -89,13 +87,10 @@ void loadPatients()
 	}
 	temp[countLetters] = '\0';
 
-	for (int i = 0; i < countLetters; i++)
-	{
+	for (int i = 0; i <= countLetters; i++) // strcpy
 		PatientPlaceHolder.ID[i] = temp[i];
-	}
-	PatientPlaceHolder.ID[ID_SIZE - 1] = '\0';
 
-	//extracting the allergies out of the file 
+	// extracting the allergies out of the file
 	PatientPlaceHolder.Allergies = none;
 	countLetters = 0;
 
@@ -106,9 +101,7 @@ void loadPatients()
 		while ((tempLetter = fgetc(PtrPatients)) != ',')
 		{
 			if (tempLetter == '\n')
-			{
 				break;
-			}
 			temp[countLetters] = tempLetter;
 			countLetters++;
 		}
@@ -118,28 +111,30 @@ void loadPatients()
 		PatientPlaceHolder.Allergies |= getAllergyBit(temp);
 
 		if (tempLetter == '\n')
-		{
 			break;
-		}
 	}
 
-	//extract
-	/*printf("name:\t%s\nid:\t%s\nallergies:\t \n", PatientPlaceHolder.Name, PatientPlaceHolder.ID, PatientPlaceHolder.Allergies);*/
-
+	printf("name:\t%s\nid:\t%s\n", PatientPlaceHolder.Name, PatientPlaceHolder.ID);
 	exit(1);
-	//dont forget to close the file
+	// dont forget to close the file
 #endif // DEBUG
-
 
 }
 char getAllergyBit(const char* allergy)
 {
-	if (strcmp(allergy, "Penicillin") == 0) return Penicillin;
-	if (strcmp(allergy, "Sulfa") == 0) return Sulfa;
-	if (strcmp(allergy, "Opioids") == 0) return Opioids;
-	if (strcmp(allergy, "Anesthetics") == 0) return Anesthetics;
-	if (strcmp(allergy, "Eggs") == 0) return Eggs;
-	if (strcmp(allergy, "Latex") == 0) return Latex;
-	if (strcmp(allergy, "Preservatives") == 0) return Preservatives;
+	if (strcmp(allergy, "Penicillin") == 0)
+		return Penicillin;
+	if (strcmp(allergy, "Sulfa") == 0)
+		return Sulfa;
+	if (strcmp(allergy, "Opioids") == 0)
+		return Opioids;
+	if (strcmp(allergy, "Anesthetics") == 0)
+		return Anesthetics;
+	if (strcmp(allergy, "Eggs") == 0)
+		return Eggs;
+	if (strcmp(allergy, "Latex") == 0)
+		return Latex;
+	if (strcmp(allergy, "Preservatives") == 0)
+		return Preservatives;
 	return none;
 }

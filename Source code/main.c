@@ -5,8 +5,6 @@
 #include "Structure.h"
 #include"Stack.h"
 
-
-#define TESTVISIT
 int main() {
     loadPatients();
     
