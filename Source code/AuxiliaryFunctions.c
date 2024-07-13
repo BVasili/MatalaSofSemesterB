@@ -31,6 +31,10 @@ int printMenu(void)
 void loadPatients()
 {
 #ifdef DEBUG
+	char Line[20];
+	char ID[9];
+	char Name[20];
+	char Allergies[8][10];
 	int countLetters = 0;
 	char tempLetter;
 	char temp[NAME_SIZE];
@@ -44,80 +48,11 @@ void loadPatients()
 		exit(1);
 	}
 
-	// the first three loops is only to get to the first letter of the name, it will be different and optimized //fseek
-	while ((tempLetter = fgetc(PtrPatients)) != '=')
-
-		countLetters++;
-
-	while ((tempLetter = fgetc(PtrPatients)) == '=')
-
-		countLetters++;
-
-	while (((tempLetter = fgetc(PtrPatients)) == '\n') || ((tempLetter = fgetc(PtrPatients)) == '1'))
-
-		countLetters++;
-
-	countLetters = 0;
-
-	// extracting the name out of the file
-	while ((tempLetter = fgetc(PtrPatients)) != ';')
-	{
-		temp[countLetters] = tempLetter;
-		countLetters++;
-	}
-	temp[countLetters] = '\0';
-
-	PatientPlaceHolder.Name = (char*)malloc((countLetters + 1) * sizeof(char*));
-
-	if (!PatientPlaceHolder.Name)
-	{
-		printf("Cannot allocate memory");
-		exit(1);
-	}
-
-	for (int i = 0; i <= countLetters; i++) // try strcpy
-		PatientPlaceHolder.Name[i] = temp[i];
-
-	// extracting the id out of the file
-	countLetters = 0;
-	while ((tempLetter = fgetc(PtrPatients)) != ';')
-	{
-		temp[countLetters] = tempLetter;
-		countLetters++;
-	}
-	temp[countLetters] = '\0';
-
-	for (int i = 0; i <= countLetters; i++) // strcpy
-		PatientPlaceHolder.ID[i] = temp[i];
-
-	// extracting the allergies out of the file
-	PatientPlaceHolder.Allergies = none;
-	countLetters = 0;
-
-	while ((tempLetter = fgetc(PtrPatients)) != EOF)
-	{
-		temp[countLetters] = tempLetter;
-		countLetters++;
-		while ((tempLetter = fgetc(PtrPatients)) != ',')
-		{
-			if (tempLetter == '\n')
-				break;
-			temp[countLetters] = tempLetter;
-			countLetters++;
-		}
-
-		temp[countLetters] = '\0';
-		countLetters = 0;
-		PatientPlaceHolder.Allergies |= getAllergyBit(temp);
-
-		if (tempLetter == '\n')
-			break;
-	}
-
-	printf("name:\t%s\nid:\t%s\n", PatientPlaceHolder.Name, PatientPlaceHolder.ID);
-	exit(1);
-	// dont forget to close the file
+	
 #endif // DEBUG
+
+
+
 
 }
 char getAllergyBit(const char* allergy)
