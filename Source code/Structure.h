@@ -6,14 +6,14 @@
 #define AllergiesSize 8
 
 //Define for allergies
-#define NONE 0x0
-#define PENICILLIN 0x1
-#define SULFA 0x2
-#define OPIOIDS 0x3
-#define ANESTHETICS 0x4
-#define EGGS 0x5
-#define LATEX 0x6
-#define PRESERVATIVES 0x7
+#define none           0x0
+#define Penicillin     0x1
+#define Sulfa          0x2
+#define Opioids        0x3
+#define Anesthetics    0x4
+#define Eggs           0x5
+#define Latex          0x6
+#define Preservatives  0x7
 
 typedef struct Date
 {
@@ -70,5 +70,5 @@ typedef struct Patient
 	Stack* Visits;
 	int nVisits;
 }Patient;
- 
+
 #endif // STRUCTURE_HEADER__
