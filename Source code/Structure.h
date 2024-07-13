@@ -1,19 +1,19 @@
 ﻿#pragma once
-#ifndef STRUCTURE_HEADER__
-#define STRUCTURE_HEADER__
 
-#define ID_SIZE 8
+#define NAME_SIZE 100
+#define ID_SIZE 10
 #define AllergiesSize 8
 
 //Define for allergies
-#define NONE 0x0
-#define PENICILLIN 0x1
-#define SULFA 0x2
-#define OPIOIDS 0x3
-#define ANESTHETICS 0x4
-#define EGGS 0x5
-#define LATEX 0x6
-#define PRESERVATIVES 0x7
+#define none           0b00000000
+#define Penicillin     0b00000001
+#define Sulfa          0b00000010
+#define Opioids        0b00000100
+#define Anesthetics    0b00001000
+#define Eggs           0b00010000
+#define Latex          0b00100000
+#define Preservatives  0b01000000
+
 
 typedef struct Date
 {
@@ -34,6 +34,7 @@ typedef struct Doc
 
 typedef struct Visit
 {
+	int number;//only for now until stack is in order
 	Date tArrival;
 	Date tDismissed;
 	float Duration;
@@ -66,9 +67,7 @@ typedef struct Patient
 {
 	char* Name;
 	char ID[ID_SIZE];
-	char Allergies;
-	Stack* Visits;
+	char Allergies/*[AllergiesSize]*/;
+	/*Stack* Visits;*/
 	int nVisits;
-}Patient;
- 
-#endif // STRUCTURE_HEADER__
+} Patient;
