@@ -6,11 +6,11 @@
 #include"Stack.h"
 
 //Debug
-#define TESTBST_
-#define TESTVISIT_
+#define TESTBST
+#define TESTVISIT
 
 int main() {
-	pTree* PatientBST = loadPatients();
+	
 	printMenu();
 
 #ifdef TESTBST
