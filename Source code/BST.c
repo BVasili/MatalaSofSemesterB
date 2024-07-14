@@ -156,8 +156,8 @@ void PatientinsertNode(pInTree* root, Patient PatientToBeInserted)
 void PatientfreeTree(pInTree* root)
 {
 	if (root == NULL) return;
-	freeTree(root->left);
-	freeTree(root->right);
+	PatientfreeTree(root->left);
+	PatientfreeTree(root->right);
 	free(root);
 }
 
@@ -179,7 +179,7 @@ void Patient_insertBST(pTree* tree, Patient PatientToBeInserted)
 
 void Patient_destroyBST(pTree* tree)
 {
-	freeTree(tree->root);
+	PatientfreeTree(tree->root);
 }
 
 int Patient_BstEmpty(pTree* tree)
