@@ -8,7 +8,8 @@
 int main() {
 
 #ifdef TESTBST
-	pTree* PatientBST = NULL;
+	pTree *PatientBST = malloc(sizeof(pTree));
+	PatientBST->root = malloc(sizeof())
 	printf("address %p\n", PatientBST);
 	PatientBST = loadPatients();
 	printf("is empty: %d\n", Patient_BstEmpty(PatientBST));
