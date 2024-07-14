@@ -6,8 +6,10 @@
 #include"Stack.h"
 
 int main() {
-    loadPatients();
-    
+    pTree* PatientBST= loadPatients();
+    printf("%d", Patientfind(PatientBST, "123456789"));
+    PatientfreeTree(PatientBST);
+
 #ifdef TESTVISIT
     Visit Test = { 0 };
     Test.tArrival.Day = 1;
