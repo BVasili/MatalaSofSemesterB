@@ -42,6 +42,7 @@ pInTree* loadPatients()
 
 	char Day[3] = { 0 }, Month[3] = { 0 }, Year[5] = { 0 };
 	char Hour[3] = { 0 }, Minute[3] = { 0 };
+	long FileSize = 0, remainingBytes = 0,currentPosition = 0;
 
 	char* NamePtr = NULL;
 	Patient PatientTemp = { 0 };
@@ -57,12 +58,19 @@ pInTree* loadPatients()
 		return;
 	}
 
+	fseek(Ptr2File, 0, SEEK_END);
+	FileSize = ftell(Ptr2File);
+	fseek(Ptr2File, 0, SEEK_SET);
+
 	FILE* Ptr2File_FilePointer = Ptr2File; //maybe change rewind()
 	fseek(Ptr2File_FilePointer, 47, SEEK_CUR); // Skips first line in txt file
 
-	while (!feof(Ptr2File_FilePointer))
+	currentPosition = ftell(Ptr2File_FilePointer);
+	remainingBytes = FileSize - currentPosition;
+
+	while (remainingBytes>3)
 	{
-		
+
 		// Read Patients NAME,ID,ALLERGIES.
 		{
 			fgets(Line, sizeof(Line), Ptr2File_FilePointer);
@@ -271,6 +279,9 @@ pInTree* loadPatients()
 		PatientTemp.Visits = NULL;
 		PatientTemp.Allergies = 0x0;
 		strcpy(PatientTemp.ID, "\0");
+
+		currentPosition = ftell(Ptr2File_FilePointer);
+		remainingBytes = FileSize - currentPosition;
 	}
 	fclose(Ptr2File);
 	return root;
