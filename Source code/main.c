@@ -5,7 +5,7 @@
 #include "Structure.h"
 #include"Stack.h"
 
-//debug
+//Debug
 #define TESTBST__
 
 
