@@ -5,7 +5,7 @@
 #include "SLL.h"
 
 
-//This was defined in "Structure.h" b
+//This was defined in "Structure.h" to prevent conflict
 //typedef struct Stack
 //{
 //	List sList;

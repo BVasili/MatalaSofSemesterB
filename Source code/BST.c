@@ -5,8 +5,6 @@
 #include "TreePrintLibrary.h"
 
 
-
-
 #define FALSE 0
 #define TRUE 1
 
@@ -124,7 +122,7 @@ void printParent(BST* tree, int child)
 
  //functions for Patient 
 
-pInTree* PatientcreateBstNode(pInTree* left, pInTree* right, Patient PatientToBeInserted)
+pInTree* Patient_createBstNode(pInTree* left, pInTree* right, Patient PatientToBeInserted)
 {
 	pInTree* newNode = calloc(1, sizeof(pInTree));
 	if (newNode != NULL)
@@ -136,28 +134,28 @@ pInTree* PatientcreateBstNode(pInTree* left, pInTree* right, Patient PatientToBe
 	return newNode;
 }
 
-void PatientinsertNode(pInTree* root, Patient PatientToBeInserted)
+void Patient_insertNode(pInTree* root, Patient PatientToBeInserted)
 {
 	if (strcmp(PatientToBeInserted.ID, root->tpatient.ID) == 0) return;//no duplicates
 	if (strcmp(PatientToBeInserted.ID, root->tpatient.ID) < 0)
 	{
 		if (root->left == NULL)//no left child
-			root->left = PatientcreateBstNode(NULL, NULL, PatientToBeInserted);
-		else PatientinsertNode(root->left, PatientToBeInserted);
+			root->left = Patient_createBstNode(NULL, NULL, PatientToBeInserted);
+		else Patient_insertNode(root->left, PatientToBeInserted);
 	}
 	else
 	{
 		if (root->right == NULL)//no right child
-			root->right = PatientcreateBstNode(NULL, NULL, PatientToBeInserted);
-		else PatientinsertNode(root->right, PatientToBeInserted);
+			root->right = Patient_createBstNode(NULL, NULL, PatientToBeInserted);
+		else Patient_insertNode(root->right, PatientToBeInserted);
 	}
 }
 
-void PatientfreeTree(pInTree* root)
+void Patient_freeTree(pInTree* root)
 {
 	if (root == NULL) return;
-	PatientfreeTree(root->left);
-	PatientfreeTree(root->right);
+	Patient_freeTree(root->left);
+	Patient_freeTree(root->right);
 	free(root);
 }
 
@@ -170,16 +168,16 @@ void Patient_insertBST(pTree* tree, Patient PatientToBeInserted)
 {
 	if (Patient_BstEmpty(tree))
 	{
-		tree->root = PatientcreateBstNode(NULL, NULL, PatientToBeInserted);
+		tree->root = Patient_createBstNode(NULL, NULL, PatientToBeInserted);
 		return;
 	}
 
-	PatientinsertNode(tree->root, PatientToBeInserted);
+	Patient_insertNode(tree->root, PatientToBeInserted);
 }
 
 void Patient_destroyBST(pTree* tree)
 {
-	PatientfreeTree(tree->root);
+	Patient_freeTree(tree->root);
 }
 
 int Patient_BstEmpty(pTree* tree)

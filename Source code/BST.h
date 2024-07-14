@@ -48,9 +48,9 @@ void printBST(BST* tree);
 void printParent(BST* tree, int child);
 
 //functions for Patient
-void PatientinsertNode(pInTree* root, Patient PatientToBeInserted);
-void PatientfreeTree(pInTree* root);
-pInTree* PatientcreateBstNode(pInTree* left, pInTree* right, Patient PatientToBeInserted);
+void Patient_insertNode(pInTree* root, Patient PatientToBeInserted);
+void Patient_freeTree(pInTree* root);
+pInTree* Patient_createBstNode(pInTree* left, pInTree* right, Patient PatientToBeInserted);
 
 int Patient_searchInTree(pInTree* root, char*);
 void Patient_initializeBST(pTree* tree);
