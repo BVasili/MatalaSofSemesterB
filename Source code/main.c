@@ -21,9 +21,9 @@ int main() {
 
 #ifdef TESTBST
 	pTree *PatientBST = malloc(sizeof(pTree));
-	PatientBST->root = malloc(sizeof())
+	PatientBST->root = NULL;
 	printf("address %p\n", PatientBST);
-	
+	PatientBST = loadPatients();
 	printf("is empty: %d\n", Patient_BstEmpty(PatientBST));
 	printf("address %p\n", PatientBST);
 	//Patient_initializeBST -works --->its inside loadPatients()
@@ -31,7 +31,6 @@ int main() {
 	printf("is %s in tree? :%d\n", "203389445", Patient_find(PatientBST, "203389445"));
 	Patient_PrintTree(PatientBST);
 	Patient_destroyBST(PatientBST);
-	printf("is empty: %d\n", Patient_BstEmpty(PatientBST));
 	printf("address %p\n", PatientBST);
 
 #endif // TESTBST
