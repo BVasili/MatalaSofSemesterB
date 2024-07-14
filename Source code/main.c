@@ -4,15 +4,26 @@
 #include"BST.h"
 #include "Structure.h"
 #include"Stack.h"
-//fdf
-#define TESTBST
+
+//debug
+#define TESTBST__
+
+
 int main() {
+	pTree* PatientBST = loadPatients();
+	int action=
+	while (printMenu() != 0) 
+	{
+
+	}
+
+
 
 #ifdef TESTBST
 	pTree *PatientBST = malloc(sizeof(pTree));
 	PatientBST->root = malloc(sizeof())
 	printf("address %p\n", PatientBST);
-	PatientBST = loadPatients();
+	
 	printf("is empty: %d\n", Patient_BstEmpty(PatientBST));
 	printf("address %p\n", PatientBST);
 	//Patient_initializeBST -works --->its inside loadPatients()
@@ -62,5 +73,5 @@ int main() {
 	Patient_printBST(tree);
 #endif // PATIENTTEST
 
-	//this is a testcc
+	return 0;
 }
