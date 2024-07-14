@@ -68,10 +68,9 @@ pInTree* loadPatients()
 	FileSize = ftell(Ptr2File);
 	fseek(Ptr2File, 0, SEEK_SET);
 
-	FILE* Ptr2File_FilePointer = Ptr2File; //maybe change rewind()
-	fseek(Ptr2File_FilePointer, 47, SEEK_CUR); // Skips first line in txt file
+	fseek(Ptr2File, 47, SEEK_CUR); // Skips first line in txt file
 
-	currentPosition = ftell(Ptr2File_FilePointer);
+	currentPosition = ftell(Ptr2File);
 	remainingBytes = FileSize - currentPosition;
 
 	while (remainingBytes > 3)
@@ -81,7 +80,7 @@ pInTree* loadPatients()
 
 			// Read Patients NAME,ID,ALLERGIES.
 			{
-				fgets(Line, sizeof(Line), Ptr2File_FilePointer);
+				fgets(Line, sizeof(Line), Ptr2File);
 #ifdef DEBUG
 
 				printf("%s\n", Line);
@@ -145,8 +144,8 @@ pInTree* loadPatients()
 			}
 
 			//Skips to the right line to read visits
-			fgets(Line, sizeof(Line), Ptr2File_FilePointer);
-			fgets(Line, sizeof(Line), Ptr2File_FilePointer);
+			fgets(Line, sizeof(Line), Ptr2File);
+			fgets(Line, sizeof(Line), Ptr2File);
 
 			// Reads Patients Visits
 			do
@@ -175,7 +174,7 @@ pInTree* loadPatients()
 
 #endif // DEBUG
 
-				fgets(Line, sizeof(Line), Ptr2File_FilePointer);
+				fgets(Line, sizeof(Line), Ptr2File);
 				sscanf(Line, "Dismissed:%[^/]/%[^/]/%[^ ] %[^:]:%[^\n]", Day, Month, Year, Hour, Minute);
 
 				//Converting from string to int and putting the variables in their right place
@@ -197,7 +196,7 @@ pInTree* loadPatients()
 #endif // DEBUG
 
 				//Getting Duration of visit
-				fgets(Line, sizeof(Line), Ptr2File_FilePointer);
+				fgets(Line, sizeof(Line), Ptr2File);
 				sscanf(Line, "Duration:%[^:]:%[^\n]", Hour, Minute);
 
 				//(for debugging) Converting it to hour and minutes
@@ -213,7 +212,7 @@ pInTree* loadPatients()
 
 
 				//Getting doctors name from patient.txt
-				fgets(Line, sizeof(Line), Ptr2File_FilePointer);
+				fgets(Line, sizeof(Line), Ptr2File);
 				sscanf(Line, "Doctor:%[^\n]", Doctor_Name);
 #ifdef DEBUG
 
@@ -231,7 +230,7 @@ pInTree* loadPatients()
 				strcpy(PatientsTempVisit.Doctor->Name, Doctor_Name);
 
 				//getting summary from given visit
-				fgets(Line, sizeof(Line), Ptr2File_FilePointer);
+				fgets(Line, sizeof(Line), Ptr2File);
 				sscanf(Line, "Summary:%[^\n]", Summary);
 #ifdef DEBUG
 
@@ -263,7 +262,7 @@ pInTree* loadPatients()
 				PatientsTempVisit.tArrival.Hour = 0;
 				PatientsTempVisit.tArrival.Min = 0;
 
-				fgets(Line, sizeof(Line), Ptr2File_FilePointer);
+				fgets(Line, sizeof(Line), Ptr2File);
 
 #ifdef DEBUG
 				printf("%s\n", Line);
@@ -274,7 +273,7 @@ pInTree* loadPatients()
 				if (strcmp(Line, "\n") != 0)
 					break;
 
-				fgets(Line, sizeof(Line), Ptr2File_FilePointer);
+				fgets(Line, sizeof(Line), Ptr2File);
 
 			} while (1);
 
@@ -289,7 +288,7 @@ pInTree* loadPatients()
 			strcpy(PatientTemp.ID, "\0");
 
 			//finds remaining bytes from end of file
-			currentPosition = ftell(Ptr2File_FilePointer);
+			currentPosition = ftell(Ptr2File);
 			remainingBytes = FileSize - currentPosition;
 		}
 	fclose(Ptr2File);
