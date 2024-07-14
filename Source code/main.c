@@ -4,6 +4,7 @@
 #include"BST.h"
 #include "Structure.h"
 #include"Stack.h"
+//fdf
 #define TESTBST
 #define TESTVISIT
 int main() {
