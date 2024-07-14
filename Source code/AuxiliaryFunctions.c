@@ -1,15 +1,17 @@
 #include "AuxiliaryFunctions.h"
 #include "Structure.h"
-#include <stdlib.h>
 #include <stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
 #define DEBUG
 
 int printMenu(void)
 {
 	int action = -1;
-	while (action < 0 && action > 12)
-	{
-		printf("\tMENU:\n\n\
+	/*while (action < 0 && action>12)*/
+	/*{*/
+	printf("\tMENU:\n\n\
       0. Exit Program\n\n\
       1. Admit Patient\n\n\
       2. Check fot patient's allergies\n\n\
@@ -23,53 +25,88 @@ int printMenu(void)
       10. Remove visit\n\n\
       11. Remove patient\n\n\
       12. Close the hospital\n");
-	}
+	/*}*/
 
 	return action;
 }
 
 void loadPatients()
 {
-#ifdef DEBUG
-	char Line[20];
-	char ID[9];
-	char Name[20];
-	char Allergies[8][10];
-	int countLetters = 0;
-	char tempLetter;
-	char temp[NAME_SIZE];
-	Patient PatientPlaceHolder;
-	Visit VisitPlaceHolder;
+	char Name[20] = { 0 };
+	char* NamePtr = NULL;
+	char ID[ID_SIZE] = { 0 };
+	char Allergies_String[70];
+	char Allergies[8][15] = { 0 };
+	char Doctor_Name[20] = { 0 };
+	char Line[50] = { 0 };
+	char Summary[50] = { 0 };
+	char Day[4] = { 0 }, Month[4] = { 0 }, Year[5] = { 0 }, Hour[4] = { 0 }, Minute[4] = { 0 };
+	int nVisit = 0;
+	float Duration = 0;
+	Patient PatientTemp = { 0 };
+	PatientTemp.Allergies = 0x0;
 
-	FILE* PtrPatients = fopen("Patients.txt", "r");
-	if (!PtrPatients)
-	{
-		printf("Error: Cannot Reach Memory Address\n");
-		exit(1);
+	FILE* Ptr2File = fopen("Patients.txt", "r");
+	if (!Ptr2File) {
+		printf("Error opening Ptr2File: %s\n", "Patients.txt");
+		return;
 	}
 
-	
-#endif // DEBUG
+	FILE* Ptr2File_FilePointer = Ptr2File;
+	fseek(Ptr2File_FilePointer, 21, SEEK_CUR); //Skips first line in txt file
+
+	{
+		fgets(Line, sizeof(Line), Ptr2File);
+		fgets(Line, sizeof(Line), Ptr2File);
+
+		sscanf(Line, "%*d.%[^;];%[^;];%s", Name, ID, Allergies_String);
+
+		sscanf(Allergies_String, "%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^ ] ", Allergies[0]
+			, Allergies[1], Allergies[2], Allergies[3], Allergies[4], Allergies[5], Allergies[6], Allergies[7]);
+
+		for (int i = 0; i < 8; i++)
+		{
+			if (strcmp(Allergies[i], "none") == 0) PatientTemp.Allergies |= NONE;
+			if (strcmp(Allergies[i], "Penicillin") == 0) PatientTemp.Allergies |= PENICILLIN;
+			if (strcmp(Allergies[i], "Sulfa") == 0) PatientTemp.Allergies |= SULFA;
+			if (strcmp(Allergies[i], "Opioids") == 0) PatientTemp.Allergies |= OPIOIDS;
+			if (strcmp(Allergies[i], "Anesthetics") == 0) PatientTemp.Allergies |= ANESTHETICS;
+			if (strcmp(Allergies[i], "Eggs") == 0) PatientTemp.Allergies |= EGGS;
+			if (strcmp(Allergies[i], "Latex") == 0) PatientTemp.Allergies |= LATEX;
+			if (strcmp(Allergies[i], "Preservatives") == 0) PatientTemp.Allergies |= PRESERVATIVES;
+		}
+
+		PatientTemp.Name = malloc(sizeof(Name));
+		if (!PatientTemp.Name) {
+			printf("Cannot allocate memory");
+			return;
+		}
+
+		strcpy(PatientTemp.Name, &Name);
+		strcpy(&PatientTemp.ID, &ID);
+
+		printf("%s %s %s\n", Name, ID, Allergies_String);
+	}
+
+	{
+		fgets(Line, sizeof(Line), Ptr2File);
+		fgets(Line, sizeof(Line), Ptr2File);
+		sscanf(Line, "Arrival:%[^/]/%[^/]/%[^ ] %[^:]:%[^\n]", Day, Month, Year, Hour, Minute);
+		printf("%s %s %s %s %s\n", Day, Month, Year, Hour, Minute);
+		fgets(Line, sizeof(Line), Ptr2File);
+		sscanf(Line, "Dismissed:%[^/]/%[^/]/%[^ ] %[^:]:%[^\n]", Day, Month, Year, Hour, Minute);
+		printf("%s %s %s %s %s\n", Day, Month, Year, Hour, Minute);
+		fgets(Line, sizeof(Line), Ptr2File);
+		sscanf(Line, "Duration:%[^:]:%[^\n]", Hour, Minute);
+		printf("%s %s\n", Hour, Minute);
+		fgets(Line, sizeof(Line), Ptr2File);
+		sscanf(Line, "Doctor:%[^\n]", Doctor_Name);
+		printf("%s\n", Doctor_Name);
+		fgets(Line, sizeof(Line), Ptr2File);
+		sscanf(Line, "Summary:%[^\n]", Summary);
+		printf("%s\n", Summary);
+	}
+	//printf("%s\n", Line);
 
 
-
-
-}
-char getAllergyBit(const char* allergy)
-{
-	if (strcmp(allergy, "Penicillin") == 0)
-		return Penicillin;
-	if (strcmp(allergy, "Sulfa") == 0)
-		return Sulfa;
-	if (strcmp(allergy, "Opioids") == 0)
-		return Opioids;
-	if (strcmp(allergy, "Anesthetics") == 0)
-		return Anesthetics;
-	if (strcmp(allergy, "Eggs") == 0)
-		return Eggs;
-	if (strcmp(allergy, "Latex") == 0)
-		return Latex;
-	if (strcmp(allergy, "Preservatives") == 0)
-		return Preservatives;
-	return none;
 }
