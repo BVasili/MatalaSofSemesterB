@@ -6,16 +6,16 @@
 #include"Stack.h"
 
 //Debug
-#define TESTBST__
-
+#define TESTBST
+#define TESTVISIT
 
 int main() {
-	pTree* PatientBST = loadPatients();
-	int action=
-	while (printMenu() != 0) 
-	{
+	//pTree* PatientBST = loadPatients();
+	//int action=
+	//while (printMenu() != 0) 
+	//{
 
-	}
+	//}
 
 
 
@@ -57,20 +57,18 @@ int main() {
 	Visit_initStack(VisitList);
 	Visit_push(VisitList, Test);
 	Visit_printStack(VisitList);
-	printf("%d", Visit_getStackSize(VisitList));
+	Visit testVisit = Visit_peekStack(VisitList);
+	printf(" name %s\n", testVisit.Doctor->Name);
+	Visit testVisit2 = Visit_pop(VisitList);
+	printf(" name %s\n", testVisit2.Doctor->Name);
+	Visit_printStack(VisitList);
+	Visit_push(VisitList, testVisit2);
+	Visit_printStack(VisitList);
+	printf(" stack size: %d\n", Visit_getStackSize(VisitList));
+	Visit_destroyStack(VisitList);
+	printf(" stack size: %d\n", Visit_getStackSize(VisitList));
 #endif // TESTVISIT
 
-#ifdef PATIENTTEST
-	Patient inna = { 0 };
-	inna.Name = "inna gefen";
-	strcpy(&inna.ID, "12345678");
-	inna.Allergies = 0x0;
-
-	pTree* tree = malloc(sizeof(pTree));
-	Patient_initializeBST(tree);
-	Patient_insertBST(tree, inna);
-	Patient_printBST(tree);
-#endif // PATIENTTEST
 
 	return 0;
 }
