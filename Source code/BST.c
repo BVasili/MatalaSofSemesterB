@@ -161,14 +161,14 @@ void PatientfreeTree(pInTree* root)
 	free(root);
 }
 
-void PatientinitBST(pTree* tree)
+void Patient_initializeBST(pTree* tree)
 {
 	tree->root = NULL;
 }
 
-void PatientinsertBST(pTree* tree, Patient PatientToBeInserted)
+void Patient_insertBST(pTree* tree, Patient PatientToBeInserted)
 {
-	if (PatientisBstEmpty(tree))
+	if (Patient_BstEmpty(tree))
 	{
 		tree->root = PatientcreateBstNode(NULL, NULL, PatientToBeInserted);
 		return;
@@ -177,45 +177,45 @@ void PatientinsertBST(pTree* tree, Patient PatientToBeInserted)
 	PatientinsertNode(tree->root, PatientToBeInserted);
 }
 
-void PatientdestroyBST(pTree* tree)
+void Patient_destroyBST(pTree* tree)
 {
 	freeTree(tree->root);
 }
 
-int PatientisBstEmpty(pTree* tree)
+int Patient_BstEmpty(pTree* tree)
 {
 	return tree->root == NULL;
 }
 
-void PatientprintBST(pInTree* node) {
+void Patient_printBST(pInTree* node) {
 	if (node != NULL) {
 		// Traverse the left subtree
-		PatientprintBST(node->left);
+		Patient_printBST(node->left);
 
 		// Print the root node's id
 		printf("%s\n", node->tpatient.ID);
 
 		// Traverse the right subtree
-		PatientprintBST(node->right);
+		Patient_printBST(node->right);
 	}
 }
 
 
-void PatientPrintTree(pTree* tree) {
+void Patient_PrintTree(pTree* tree) {
 	if (tree != NULL) {
-		PatientprintBST(tree->root);
+		Patient_printBST(tree->root);
 	}
 }
-int Patientfind(pTree* tree, char* ID)
+int Patient_find(pTree* tree, char* ID)
 {
-	return PatientsearchInTree(tree->root, ID);
+	return Patient_searchInTree(tree->root, ID);
 }
 
-int PatientsearchInTree(pInTree* root,char* ID)
+int Patient_searchInTree(pInTree* root,char* ID)
 {
 	if (root == NULL) return FALSE;
 	if (strcmp(root->tpatient.ID, ID) == 0) return TRUE;
-	if (strcmp(root->tpatient.ID, ID) <0) return PatientsearchInTree(root->right, ID);
-	else return PatientsearchInTree(root->left, ID);
+	if (strcmp(root->tpatient.ID, ID) <0) return Patient_searchInTree(root->right, ID);
+	else return Patient_searchInTree(root->left, ID);
 }
 
