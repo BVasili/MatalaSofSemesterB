@@ -62,25 +62,29 @@ int getStackSize(const Stack* s)
 
 //functions for Visit 
 
-void VisitinitStack(Stack* s)
+//initalize
+void Visit_initStack(Stack* s)
 {
 	VisitinitList(&(s->sList));
 	s->size = 0;
 }
 
-void VisitdestroyStack(Stack* s)
+//destory stack
+void Visit_destroyStack(Stack* s)
 {
 	VisitdestroyList(&(s->sList));
 	s->size = 0;
 }
 
-void Visitpush(Stack* s, Visit Visit)
+//put into stack
+void Visit_push(Stack* s, Visit Visit)
 {
 	VisitaddToHead(&(s->sList), Visit);
 	s->size++;
 }
 
-Visit Visitpop(Stack* s)
+// pop from stack
+Visit Visit_pop(Stack* s)
 {
 	s->size--;
 	return VisitremoveFromHead(&(s->sList));
@@ -94,11 +98,11 @@ int VisitisEmptyStack(const Stack* s)
 void VisitprintStack(Stack* s)
 {
 	Stack temp;
-	VisitinitStack(&temp);
+	Visit_initStack(&temp);
 	while (!VisitisEmptyStack(s))
 	{
-		Visit popped = Visitpop(s);
-		Visitpush(&temp, popped);
+		Visit popped = Visit_pop(s);
+		Visit_push(&temp, popped);
 		printf("Arrival: ");
 		printf("%d/%d/%d ", popped.tArrival.Day, popped.tArrival.Month, popped.tArrival.Year);
 		printf("%d:%d\n", popped.tArrival.Hour, popped.tArrival.Min);
@@ -114,10 +118,10 @@ void VisitprintStack(Stack* s)
 
 	while (!VisitisEmptyStack(&temp))
 	{
-		Visitpush(s, Visitpop(&temp));
+		Visit_push(s, Visit_pop(&temp));
 	}
 
-	VisitdestroyStack(&temp);
+	Visit_destroyStack(&temp);
 }
 
 Visit VisitpeekStack(const Stack* s)

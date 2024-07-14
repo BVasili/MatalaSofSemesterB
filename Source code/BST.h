@@ -59,6 +59,7 @@ void PatientdestroyBST(pTree* tree);
 int Patientfind(pTree* tree, char*);
 int PatientisBstEmpty(pTree* tree);
 void PatientprintBST(pInTree* root);
+void PatientPrintTree(pTree* tree);
 
 
 #endif // !_BST_HEADER__

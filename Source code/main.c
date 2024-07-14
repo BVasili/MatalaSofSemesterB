@@ -7,8 +7,9 @@
 
 int main() {
     pTree* PatientBST= loadPatients();
-    printf("%d", Patientfind(PatientBST, "123456789"));
-    PatientfreeTree(PatientBST);
+    //PatientPrintTree(PatientBST);
+   // printf("%d", Patientfind(PatientBST, "123456789"));
+    //PatientfreeTree(PatientBST);
 
 #ifdef TESTVISIT
     Visit Test = { 0 };
@@ -29,8 +30,8 @@ int main() {
     Test.Doctor = malloc(sizeof(Doc));
     Test.Doctor->Name = "Boris";
     Stack* VisitList = malloc(sizeof(Stack));
-    VisitinitStack(VisitList);
-    Visitpush(VisitList, Test);
+    Visit_initStack(VisitList);
+    Visit_push(VisitList, Test);
     VisitprintStack(VisitList);
     printf("%d",VisitgetStackSize(VisitList));
 #endif // TESTVISIT

@@ -36,7 +36,7 @@ int printMenu(void)
 pInTree* loadPatients()
 {
 	//Declaring variables for function
-	char Name[NAME_SIZE] = { 0 }, Doctor_Name[NAME_SIZE] = { 0 }, ID[ID_SIZE] = { 0 };;
+	char Name[NAME_SIZE] = { 0 }, Doctor_Name[NAME_SIZE] = { 0 }, ID[ID_SIZE] = { 0 };
 	char Allergies_String[LINE_SIZE], Line[LINE_SIZE] = { 0 }, Summary[SUMAMRY_SIZE] = { 0 };
 	char Allergies[ALLERGY_SIZE][ALLERGY_MAX_NAME_SIZE] = { 0 };
 
@@ -46,25 +46,23 @@ pInTree* loadPatients()
 	char* NamePtr = NULL;
 	Patient PatientTemp = { 0 };
 	Visit PatientsTempVisit = { 0 };
-	pTree* root = malloc(sizeof(pTree));
+	pTree* root = malloc(sizeof(pTree)); //change and free if no pateints in txt
 
 	PatientinitBST(root);
 
-	FILE* Ptr2File = fopen("Patients.txt", "r");
+	FILE* Ptr2File = fopen("Patients.txt", "r"); //add variable to function
 	if (!Ptr2File)
 	{
 		printf("Error opening Ptr2File: %s\n", "Patients.txt");
 		return;
 	}
 
-	FILE* Ptr2File_FilePointer = Ptr2File;
+	FILE* Ptr2File_FilePointer = Ptr2File; //maybe change rewind()
 	fseek(Ptr2File_FilePointer, 47, SEEK_CUR); // Skips first line in txt file
 
 	while (!feof(Ptr2File_FilePointer))
 	{
-		if (feof(Ptr2File_FilePointer))
-			fclose(Ptr2File);
-
+		
 		// Read Patients NAME,ID,ALLERGIES.
 		{
 			fgets(Line, sizeof(Line), Ptr2File_FilePointer);
@@ -105,15 +103,15 @@ pInTree* loadPatients()
 				strcpy(&Allergies[i], "\0");
 
 			//Allocating memory for name and visit stack
-			PatientTemp.Name = malloc(sizeof(Name));
+			PatientTemp.Name = malloc(sizeof(Name));//move id down here
 			CheckDynamicAllocation(PatientTemp.Name);
 			strcpy(PatientTemp.Name, Name);
 
-			PatientTemp.Visits = malloc(sizeof(Stack));
-			CheckDynamicAllocation(PatientTemp.Name);
+			PatientTemp.Visits = malloc(sizeof(Stack));//check for fucks
+			CheckDynamicAllocation(PatientTemp.Visits);
 
 			//initiating stack
-			VisitinitStack(PatientTemp.Visits);
+			Visit_initStack(PatientTemp.Visits);
 
 #ifdef DEBUG
 			printf("%s %s \n", PatientTemp.Name, PatientTemp.ID);
@@ -188,6 +186,8 @@ pInTree* loadPatients()
 
 			//(for debugging) Converting it to hour and minutes
 			PatientsTempVisit.Duration = 60 * atoi(Hour) + atoi(Minute);
+			strcpy(Hour, "\0");
+			strcpy(Minute, "\0");
 #ifdef DEBUG
 
 			int Duration_hours = (int)(PatientsTempVisit.Duration) - ((int)(PatientsTempVisit.Duration) % 60);
@@ -196,7 +196,7 @@ pInTree* loadPatients()
 #endif // DEBUG
 
 
-			//Getting doctors name from txt
+			//Getting doctors name from patient.txt
 			fgets(Line, sizeof(Line), Ptr2File_FilePointer);
 			sscanf(Line, "Doctor:%[^\n]", Doctor_Name);
 #ifdef DEBUG
@@ -227,9 +227,10 @@ pInTree* loadPatients()
 			PatientsTempVisit.vSummary = malloc(sizeof(Summary));
 			CheckDynamicAllocation(PatientsTempVisit.vSummary);
 			strcpy(PatientsTempVisit.vSummary, Summary);
+			strcpy(Summary, "\0");
 
 			//pushing each visit into stack
-			Visitpush(PatientTemp.Visits, PatientsTempVisit);
+			Visit_push(PatientTemp.Visits, PatientsTempVisit);
 
 			//reseting PatientsTempVisit for the next visit
 			PatientsTempVisit.Doctor = NULL;
@@ -270,7 +271,7 @@ pInTree* loadPatients()
 		PatientTemp.Visits = NULL;
 		PatientTemp.Allergies = 0x0;
 		strcpy(PatientTemp.ID, "\0");
-
 	}
+	fclose(Ptr2File);
 	return root;
 }

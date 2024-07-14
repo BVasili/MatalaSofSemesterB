@@ -23,10 +23,10 @@ int getStackSize(const Stack* s);
 
 //Function declaration for visit
 
-void VisitinitStack(Stack* s);
-void VisitdestroyStack(Stack* s);
-void Visitpush(Stack* s, Visit Visit);
-Visit Visitpop(Stack* s);
+void Visit_initStack(Stack* s);
+void Visit_destroyStack(Stack* s);
+void Visit_push(Stack* s, Visit Visit);
+Visit Visit_pop(Stack* s);
 Visit VisitpeekStack(const Stack* s);
 int VisitisEmptyStack(const Stack* s);
 void VisitprintStack(Stack* s);

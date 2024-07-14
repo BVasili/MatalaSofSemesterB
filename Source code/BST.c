@@ -187,20 +187,25 @@ int PatientisBstEmpty(pTree* tree)
 	return tree->root == NULL;
 }
 
-void PatientprintBST(pTree* tree)
-{
-	if (tree != NULL) {
+void PatientprintBST(pInTree* node) {
+	if (node != NULL) {
 		// Traverse the left subtree
-		PatientprintBST(tree->root->left);
+		PatientprintBST(node->left);
 
 		// Print the root node's id
-		printf("%s\n", tree->root->tpatient.ID);
+		printf("%s\n", node->tpatient.ID);
 
 		// Traverse the right subtree
-		PatientprintBST(tree->root->right);
+		PatientprintBST(node->right);
 	}
 }
 
+
+void PatientPrintTree(pTree* tree) {
+	if (tree != NULL) {
+		PatientprintBST(tree->root);
+	}
+}
 int Patientfind(pTree* tree, char* ID)
 {
 	return PatientsearchInTree(tree->root, ID);
