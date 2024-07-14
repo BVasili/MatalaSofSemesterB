@@ -12,23 +12,30 @@
 int printMenu(void)
 {
 	int action = -1;
-	/*while (action < 0 && action>12)*/
-	/*{*/
-	printf("\tMENU:\n\n\
-      0. Exit Program\n\n\
-      1. Admit Patient\n\n\
-      2. Check fot patient's allergies\n\n\
-      3. Dispaly all patients\n\n\
-      4. Dispaly all patient's admission\n\n\
-      5. Dispaly all patients in line\n\n\
-      6. Advance patient in line\n\n\
-      7. Display list of all doctors\n\n\
-      8. Display all patients assigned to a doctor\n\n\
-      9. Discharge patient\n\n\
-      10. Remove visit\n\n\
-      11. Remove patient\n\n\
-      12. Close the hospital\n");
-	/*}*/
+	while (action < 0 || action>12)
+	{
+		printf("MENU:\n\n\
+     0. Exit Program\n\n\
+     1. Admit Patient\n\n\
+     2. Check fot patient's allergies\n\n\
+     3. Dispaly all patients\n\n\
+     4. Dispaly all patient's admission\n\n\
+     5. Dispaly all patients in line\n\n\
+     6. Advance patient in line\n\n\
+     7. Display list of all doctors\n\n\
+     8. Display all patients assigned to a doctor\n\n\
+     9. Discharge patient\n\n\
+     10. Remove visit\n\n\
+     11. Remove patient\n\n\
+     12. Close the hospital\n");
+		printf("\n\nplease enter a the number of the wanted action:\t");
+		fseek(stdin, 0, SEEK_END);
+		scanf("%d", &action);
+		if (action < 0 || action>12)
+		{
+			printf("\n\nERROR:\tplease enter a number between 0 and 12 include\n\n");
+		}
+	}
 
 	return action;
 }
@@ -42,7 +49,7 @@ pInTree* loadPatients()
 
 	char Day[3] = { 0 }, Month[3] = { 0 }, Year[5] = { 0 };
 	char Hour[3] = { 0 }, Minute[3] = { 0 };
-	long FileSize = 0, remainingBytes = 0,currentPosition = 0;
+	long FileSize = 0, remainingBytes = 0, currentPosition = 0;
 
 	char* NamePtr = NULL;
 	Patient PatientTemp = { 0 };
@@ -68,7 +75,7 @@ pInTree* loadPatients()
 	currentPosition = ftell(Ptr2File_FilePointer);
 	remainingBytes = FileSize - currentPosition;
 
-	while (remainingBytes>3)
+	while (remainingBytes > 3)
 	{
 
 		// Read Patients NAME,ID,ALLERGIES.

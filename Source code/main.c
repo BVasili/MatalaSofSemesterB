@@ -7,6 +7,8 @@
 
 int main() {
     pTree* PatientBST= loadPatients();
+    printf("\n\n\n");
+    printMenu();
     //PatientPrintTree(PatientBST);
    // printf("%d", Patientfind(PatientBST, "123456789"));
     //PatientfreeTree(PatientBST);
