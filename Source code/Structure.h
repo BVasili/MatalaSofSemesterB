@@ -2,18 +2,20 @@
 #ifndef STRUCTURE_HEADER__
 #define STRUCTURE_HEADER__
 
-#define ID_SIZE 8
+#define ID_SIZE 10
 #define AllergiesSize 8
 
 //Define for allergies
-#define none           0x0
-#define Penicillin     0x1
-#define Sulfa          0x2
-#define Opioids        0x3
-#define Anesthetics    0x4
-#define Eggs           0x5
-#define Latex          0x6
-#define Preservatives  0x7
+#define NONE           0b0000
+#define PENICILLIN     0b0001
+#define SULFA          0b0010
+#define OPIOIDS        0b0011
+#define ANESTHETICS    0b0100
+#define EGGS           0b0101
+#define LATEX          0b0110
+#define PRESERVATIVES  0b0111
+
+
 
 typedef struct Date
 {
