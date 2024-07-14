@@ -55,8 +55,7 @@ pInTree* loadPatients()
 	Patient PatientTemp = { 0 };
 	Visit PatientsTempVisit = { 0 };
 	pTree* root = malloc(sizeof(pTree)); //change and free if no pateints in txt
-
-	PatientinitBST(root);
+	Patient_initializeBST(root);
 
 	FILE* Ptr2File = fopen("Patients.txt", "r"); //add variable to function
 	if (!Ptr2File)
@@ -76,6 +75,8 @@ pInTree* loadPatients()
 	remainingBytes = FileSize - currentPosition;
 
 	while (remainingBytes > 3)
+	
+	while (remainingBytes>3)
 	{
 
 		// Read Patients NAME,ID,ALLERGIES.
@@ -278,7 +279,7 @@ pInTree* loadPatients()
 		} while (1);
 
 		//inserting patient into bst with all the needed information
-		PatientinsertBST(root, PatientTemp);
+		Patient_insertBST(root, PatientTemp);
 
 		//reseting PatientTemp for the next patient in the txt file
 		PatientTemp.Name = NULL;
@@ -287,6 +288,7 @@ pInTree* loadPatients()
 		PatientTemp.Allergies = 0x0;
 		strcpy(PatientTemp.ID, "\0");
 
+		//finds remaining bytes from end of file
 		currentPosition = ftell(Ptr2File_FilePointer);
 		remainingBytes = FileSize - currentPosition;
 	}

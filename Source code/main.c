@@ -7,8 +7,6 @@
 
 int main() {
     pTree* PatientBST= loadPatients();
-    printf("\n\n\n");
-    printMenu();
     //PatientPrintTree(PatientBST);
    // printf("%d", Patientfind(PatientBST, "123456789"));
     //PatientfreeTree(PatientBST);
@@ -34,8 +32,8 @@ int main() {
     Stack* VisitList = malloc(sizeof(Stack));
     Visit_initStack(VisitList);
     Visit_push(VisitList, Test);
-    VisitprintStack(VisitList);
-    printf("%d",VisitgetStackSize(VisitList));
+    Visit_printStack(VisitList);
+    printf("%d",Visit_getStackSize(VisitList));
 #endif // TESTVISIT
 
 #ifdef PATIENTTEST
@@ -45,9 +43,9 @@ int main() {
     inna.Allergies = 0x0;
 
     pTree* tree = malloc(sizeof(pTree));
-    PatientinitBST(tree);
-    PatientinsertBST(tree, inna);
-    PatientprintBST(tree);
+    Patient_initializeBST(tree);
+    Patient_insertBST(tree, inna);
+    Patient_printBST(tree);
 #endif // PATIENTTEST
 
     //this is a testcc
