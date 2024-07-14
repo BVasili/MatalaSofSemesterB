@@ -1,5 +1,6 @@
 #include "AuxiliaryFunctions.h"
 #include "Structure.h"
+#include "Stack.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -57,7 +58,7 @@ void loadPatients()
 	FILE *Ptr2File_FilePointer = Ptr2File;
 	fseek(Ptr2File_FilePointer, 47, SEEK_CUR); // Skips first line in txt file
 
-	while (Ptr2File_FilePointer != EOF)
+	while (feof(Ptr2File_FilePointer))
 	{
 		// Read Patients NAME,ID,ALLERGIES.
 		{
@@ -124,11 +125,11 @@ void loadPatients()
 			PatientsTempVisit.tArrival.Month = atoi(Year);
 			PatientsTempVisit.tArrival.Hour = atoi(Hour);
 			PatientsTempVisit.tArrival.Min = atoi(Minute);
-			strcpy(Day, "\n");
-			strcpy(Month, "\n");
-			strcpy(Year, "\n");
-			strcpy(Hour, "\n");
-			strcpy(Minute, "\n");
+			strcpy(Day, "\0");
+			strcpy(Month, "\0");
+			strcpy(Year, "\0");
+			strcpy(Hour, "\0");
+			strcpy(Minute, "\0");
 
 			fgets(Line, sizeof(Line), Ptr2File_FilePointer);
 			sscanf(Line, "Dismissed:%[^/]/%[^/]/%[^ ] %[^:]:%[^\n]", Day, Month, Year, Hour, Minute);
@@ -139,11 +140,11 @@ void loadPatients()
 			PatientsTempVisit.tDismissed.Month = atoi(Year);
 			PatientsTempVisit.tDismissed.Hour = atoi(Hour);
 			PatientsTempVisit.tDismissed.Min = atoi(Minute);
-			strcpy(Day, "\n");
-			strcpy(Month, "\n");
-			strcpy(Year, "\n");
-			strcpy(Hour, "\n");
-			strcpy(Minute, "\n");
+			strcpy(Day, "\0");
+			strcpy(Month, "\0");
+			strcpy(Year, "\0");
+			strcpy(Hour, "\0");
+			strcpy(Minute, "\0");
 
 			fgets(Line, sizeof(Line), Ptr2File_FilePointer);
 			sscanf(Line, "Duration:%[^:]:%[^\n]", Hour, Minute);
@@ -166,7 +167,7 @@ void loadPatients()
 				printf("Cannot allocate memory");
 				exit(1);
 			}
-			strcpy(PatientsTempVisit.Doctor->Name, &Doctor_Name);
+			strcpy(PatientsTempVisit.Doctor->Name, Doctor_Name);
 
 			fgets(Line, sizeof(Line), Ptr2File_FilePointer);
 			sscanf(Line, "Summary:%[^\n]", Summary);
@@ -178,6 +179,7 @@ void loadPatients()
 				printf("Cannot allocate memory");
 				exit(1);
 			}
+			Visitpush(PatientTemp.Visits, PatientsTempVisit);
 
 			fgets(Line, sizeof(Line), Ptr2File_FilePointer);
 			printf("%s\n", Line);
