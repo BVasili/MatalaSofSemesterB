@@ -11,7 +11,6 @@
 
 //#define ID_SIZE 10
 
-
 //loadDoctors
 //loadLine
 //updatefiles

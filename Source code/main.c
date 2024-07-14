@@ -11,16 +11,10 @@
 
 int main() {
 	pTree* PatientBST = loadPatients();
-	int action=
-	while (printMenu() != 0) 
-	{
-
-	}
-
-
+	printMenu();
 
 #ifdef TESTBST
-	pTree *PatientBST = malloc(sizeof(pTree));
+		pTree* PatientBST = malloc(sizeof(pTree));
 	PatientBST->root = NULL;
 	printf("address %p\n", PatientBST);
 	PatientBST = loadPatients();
