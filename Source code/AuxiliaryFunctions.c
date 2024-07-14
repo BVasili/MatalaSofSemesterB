@@ -45,7 +45,8 @@ void loadPatients()
 	float Duration = 0;
 	Patient PatientTemp = { 0 };
 	Visit PatientsTempVisit = { 0 };
-	
+	int flag = 0;
+
 
 	FILE* Ptr2File = fopen("Patients.txt", "r");
 	if (!Ptr2File) {
@@ -54,67 +55,100 @@ void loadPatients()
 	}
 
 	FILE* Ptr2File_FilePointer = Ptr2File;
-	fseek(Ptr2File_FilePointer, 21, SEEK_CUR); //Skips first line in txt file
-	
-	while(Ptr2File_FilePointer != EOF){
-	// Read Patients NAME,ID,ALLERGIES.
-	{
-		fgets(Line, sizeof(Line), Ptr2File_FilePointer);
-		fgets(Line, sizeof(Line), Ptr2File_FilePointer);
+	fseek(Ptr2File_FilePointer, 47, SEEK_CUR); //Skips first line in txt file
 
-		sscanf(Line, "%*d.%[^;];%[^;];%s", Name, ID, Allergies_String);
-
-		sscanf(Allergies_String, "%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^ ] ", Allergies[0]
-			, Allergies[1], Allergies[2], Allergies[3], Allergies[4], Allergies[5], Allergies[6], Allergies[7]);
-
-		for (int i = 0; i < 8; i++)
+	while (Ptr2File_FilePointer != EOF) {
+		// Read Patients NAME,ID,ALLERGIES.
 		{
-			if (strcmp(Allergies[i], "none") == 0) PatientTemp.Allergies |= NONE;
-			if (strcmp(Allergies[i], "Penicillin") == 0) PatientTemp.Allergies |= PENICILLIN;
-			if (strcmp(Allergies[i], "Sulfa") == 0) PatientTemp.Allergies |= SULFA;
-			if (strcmp(Allergies[i], "Opioids") == 0) PatientTemp.Allergies |= OPIOIDS;
-			if (strcmp(Allergies[i], "Anesthetics") == 0) PatientTemp.Allergies |= ANESTHETICS;
-			if (strcmp(Allergies[i], "Eggs") == 0) PatientTemp.Allergies |= EGGS;
-			if (strcmp(Allergies[i], "Latex") == 0) PatientTemp.Allergies |= LATEX;
-			if (strcmp(Allergies[i], "Preservatives") == 0) PatientTemp.Allergies |= PRESERVATIVES;
-		}
-
-		PatientTemp.Name = malloc(sizeof(Name));
-		if (!PatientTemp.Name) {
-			printf("Cannot allocate memory");
-			exit(1);
-		}
-
-		strcpy(PatientTemp.Name, &Name);
-		strcpy(&PatientTemp.ID, &ID);
-
-		printf("%s %s %d\n", PatientTemp.Name, PatientTemp.ID, PatientTemp.Allergies);
-	}
-	int flag = 0;
-	//Reads Patients Visits
-	while(flag != 1){
-		fgets(Line, sizeof(Line), Ptr2File_FilePointer);
-		fgets(Line, sizeof(Line), Ptr2File_FilePointer);
-		sscanf(Line, "Arrival:%[^/]/%[^/]/%[^ ] %[^:]:%[^\n]", Day, Month, Year, Hour, Minute);
-		printf("%s %s %s %s %s\n", Day, Month, Year, Hour, Minute);
-		fgets(Line, sizeof(Line), Ptr2File_FilePointer);
-		sscanf(Line, "Dismissed:%[^/]/%[^/]/%[^ ] %[^:]:%[^\n]", Day, Month, Year, Hour, Minute);
-		printf("%s %s %s %s %s\n", Day, Month, Year, Hour, Minute);
-		fgets(Line, sizeof(Line), Ptr2File_FilePointer);
-		sscanf(Line, "Duration:%[^:]:%[^\n]", Hour, Minute);
-		printf("%s %s\n", Hour, Minute);
-		fgets(Line, sizeof(Line), Ptr2File_FilePointer);
-		sscanf(Line, "Doctor:%[^\n]", Doctor_Name);
-		printf("%s\n", Doctor_Name);
-		fgets(Line, sizeof(Line), Ptr2File_FilePointer);
-		sscanf(Line, "Summary:%[^\n]", Summary);
-		printf("%s\n", Summary);
-		printf("%s\n", Line);
-		if (strcmp(Line, " \n") == 0)
+			flag = 0;
 			fgets(Line, sizeof(Line), Ptr2File_FilePointer);
-		else flag = 1;
-	}
-	flag = 0;
-	printf("%s\n", Line);
+			printf("%s\n", Line);
+
+			sscanf(Line, "%*d.%[^;];%[^;];%s", Name, ID, Allergies_String);
+
+			sscanf(Allergies_String, "%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^ ] ", Allergies[0]
+				, Allergies[1], Allergies[2], Allergies[3], Allergies[4], Allergies[5], Allergies[6], Allergies[7]);
+
+			for (int i = 0; i < 8; i++)
+			{
+				if (strcmp(Allergies[i], "none") == 0) PatientTemp.Allergies |= NONE;
+				if (strcmp(Allergies[i], "Penicillin") == 0) PatientTemp.Allergies |= PENICILLIN;
+				if (strcmp(Allergies[i], "Sulfa") == 0) PatientTemp.Allergies |= SULFA;
+				if (strcmp(Allergies[i], "Opioids") == 0) PatientTemp.Allergies |= OPIOIDS;
+				if (strcmp(Allergies[i], "Anesthetics") == 0) PatientTemp.Allergies |= ANESTHETICS;
+				if (strcmp(Allergies[i], "Eggs") == 0) PatientTemp.Allergies |= EGGS;
+				if (strcmp(Allergies[i], "Latex") == 0) PatientTemp.Allergies |= LATEX;
+				if (strcmp(Allergies[i], "Preservatives") == 0) PatientTemp.Allergies |= PRESERVATIVES;
+			}
+
+			PatientTemp.Name = malloc(sizeof(Name));
+			if (!PatientTemp.Name) {
+				printf("Cannot allocate memory");
+				exit(1);
+			}
+
+			strcpy(PatientTemp.Name, &Name);
+			strcpy(&PatientTemp.ID, &ID);
+
+			printf("%s %s %d\n", PatientTemp.Name, PatientTemp.ID, PatientTemp.Allergies);
+		}
+		
+		//Reads Patients Visits
+		fgets(Line, sizeof(Line), Ptr2File_FilePointer);
+		fgets(Line, sizeof(Line), Ptr2File_FilePointer);
+		do
+		{
+			sscanf(Line, "Arrival:%[^/]/%[^/]/%[^ ] %[^:]:%[^\n]", Day, Month, Year, Hour, Minute);
+			printf("%s %s %s %s %s\n", Day, Month, Year, Hour, Minute);
+
+			fgets(Line, sizeof(Line), Ptr2File_FilePointer);
+			sscanf(Line, "Dismissed:%[^/]/%[^/]/%[^ ] %[^:]:%[^\n]", Day, Month, Year, Hour, Minute);
+			printf("%s %s %s %s %s\n", Day, Month, Year, Hour, Minute);
+
+			fgets(Line, sizeof(Line), Ptr2File_FilePointer);
+			sscanf(Line, "Duration:%[^:]:%[^\n]", Hour, Minute);
+			printf("%s %s\n", Hour, Minute);
+
+			fgets(Line, sizeof(Line), Ptr2File_FilePointer);
+			sscanf(Line, "Doctor:%[^\n]", Doctor_Name);
+			printf("%s\n", Doctor_Name);
+
+			fgets(Line, sizeof(Line), Ptr2File_FilePointer);
+			sscanf(Line, "Summary:%[^\n]", Summary);
+			printf("%s\n", Summary);
+
+			fgets(Line, sizeof(Line), Ptr2File_FilePointer);
+			printf("%s\n", Line);
+
+			if (strcmp(Line, "\n") == 0 || feof(Ptr2File)) {
+				break;
+			}
+		} while (1);
+		/*while (strcmp(Line, "\n") == 0) {
+
+			sscanf(Line, "Arrival:%[^/]/%[^/]/%[^ ] %[^:]:%[^\n]", Day, Month, Year, Hour, Minute);
+			printf("%s %s %s %s %s\n", Day, Month, Year, Hour, Minute);
+			fgets(Line, sizeof(Line), Ptr2File_FilePointer);
+			sscanf(Line, "Dismissed:%[^/]/%[^/]/%[^ ] %[^:]:%[^\n]", Day, Month, Year, Hour, Minute);
+			printf("%s %s %s %s %s\n", Day, Month, Year, Hour, Minute);
+			fgets(Line, sizeof(Line), Ptr2File_FilePointer);
+			sscanf(Line, "Duration:%[^:]:%[^\n]", Hour, Minute);
+			printf("%s %s\n", Hour, Minute);
+			fgets(Line, sizeof(Line), Ptr2File_FilePointer);
+			sscanf(Line, "Doctor:%[^\n]", Doctor_Name);
+			printf("%s\n", Doctor_Name);
+			fgets(Line, sizeof(Line), Ptr2File_FilePointer);
+			sscanf(Line, "Summary:%[^\n]", Summary);
+			printf("%s\n", Summary);
+			fgets(Line, sizeof(Line), Ptr2File_FilePointer);
+			printf("%s\n", Line);
+
+			fgets(Line, sizeof(Line), Ptr2File_FilePointer);
+
+		}*/
+
+
+
+		//printf("%s\n", Line);
 	}
 }
