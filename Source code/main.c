@@ -6,8 +6,8 @@
 #include"Stack.h"
 
 //Debug
-#define TESTBST
-#define TESTVISIT
+#define TESTBST_
+#define TESTVISIT_
 
 int main() {
 	pTree* PatientBST = loadPatients();
