@@ -73,7 +73,7 @@ pInTree* loadPatients()
 			printf("%s\n", Line);
 #endif // DEBUG
 
-
+			//Copying line that has NAME,ID,ALLERGIES
 			sscanf(Line, "%*d.%[^;];%[^;];%s", Name, ID, Allergies_String);
 			sscanf(Allergies_String, "%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^ ] ", Allergies[0], Allergies[1], Allergies[2], Allergies[3], Allergies[4], Allergies[5], Allergies[6], Allergies[7]);
 
