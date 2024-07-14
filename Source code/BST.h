@@ -52,14 +52,14 @@ void PatientinsertNode(pInTree* root, Patient PatientToBeInserted);
 void PatientfreeTree(pInTree* root);
 pInTree* PatientcreateBstNode(pInTree* left, pInTree* right, Patient PatientToBeInserted);
 
-int PatientsearchInTree(pInTree* root, char*);
-void PatientinitBST(pTree* tree);
-void PatientinsertBST(pTree* tree, Patient PatientToBeInserted);
-void PatientdestroyBST(pTree* tree);
-int Patientfind(pTree* tree, char*);
-int PatientisBstEmpty(pTree* tree);
-void PatientprintBST(pInTree* root);
-void PatientPrintTree(pTree* tree);
+int Patient_searchInTree(pInTree* root, char*);
+void Patient_initializeBST(pTree* tree);
+void Patient_insertBST(pTree* tree, Patient PatientToBeInserted);
+void Patient_destroyBST(pTree* tree);
+int Patient_find(pTree* tree, char*);
+int Patient_BstEmpty(pTree* tree);
+void Patient_printBST(pInTree* root);
+void Patient_PrintTree(pTree* tree);
 
 
 #endif // !_BST_HEADER__

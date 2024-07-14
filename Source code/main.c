@@ -4,9 +4,15 @@
 #include"BST.h"
 #include "Structure.h"
 #include"Stack.h"
-
+//fdf
 int main() {
     pTree* PatientBST= loadPatients();
+    printMenu();
+    
+    freeTree(&PatientBST);
+
+
+
     //PatientPrintTree(PatientBST);
    // printf("%d", Patientfind(PatientBST, "123456789"));
     //PatientfreeTree(PatientBST);

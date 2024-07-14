@@ -8,9 +8,10 @@
 #define SUMAMRY_SIZE 100
 #define ALLERGY_SIZE 8
 #define ALLERGY_MAX_NAME_SIZE 15
+
 //#define ID_SIZE 10
-#define AllergiesSize 8
-char getAllergyBit(const char* allergy);
+
+
 //loadDoctors
 //loadLine
 //updatefiles

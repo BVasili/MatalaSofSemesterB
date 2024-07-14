@@ -90,16 +90,16 @@ Visit Visit_pop(Stack* s)
 	return VisitremoveFromHead(&(s->sList));
 }
 
-int VisitisEmptyStack(const Stack* s)
+int Visit_EmptyStack(const Stack* s)
 {
 	return VisitisEmptyList(&(s->sList));
 }
 
-void VisitprintStack(Stack* s)
+void Visit_printStack(Stack* s)
 {
 	Stack temp;
 	Visit_initStack(&temp);
-	while (!VisitisEmptyStack(s))
+	while (!Visit_EmptyStack(s))
 	{
 		Visit popped = Visit_pop(s);
 		Visit_push(&temp, popped);
@@ -116,7 +116,7 @@ void VisitprintStack(Stack* s)
 	}
 	printf("------------------------------\n\n");
 
-	while (!VisitisEmptyStack(&temp))
+	while (!Visit_EmptyStack(&temp))
 	{
 		Visit_push(s, Visit_pop(&temp));
 	}
@@ -124,12 +124,12 @@ void VisitprintStack(Stack* s)
 	Visit_destroyStack(&temp);
 }
 
-Visit VisitpeekStack(const Stack* s)
+Visit Visit_peekStack(const Stack* s)
 {
 	return VisitpeekList(&(s->sList));
 }
 
-int VisitgetStackSize(const Stack* s)
+int Visit_getStackSize(const Stack* s)
 {
 	return s->size;
 }
