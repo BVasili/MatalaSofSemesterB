@@ -201,16 +201,16 @@ void PatientprintBST(pTree* tree)
 	}
 }
 
-int Patientfind(pTree* tree, Patient PatientToBeFound)
+int Patientfind(pTree* tree, char* ID)
 {
-	return PatientsearchInTree(tree->root, PatientToBeFound);
+	return PatientsearchInTree(tree->root, ID);
 }
 
-int PatientsearchInTree(pInTree* root, Patient PatientToBeFound)
+int PatientsearchInTree(pInTree* root,char* ID)
 {
 	if (root == NULL) return FALSE;
-	if (strcmp(root->tpatient.ID, PatientToBeFound.ID) == 0) return TRUE;
-	if (strcmp(root->tpatient.ID, PatientToBeFound.ID) <0) return PatientsearchInTree(root->right, PatientToBeFound);
-	else return PatientsearchInTree(root->left, PatientToBeFound);
+	if (strcmp(root->tpatient.ID, ID) == 0) return TRUE;
+	if (strcmp(root->tpatient.ID, ID) <0) return PatientsearchInTree(root->right, ID);
+	else return PatientsearchInTree(root->left, ID);
 }
 

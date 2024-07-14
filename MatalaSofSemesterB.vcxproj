@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="Source code\AuxiliaryFunctions.c" />
     <ClCompile Include="Source code\BST.c" />
+    <ClCompile Include="Source code\CheckDynamicAllocation.c" />
     <ClCompile Include="Source code\main.c" />
     <ClCompile Include="Source code\Queue.c" />
     <ClCompile Include="Source code\SLL.c" />
@@ -29,6 +30,7 @@
   <ItemGroup>
     <ClInclude Include="Source code\AuxiliaryFunctions.h" />
     <ClInclude Include="Source code\BST.h" />
+    <ClInclude Include="Source code\CheckDynamicAllocation.h" />
     <ClInclude Include="Source code\Queue.h" />
     <ClInclude Include="Source code\SLL.h" />
     <ClInclude Include="Source code\Stack.h" />

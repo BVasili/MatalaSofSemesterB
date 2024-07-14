@@ -6,14 +6,14 @@
 #define AllergiesSize 8
 
 //Define for allergies
-#define NONE           0b0000
-#define PENICILLIN     0b0001
-#define SULFA          0b0010
-#define OPIOIDS        0b0011
-#define ANESTHETICS    0b0100
-#define EGGS           0b0101
-#define LATEX          0b0110
-#define PRESERVATIVES  0b0111
+#define NONE           0b00000000
+#define PENICILLIN     0b00000001
+#define SULFA          0b00000010
+#define OPIOIDS        0b00000100
+#define ANESTHETICS    0b00001000
+#define EGGS           0b00010000
+#define LATEX          0b00100000
+#define PRESERVATIVES  0b01000000
 
 
 
