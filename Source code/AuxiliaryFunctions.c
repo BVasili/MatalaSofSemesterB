@@ -311,52 +311,52 @@ pTree* loadPatients()
 	return root;
 }
 
-NodeDoc* loadDoctors()
-{
-	char DocName[NAME_SIZE] = { 0 }, nLisense[LISENSE_SIZE] = { 0 },nPatientsRead[3]={0}, Line[LINE_SIZE] = {0};
-	 int nPatients = 0;
+NodeDoc* loadDoctors() {
+	char DocName[NAME_SIZE] = { 0 }, nLicense[LICENSE_SIZE] = { 0 }, nPatientsRead[3] = { 0 }, Line[LINE_SIZE] = { 0 };
+	int nPatients = 0, firstRead = 0;
 
-	FILE* DocsFile = fopen("DOCTORS.txt", "r");
+	FILE* DocsFile = fopen("Doctors.txt", "r");
 	if (!DocsFile) {
-		printf("FILE DIDN'T OPEN");
+		printf("FILE DIDN'T OPEN\n");
 		exit(1);
 	}
 
-	NodeDoc* head = (NodeDoc*)malloc(sizeof(NodeDoc));
-	if (!head)
-	{
-		printf("allocation failed\n\n");
-		exit(1);
-	}
+	fseek(DocsFile, 98, SEEK_CUR); // Adjust to the first letter
 
-	fseek(DocsFile, 98, SEEK_CUR);//gets the reading index to the first letter
-	while (DocsFile != EOF)
-	{
-		fgets(Line, sizeof(Line), DocsFile);
-		sscanf(Line, "%[^;]; %[^;]; %[^;]", DocName, nLisense, nPatientsRead);
-		nPatients =atoi(nPatientsRead);
-		
-		Doc* temp = (Doc*)malloc(sizeof(Doc));
-		if (!temp) {
-			printf("allocation failed");
+	NodeDoc* head = NULL;
+
+	while (fgets(Line, sizeof(Line), DocsFile)) {
+		if (sscanf(Line, "%[^;]; %[^;]; %[^;]", DocName, nLicense, nPatientsRead) != 3) {
+			printf("Error reading line: %s\n", Line);
+			continue;
+		}
+
+		nPatients = atoi(nPatientsRead);
+
+		Doc temp;
+		temp.Name = (char*)malloc(strlen(DocName) + 1);
+		if (!temp.Name) {
+			printf("allocation failed\n");
 			exit(1);
 		}
 
+		strcpy(temp.Name, DocName);
+		strcpy(temp.nLicense, nLicense);
+		temp.nPatients = nPatients;
 
-		temp->Name = (char*)malloc(sizeof(DocName));//need to fix this allocation because it uses the size of the whole string
-		if (!temp->Name)
-		{
-			printf("allocation failed");
-			exit(1);
+		if (firstRead) {
+			head = addSorted(&temp, head);
+		}
+		else {
+			head = addFirst(&temp, head);
+			firstRead = 1;
 		}
 
-		strcpy(temp->Name, DocName);
-		strcpy(temp->nLicense, nLisense);
-		temp->nPatients = nPatients;
-		head = addLast(temp, head);
+		// Clear the temporary line and name buffers
+		Line[0] = '\0';
 	}
 
-	//close file
 	fclose(DocsFile);
-	return head;//wink wink slut
+	PrintDocList(head);
+	return head;
 }

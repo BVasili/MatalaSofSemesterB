@@ -12,8 +12,9 @@
 
 int main() {
 	
-	//printMenu();
 	loadDoctors();
+	printMenu();
+	
 
 #ifdef TESTBST
 		pTree* PatientBST = malloc(sizeof(pTree));

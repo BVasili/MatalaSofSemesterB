@@ -5,17 +5,19 @@
 #include "linkedList.h"
 
 
-//need some work 
-//void printList(NodeDoc* head)
-//{
-//	while (head != NULL)
-//	{
-//		printf("%d-> ", head->data);
-//		head = head->next;
-//	}
-//
-//	printf("NULL\n");
-//}
+void PrintDocList(NodeDoc* head)
+{
+	int DocNum = 0;
+	while (head != NULL)
+	{
+		DocNum++;
+		printf("%d.\tNAME: %s\t\tLICENSE: %s\t\tNUMBER OF PATIENTS: %d\n",\
+		 DocNum,head->doctor.Name,head->doctor.nLicense,head->doctor.nPatients);
+		head = head->next;
+	}
+
+	printf("\n\n\n");
+}
 
 
 void freeList(NodeDoc* head)
@@ -29,35 +31,32 @@ void freeList(NodeDoc* head)
 }
 
 
-NodeDoc* createNode(Doc* doctor, NodeDoc* next)
-{
-	NodeDoc* newNode = calloc(1, sizeof(NodeDoc));
+NodeDoc* createNode(Doc* doctor, NodeDoc* next) {
+	// Allocate memory for the new node
+	NodeDoc* newNode = (NodeDoc*)malloc(sizeof(NodeDoc));
 	if (!newNode) {
-		printf("allocation failed");
+		printf("allocation failed\n");
 		exit(1);
 	}
 
-	newNode->doctor.Name = (char*)malloc(sizeof(doctor->Name));
-	if (!newNode->doctor.Name)
-	{
-		printf("allocation failed");
+	// Allocate memory for the doctor's name
+	newNode->doctor.Name = (char*)malloc(strlen(doctor->Name) + 1);
+	if (!newNode->doctor.Name) {
+		printf("allocation failed\n");
 		exit(1);
 	}
-	
-	if (newNode != NULL)
-	{
 
-		strcpy(newNode->doctor.Name, doctor->Name);
-		strcpy(newNode->doctor.Name, doctor->nLicense);
-		newNode->doctor.nPatients = doctor->nPatients;
-		newNode->next = next;
-	}
+	// Copy the doctor's information
+	strcpy(newNode->doctor.Name, doctor->Name);
+	strcpy(newNode->doctor.nLicense, doctor->nLicense);
+	newNode->doctor.nPatients = doctor->nPatients;
+	newNode->next = next;
 
 	return newNode;
 }
 NodeDoc* addFirst(Doc* doctor, NodeDoc* head)
 {
-	Node* newNode = createNode(doctor, head);
+	NodeDoc* newNode = createNode(doctor, NULL);
 
 	if (newNode == NULL)
 	{
@@ -67,23 +66,25 @@ NodeDoc* addFirst(Doc* doctor, NodeDoc* head)
 
 	return newNode;
 }
-NodeDoc* addLast(Doc* doctor, NodeDoc* head)
+NodeDoc* addSorted(Doc* doctor, NodeDoc* head)
 {
 	NodeDoc* newNode = createNode(doctor, NULL);
-	if (newNode == NULL)
-	{
-		printf("Allocation error. not adding last\n");
-		return head;
-	}
+	//check allocation errors
 
-	//case list is empty
 	if (head == NULL) return newNode;
 
-	NodeDoc* temp = head;
-	while (temp->next != NULL)
-		temp = temp->next;
+	if (newNode->doctor.nPatients < head->doctor.nPatients)
+	{
+		newNode->next = head;
+		return newNode;
+	}
 
-	temp->next = newNode;
+	NodeDoc* temp1 = head;
+	while ((temp1->next != NULL) && (temp1->next->doctor.nPatients < newNode->doctor.nPatients))
+		temp1 = temp1->next;
+
+	newNode->next = temp1->next;
+	temp1->next = newNode;
 
 	return head;
 }
