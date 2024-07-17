@@ -160,15 +160,18 @@ int removeFromTail(List* list)
 	return toReturn;
 }
 
+
+
+
 //Functions for Visit Structure
 
-void VisitinitList(List* list)
+void Visit_initList(List* list)
 {
 	checkNullLogExit(list, LIST_POINTER_ERROR);
 	list->head = list->tail = EMPTY_LIST;
 }
 
-void VisitcheckNullLogExit(const void* object, const char* message)
+void Visit_checkNullLogExit(const void* object, const char* message)
 {
 	if (object == NULL)
 	{
@@ -182,7 +185,7 @@ void VisitcheckNullLogExit(const void* object, const char* message)
 	}
 }
 
-Visit VisitremoveFromHead(List* list)
+Visit Visit_removeFromHead(List* list)
 {
 	checkNullLogExit(list, LIST_POINTER_ERROR);
 	checkNullLogExit(list->head, LIST_POINTER_ERROR);
@@ -199,14 +202,14 @@ Visit VisitremoveFromHead(List* list)
 	return toReturn;
 }
 
-Visit VisitpeekList(const List* list)
+Visit Visit_peekList(const List* list)
 {
 	checkNullLogExit(list, LIST_POINTER_ERROR);
 	checkNullLogExit(list->head, LIST_POINTER_ERROR);
 	return list->head->Visit;
 }
 
-void VisitprintList(const List* list, const char* delimiter)
+void Visit_printList(const List* list, const char* delimiter)
 {
 	checkNullLogExit(list, LIST_POINTER_ERROR);
 
@@ -235,7 +238,7 @@ void VisitprintList(const List* list, const char* delimiter)
 
 }
 
-void VisitaddToTail(List* list, Visit Visit)
+void Visit_addToTail(List* list, Visit Visit)
 {
 	checkNullLogExit(list, LIST_POINTER_ERROR);
 	//create new list node
@@ -255,14 +258,14 @@ void VisitaddToTail(List* list, Visit Visit)
 	}
 }
 
-int VisitisEmptyList(const List* list)
+int Visit_isEmptyList(const List* list)
 {
 	checkNullLogExit(list, LIST_POINTER_ERROR);
 	//double check for testing purposes
 	return (list->head == EMPTY_LIST && list->tail == EMPTY_LIST);
 }
 
-void VisitdestroyList(List* list)
+void Visit_destroyList(List* list)
 {
 	if (list == NULL)
 	{
@@ -281,7 +284,7 @@ void VisitdestroyList(List* list)
 	list->head = list->tail = EMPTY_LIST;//update list
 }
 
-void VisitaddToHead(List* list, Visit Visit)
+void Visit_addToHead(List* list, Visit Visit)
 {
 	checkNullLogExit(list, LIST_POINTER_ERROR);
 	//create new list node
@@ -300,7 +303,7 @@ void VisitaddToHead(List* list, Visit Visit)
 	}
 }
 
-Visit VisitremoveFromTail(List* list)
+Visit Visit_removeFromTail(List* list)
 {
 	checkNullLogExit(list, LIST_POINTER_ERROR);
 	checkNullLogExit(list->head, LIST_POINTER_ERROR);
@@ -314,6 +317,169 @@ Visit VisitremoveFromTail(List* list)
 	}
 
 	Visit toReturn = current->Visit;//save return value
+	free(current);
+	list->tail = previous;//update list
+	//check if list has become empty after removal
+	if (list->tail == EMPTY_LIST)
+	{
+		list->head = EMPTY_LIST;//update list
+	}
+	else
+	{
+		list->tail->next = LIST_END;//update tail to point to null (was previously pointing to freed element)
+	}
+
+	return toReturn;
+}
+
+
+//Functions for Line Structure
+
+void Line_initList(List* list)
+{
+	checkNullLogExit(list, LIST_POINTER_ERROR);
+	list->head = list->tail = EMPTY_LIST;
+}
+
+void Line_checkNullLogExit(const void* object, const char* message)
+{
+	if (object == NULL)
+	{
+		FILE* logErrors = fopen("logErrors.txt", "w");
+		if (logErrors != NULL && message != NULL)
+		{
+			fprintf(logErrors, "%s", message);
+			fprintf(stderr, "%s", message);
+		}
+		exit(EXIT_FAILURE);
+	}
+}
+
+Patient Line_removeFromHead(List* list)
+{
+	checkNullLogExit(list, LIST_POINTER_ERROR);
+	checkNullLogExit(list->head, LIST_POINTER_ERROR);
+
+	Patient toReturn = list->head->Patient; //save return value
+	Node* temp = list->head->next; //save new list head
+	free(list->head);
+	list->head = temp;//update list
+	//check if list has become empty after removal
+	if (list->head == EMPTY_LIST)
+	{
+		list->tail = EMPTY_LIST;//update list
+	}
+	return toReturn;
+}
+
+Patient Line_peekList(const List* list)
+{
+	checkNullLogExit(list, LIST_POINTER_ERROR);
+	checkNullLogExit(list->head, LIST_POINTER_ERROR);
+	return list->head->Patient;
+}
+
+void Line_printList(const List* list, const char* delimiter)
+{
+	checkNullLogExit(list, LIST_POINTER_ERROR);
+
+	if (list->head == EMPTY_LIST)
+	{
+		return;
+	}
+
+	Node* temp = list->head;
+	Patient Patient = temp->Patient;
+	while (temp != LIST_END)
+	{
+		printf("Patients full name: %s\n", Patient.Name);
+		printf("Patients ID : %s\n", Patient.ID);
+		temp = temp->next;
+		if (temp != NULL)
+			printf(" %s ", delimiter);
+	}
+
+}
+
+void Line_addToTail(List* list, Patient Patient)
+{
+	checkNullLogExit(list, LIST_POINTER_ERROR);
+	//create new list node
+	Node* newTail = (Node*)calloc(1, sizeof(Node));
+	checkNullLogExit(newTail, BAD_ALLOC);
+	newTail->Patient = Patient;
+	//case this is very first list element added to empty list
+	if (list->tail == EMPTY_LIST)
+	{
+		list->head = list->tail = newTail;//update list
+		return;
+	}
+	else //list has at least one element
+	{
+		list->tail->next = newTail;
+		list->tail = newTail;//update list
+	}
+}
+
+int Line_isEmptyList(const List* list)
+{
+	checkNullLogExit(list, LIST_POINTER_ERROR);
+	//double check for testing purposes
+	return (list->head == EMPTY_LIST && list->tail == EMPTY_LIST);
+}
+
+void Line_destroyList(List* list)
+{
+	if (list == NULL)
+	{
+		return;
+	}
+
+	Node* toDestroy = list->head;
+	Node* next;
+	while (toDestroy != LIST_END)
+	{
+		next = toDestroy->next;
+		free(toDestroy);
+		toDestroy = next;
+	}
+
+	list->head = list->tail = EMPTY_LIST;//update list
+}
+
+void Line_addToHead(List* list, Patient Patient)
+{
+	checkNullLogExit(list, LIST_POINTER_ERROR);
+	//create new list node
+	Node* newHead = (Node*)calloc(1, sizeof(Node));
+	checkNullLogExit(newHead, BAD_ALLOC);
+	newHead->Patient = Patient;
+	//case this is very first list element added to empty list
+	if (list->head == EMPTY_LIST)
+	{
+		list->head = list->tail = newHead;//update list
+	}
+	else //list has at least one element
+	{
+		newHead->next = list->head;
+		list->head = newHead;//update list
+	}
+}
+
+Patient Line_removeFromTail(List* list)
+{
+	checkNullLogExit(list, LIST_POINTER_ERROR);
+	checkNullLogExit(list->head, LIST_POINTER_ERROR);
+	//temp nodes to iterate over list and find the element previous to tail
+	Node* current = list->head;
+	Node* previous = NULL;
+	while (current->next != LIST_END)
+	{
+		previous = current;
+		current = current->next;
+	}
+
+	Patient toReturn = current->Patient;//save return value
 	free(current);
 	list->tail = previous;//update list
 	//check if list has become empty after removal

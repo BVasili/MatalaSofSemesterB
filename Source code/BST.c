@@ -178,6 +178,7 @@ void Patient_insertBST(pTree* tree, Patient PatientToBeInserted)
 void Patient_destroyBST(pTree* tree)
 {
 	Patient_freeTree(tree->root);
+	tree->root = NULL;
 }
 
 int Patient_BstEmpty(pTree* tree)

@@ -19,21 +19,27 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source code\AuxiliaryFunctions.c" />
     <ClCompile Include="Source code\BST.c" />
-    <ClCompile Include="Source code\CheckDynamicAllocation.c" />
+    <ClCompile Include="Source code\displayError.c" />
     <ClCompile Include="Source code\LinkedList.c" />
+    <ClCompile Include="Source code\loadLine.c" />
+    <ClCompile Include="Source code\loadPatients.c" />
     <ClCompile Include="Source code\main.c" />
+    <ClCompile Include="Source code\printMenu.c" />
     <ClCompile Include="Source code\Queue.c" />
+    <ClCompile Include="Source code\searchPatient.c" />
     <ClCompile Include="Source code\SLL.c" />
     <ClCompile Include="Source code\Stack.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source code\AuxiliaryFunctions.h" />
     <ClInclude Include="Source code\BST.h" />
-    <ClInclude Include="Source code\CheckDynamicAllocation.h" />
+    <ClInclude Include="Source code\displayError.h" />
     <ClInclude Include="Source code\linkedList.h" />
+    <ClInclude Include="Source code\loadLine.h" />
+    <ClInclude Include="Source code\loadPatients.h" />
+    <ClInclude Include="Source code\printMenu.h" />
     <ClInclude Include="Source code\Queue.h" />
+    <ClInclude Include="Source code\searchPatient.h" />
     <ClInclude Include="Source code\SLL.h" />
     <ClInclude Include="Source code\Stack.h" />
     <ClInclude Include="Source code\Structure.h" />

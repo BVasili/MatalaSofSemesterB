@@ -15,6 +15,7 @@
 #define LATEX          0b00100000
 #define PRESERVATIVES  0b01000000
 
+typedef struct Stack Stack;
 
 
 typedef struct Date
@@ -42,27 +43,6 @@ typedef struct Visit
 	Doc* Doctor;
 	char* vSummary;
 } Visit;
-
-
-typedef struct Node
-{
-	int data;
-	Visit Visit;
-	struct Node* next;
-}Node;
-
-
-typedef struct List
-{
-	Node* head;
-	Node* tail;
-} List;
-
-typedef struct Stack
-{
-	List sList;
-	int size;
-}Stack;
 
 typedef struct Patient
 {

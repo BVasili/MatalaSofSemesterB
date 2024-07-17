@@ -12,20 +12,22 @@
 #define LIST_POINTER_ERROR "Error - NULL pointer.\n"
 #define BAD_ALLOC "Error - allocation error.\n"
 
-////These was defined in "Structure.h" to prevent conflicts
-//typedef struct Node
-//{
-//	int data;
-//	Visit Visit;
-//	struct Node* next;
-//}Node;
-//
-//
-//typedef struct List
-//{
-//	Node* head;
-//	Node* tail;
-//} List;
+
+typedef struct Node
+{
+	int data;
+	Visit Visit;
+	Patient Patient;
+	Doc Doctor;
+	struct Node* next;
+}Node;
+
+
+typedef struct List
+{
+	Node* head;
+	Node* tail;
+} List;
 
 //SLL function declaration for int
 void checkNullLogExit(const void* object, const char* message);
@@ -40,15 +42,28 @@ int isEmptyList(const List* list);
 void destroyList(List* list);
 
 //SLL function declaration for Visit Structure
-void VisitcheckNullLogExit(const void* object, const char* message);
-void VisitinitList(List* list);
-void VisitaddToHead(List* list, Visit Visit);
-Visit VisitremoveFromHead(List* list);
-Visit VisitpeekList(const List* list);
-void VisitaddToTail(List* list, Visit Visit);
-Visit VisitremoveFromTail(List* list);
-void VisitprintList(const List* list, const char* delimiter);
-int VisitisEmptyList(const List* list);
-void VisitdestroyList(List* list);
+void Visit_checkNullLogExit(const void* object, const char* message);
+void Visit_initList(List* list);
+void Visit_addToHead(List* list, Visit Visit);
+Visit Visit_removeFromHead(List* list);
+Visit Visit_peekList(const List* list);
+void Visit_addToTail(List* list, Visit Visit);
+Visit Visit_removeFromTail(List* list);
+void Visit_printList(const List* list, const char* delimiter);
+int Visit_isEmptyList(const List* list);
+void Visit_destroyList(List* list);
+
+//SLL function declaration for Patient Structure
+
+void Line_checkNullLogExit(const void* object, const char* message);
+void Line_initList(List* list);
+void Line_addToHead(List* list, Patient Patient);
+Patient Line_removeFromHead(List* list);
+Patient Line_peekList(const List* list);
+void Line_addToTail(List* list, Patient Patient);
+Patient Line_removeFromTail(List* list);
+void Line_printList(const List* list, const char* delimiter);
+int Line_isEmptyList(const List* list);
+void Line_destroyList(List* list);
 
 #endif // SLL_HEADER__
