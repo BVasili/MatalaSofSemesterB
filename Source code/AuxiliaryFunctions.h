@@ -13,7 +13,7 @@
 #define ALLERGY_MAX_NAME_SIZE 15
 #define ALLOCATION_FAILED 1
 #define CANNOT_OPEN_FILE 2
-
+#define LISENSE_SIZE 7
 //#define ID_SIZE 10
 
 
@@ -24,6 +24,6 @@
 pInTree* searchPatient(pTree*, char*);
 void displayError(int);
 int printMenu(void);
-pInTree* loadPatients();
+pTree* loadPatients();
 NodeDoc* loadDoctors();//return the head of the list of the doctors
 #endif // AUXILIARY_FUNCTIONS_HEADER__
