@@ -40,7 +40,7 @@ int printMenu(void)
 	return action;
 }
 
-pInTree* loadPatients()
+pTree* loadPatients()
 {
 	//Declaring variables for function
 	char Name[NAME_SIZE] = { 0 }, Doctor_Name[NAME_SIZE] = { 0 }, ID[ID_SIZE] = { 0 };
@@ -293,4 +293,11 @@ pInTree* loadPatients()
 		}
 	fclose(Ptr2File);
 	return root;
+}
+
+
+
+pInTree* searchPatient(pTree* tree, char* ID) 
+{
+	return searchPatientInTree(tree->root, ID);
 }

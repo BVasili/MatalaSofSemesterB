@@ -14,10 +14,10 @@
 //loadDoctors
 //loadLine
 //updatefiles
-//searchPatient
+
 //displayError
 //case2assignDoctor
 int printMenu(void);
-pInTree* loadPatients();
-
+pTree* loadPatients();
+pInTree* searchPatient(pTree*, char*);
 #endif // AUXILIARY_FUNCTIONS_HEADER__

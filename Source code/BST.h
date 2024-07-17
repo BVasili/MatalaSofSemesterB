@@ -60,6 +60,6 @@ int Patient_find(pTree* tree, char*);
 int Patient_BstEmpty(pTree* tree);
 void Patient_printBST(pInTree* root);
 void Patient_PrintTree(pTree* tree);
-
+pInTree* searchPatientInTree(pInTree*, char*);
 
 #endif // !_BST_HEADER__
