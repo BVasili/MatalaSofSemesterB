@@ -73,4 +73,13 @@ typedef struct Patient
 	int nVisits;
 }Patient;
 
+
+// i needed a linked list for the doctors so i had to add this sturct
+typedef struct NodeDoc
+{
+	Doc doctor;
+	struct NodeDoc* next;
+}NodeDoc;
+
+
 #endif // STRUCTURE_HEADER__

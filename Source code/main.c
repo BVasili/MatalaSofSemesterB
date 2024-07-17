@@ -7,11 +7,12 @@
 
 //Debug
 #define TESTBST
-#define TESTVISIT
+#define TESTVISIT_
 
 int main() {
 	
-	printMenu();
+	//printMenu();
+	loadDoctors();
 
 #ifdef TESTBST
 		pTree* PatientBST = malloc(sizeof(pTree));
