@@ -7,7 +7,7 @@
 #include"AuxiliaryFunctions.h"
 
 //Debug
-#define TESTBST
+#define TESTBST_
 #define TESTVISIT_
 
 int main() {

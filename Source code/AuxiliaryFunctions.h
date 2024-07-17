@@ -20,6 +20,6 @@
 //displayError
 //case2assignDoctor
 int printMenu(void);
-pInTree* loadPatients();
+pTree* loadPatients();
 NodeDoc* loadDoctors();//return the head of the list of the doctors
 #endif // AUXILIARY_FUNCTIONS_HEADER__

@@ -69,7 +69,7 @@ NodeDoc* addFirst(Doc* doctor, NodeDoc* head)
 }
 NodeDoc* addLast(Doc* doctor, NodeDoc* head)
 {
-	Node* newNode = createNode(doctor, NULL);
+	NodeDoc* newNode = createNode(doctor, NULL);
 	if (newNode == NULL)
 	{
 		printf("Allocation error. not adding last\n");
@@ -79,7 +79,7 @@ NodeDoc* addLast(Doc* doctor, NodeDoc* head)
 	//case list is empty
 	if (head == NULL) return newNode;
 
-	Node* temp = head;
+	NodeDoc* temp = head;
 	while (temp->next != NULL)
 		temp = temp->next;
 
