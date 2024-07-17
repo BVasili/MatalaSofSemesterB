@@ -9,6 +9,22 @@
 
 #define DEBUG
 
+pInTree* searchPatient(pTree* tree, char* ID)
+{
+	return searchPatientInTree(tree->root, ID);
+}
+
+void displayError(int error)
+{
+	if (ALLOCATION_FAILED)
+		printf("Error: Cannot allocate memory.\n");
+
+	if (CANNOT_OPEN_FILE)
+		printf("Error: Cannot open the desired file.\n");
+
+	return;
+}
+
 int printMenu(void)
 {
 	int action = -1;
@@ -297,7 +313,3 @@ pTree* loadPatients()
 
 
 
-pInTree* searchPatient(pTree* tree, char* ID) 
-{
-	return searchPatientInTree(tree->root, ID);
-}
