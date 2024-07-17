@@ -134,7 +134,7 @@ pTree* loadPatients()
 					strcpy(&Allergies[i], "\0");
 
 				//Allocating memory for name and visit stack
-				PatientTemp.Name = malloc(sizeof(Name));//move id down here
+				PatientTemp.Name = malloc(sizeof(Name));//need to fix this allocation because it uses the size of the whole string
 				CheckDynamicAllocation(PatientTemp.Name);
 				strcpy(PatientTemp.Name, Name);
 
@@ -311,5 +311,52 @@ pTree* loadPatients()
 	return root;
 }
 
+NodeDoc* loadDoctors()
+{
+	char DocName[NAME_SIZE] = { 0 }, nLisense[LISENSE_SIZE] = { 0 },nPatientsRead[3]={0}, Line[LINE_SIZE] = {0};
+	 int nPatients = 0;
+
+	FILE* DocsFile = fopen("DOCTORS.txt", "r");
+	if (!DocsFile) {
+		printf("FILE DIDN'T OPEN");
+		exit(1);
+	}
+
+	NodeDoc* head = (NodeDoc*)malloc(sizeof(NodeDoc));
+	if (!head)
+	{
+		printf("allocation failed\n\n");
+		exit(1);
+	}
+
+	fseek(DocsFile, 98, SEEK_CUR);//gets the reading index to the first letter
+	while (DocsFile != EOF)
+	{
+		fgets(Line, sizeof(Line), DocsFile);
+		sscanf(Line, "%[^;]; %[^;]; %[^;]", DocName, nLisense, nPatientsRead);
+		nPatients =atoi(nPatientsRead);
+		
+		Doc* temp = (Doc*)malloc(sizeof(Doc));
+		if (!temp) {
+			printf("allocation failed");
+			exit(1);
+		}
 
 
+		temp->Name = (char*)malloc(sizeof(DocName));//need to fix this allocation because it uses the size of the whole string
+		if (!temp->Name)
+		{
+			printf("allocation failed");
+			exit(1);
+		}
+
+		strcpy(temp->Name, DocName);
+		strcpy(temp->nLicense, nLisense);
+		temp->nPatients = nPatients;
+		head = addLast(temp, head);
+	}
+
+	//close file
+	fclose(DocsFile);
+	return head;//wink wink slut
+}

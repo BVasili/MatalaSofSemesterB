@@ -13,6 +13,7 @@
 int main() {
 	
 	//printMenu();
+	loadDoctors();
 
 #ifdef TESTBST
 		pTree* PatientBST = malloc(sizeof(pTree));

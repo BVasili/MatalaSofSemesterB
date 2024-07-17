@@ -1,7 +1,8 @@
 #pragma once
 #ifndef AUXILIARY_FUNCTIONS_HEADER__
 #define AUXILIARY_FUNCTIONS_HEADER__
-
+#include "BST.h"
+#include "Structure.h"
 #define _CRT_SECURE_NO_WARNINGS
 #include "BST.h"
 
@@ -15,7 +16,7 @@
 
 //#define ID_SIZE 10
 
-//loadDoctors
+
 //loadLine
 //updatefiles
 //case2assignDoctor
@@ -23,6 +24,6 @@
 pInTree* searchPatient(pTree*, char*);
 void displayError(int);
 int printMenu(void);
-pTree* loadPatients();
-
+pInTree* loadPatients();
+NodeDoc* loadDoctors();//return the head of the list of the doctors
 #endif // AUXILIARY_FUNCTIONS_HEADER__
