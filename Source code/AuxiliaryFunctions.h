@@ -16,7 +16,7 @@
 
 //loadLine
 //updatefiles
-//searchPatient
+
 //displayError
 //case2assignDoctor
 int printMenu(void);

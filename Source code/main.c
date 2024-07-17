@@ -4,6 +4,7 @@
 #include"BST.h"
 #include "Structure.h"
 #include"Stack.h"
+#include"AuxiliaryFunctions.h"
 
 //Debug
 #define TESTBST
@@ -16,7 +17,6 @@ int main() {
 
 #ifdef TESTBST
 		pTree* PatientBST = malloc(sizeof(pTree));
-	PatientBST->root = NULL;
 	printf("address %p\n", PatientBST);
 	PatientBST = loadPatients();
 	printf("is empty: %d\n", Patient_BstEmpty(PatientBST));
@@ -25,8 +25,10 @@ int main() {
 	//void Patient_insertBST -works
 	printf("is %s in tree? :%d\n", "203389445", Patient_find(PatientBST, "203389445"));
 	Patient_PrintTree(PatientBST);
-	Patient_destroyBST(PatientBST);
+	//Patient_destroyBST(PatientBST);
 	printf("address %p\n", PatientBST);
+	pTree* Patient_adress = searchPatient(PatientBST, "123456789");
+	printf("patient id  \"123456789\" adress is: %p\n", Patient_adress);
 
 #endif // TESTBST
 
