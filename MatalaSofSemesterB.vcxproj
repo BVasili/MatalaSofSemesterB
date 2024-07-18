@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="Source code\BST.c" />
     <ClCompile Include="Source code\displayError.c" />
+    <ClCompile Include="Source code\QueuePatient.c" />
     <ClCompile Include="Source code\loadDoctors.c" />
     <ClCompile Include="Source code\loadLine.c" />
     <ClCompile Include="Source code\loadPatients.c" />
@@ -37,6 +38,7 @@
   <ItemGroup>
     <ClInclude Include="Source code\BST.h" />
     <ClInclude Include="Source code\displayError.h" />
+    <ClInclude Include="Source code\QueuePatient.h" />
     <ClInclude Include="Source code\loadDoctors.h" />
     <ClInclude Include="Source code\loadLine.h" />
     <ClInclude Include="Source code\loadPatients.h" />

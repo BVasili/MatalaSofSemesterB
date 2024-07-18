@@ -1,8 +1,9 @@
-#include"BSTPatient.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>
+#include"BSTPatient.h"
+
 
 pInTree* Patient_createBstNode(pInTree* left, pInTree* right, Patient PatientToBeInserted)
 {
@@ -95,8 +96,8 @@ int Patient_find(pTree* tree, char* ID)
 
 int Patient_searchInTree(pInTree* root, char* ID)
 {
-	if (root == NULL) return FALSE;
-	if (strcmp(root->tpatient.ID, ID) == 0) return TRUE;
+	if (root == NULL) return 0;
+	if (strcmp(root->tpatient.ID, ID) == 0) return 1;
 	if (strcmp(root->tpatient.ID, ID) < 0) return Patient_searchInTree(root->right, ID);
 	else return Patient_searchInTree(root->left, ID);
 }

@@ -1,5 +1,7 @@
-
 #include "Structure.h"
+
+#ifndef BSTPATIENT_H
+#define BSTPATIENT_H
 
 // Forward declaration
 struct pInTree;
@@ -18,6 +20,7 @@ typedef struct pTree
 	pInTree* root;
 } pTree;
 
+
 //functions for Patient
 void Patient_insertNode(pInTree* root, Patient PatientToBeInserted);
 void Patient_freeTree(pInTree* root);
@@ -32,3 +35,5 @@ int Patient_BstEmpty(pTree* tree);
 void Patient_printBST(pInTree* root);
 void Patient_PrintTree(pTree* tree);
 pInTree* searchPatientInTree(pInTree*, char*);
+
+#endif // BSTPATIENT_H

@@ -6,4 +6,4 @@
 #include"BST.h"
 #include"Queue.h"
 
-void updateFiles(Queue*,pTree*);
+//void updateFiles(Queue*,pTree*);
