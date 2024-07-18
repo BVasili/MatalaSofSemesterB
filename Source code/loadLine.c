@@ -24,11 +24,16 @@ void loadLine(Queue* PatientsQueue, char* FileName,pTree* tree)
 	{
 
 		printf("%s", Line);
-		sscanf(Line, "%*d.%[^ ] ",ID);
+		sscanf(Line, "%*d.%[^\n]",ID);
 
-		printf("%s", ID);
+		Line_enqueue(PatientsQueue, searchPatient(tree, ID));
+
+		//printf("%s", ID);
+		
 		if (strcmp(Line, " ") == 0)
 			break;
 		fgets(Line, sizeof(Line), Ptr2File);
+		strcpy(ID, "\0");
 	}
+	fclose(Ptr2File);
 }

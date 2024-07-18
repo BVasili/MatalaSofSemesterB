@@ -21,7 +21,7 @@
   <ItemGroup>
     <ClCompile Include="Source code\BST.c" />
     <ClCompile Include="Source code\displayError.c" />
-    <ClCompile Include="Source code\LinkedList.c" />
+    <ClCompile Include="Source code\loadDoctors.c" />
     <ClCompile Include="Source code\loadLine.c" />
     <ClCompile Include="Source code\loadPatients.c" />
     <ClCompile Include="Source code\main.c" />
@@ -30,11 +30,12 @@
     <ClCompile Include="Source code\searchPatient.c" />
     <ClCompile Include="Source code\SLL.c" />
     <ClCompile Include="Source code\Stack.c" />
+    <ClCompile Include="Source code\updateFiles.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source code\BST.h" />
     <ClInclude Include="Source code\displayError.h" />
-    <ClInclude Include="Source code\linkedList.h" />
+    <ClInclude Include="Source code\loadDoctors.h" />
     <ClInclude Include="Source code\loadLine.h" />
     <ClInclude Include="Source code\loadPatients.h" />
     <ClInclude Include="Source code\printMenu.h" />
@@ -43,6 +44,7 @@
     <ClInclude Include="Source code\SLL.h" />
     <ClInclude Include="Source code\Stack.h" />
     <ClInclude Include="Source code\Structure.h" />
+    <ClInclude Include="Source code\updateFiles.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

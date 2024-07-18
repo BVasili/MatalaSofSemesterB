@@ -18,6 +18,7 @@ typedef struct Node
 	int data;
 	Visit Visit;
 	Patient Patient;
+	Patient* Ptr2Patient;
 	Doc Doctor;
 	struct Node* next;
 }Node;
@@ -57,13 +58,28 @@ void Visit_destroyList(List* list);
 
 void Line_checkNullLogExit(const void* object, const char* message);
 void Line_initList(List* list);
-void Line_addToHead(List* list, Patient Patient);
-Patient Line_removeFromHead(List* list);
-Patient Line_peekList(const List* list);
-void Line_addToTail(List* list, Patient Patient);
-Patient Line_removeFromTail(List* list);
+void Line_addToHead(List* list, Patient* Patient);
+Patient* Line_removeFromHead(List* list);
+Patient* Line_peekList(const List* list);
+void Line_addToTail(List* list, Patient* Patient);
+Patient* Line_removeFromTail(List* list);
 void Line_printList(const List* list, const char* delimiter);
 int Line_isEmptyList(const List* list);
 void Line_destroyList(List* list);
+
+//SLL function declaration for Doc Structure
+
+void Doc_checkNullLogExit(const void* object, const char* message);
+void Doc_initList(List* list);
+void Doc_addToHead(List* list, Doc Doctor);
+Doc Doc_removeFromHead(List* list);
+Doc Doc_peekList(const List* list);
+void Doc_addToTail(List* list, Doc Patient);
+Doc Doc_removeFromTail(List* list);
+void Doc_printList(const List* list, const char* delimiter);
+int Doc_isEmptyList(const List* list);
+void Doc_destroyList(List* list);
+
+
 
 #endif // SLL_HEADER__

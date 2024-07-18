@@ -5,6 +5,7 @@
 #include "Structure.h"
 #include"Stack.h"
 #include"loadPatients.h"
+#include "loadDoctors.h"
 #include"printMenu.h"
 #include"searchPatient.h"
 #include"loadLine.h"
@@ -16,7 +17,7 @@
 
 int main() {
 	Queue hello = { 0 };
-	
+	Line_initQueue(&hello);
 	//printMenu();
 	//loadDoctors();
 
@@ -35,6 +36,12 @@ int main() {
 	//pTree* Patient_adress = searchPatient(&PatientBST, "123456789");
 	//printf("patient id  \"123456789\" adress is: %p\n", Patient_adress);
 	loadLine(&hello, "Line.txt", &PatientBST);
+	Line_printQueue(&hello);
+
+	Patient* test= Line_dequeue(&hello);
+	List DoctorList = { 0 };
+	loadDoctors(&DoctorList, "Doctors.txt");
+	Doc_printList(&DoctorList, "s");
 #endif // TESTBST
 
 #ifdef TESTVISIT

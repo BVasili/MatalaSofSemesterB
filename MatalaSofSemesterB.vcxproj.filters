@@ -18,9 +18,6 @@
     <ClCompile Include="Source code\main.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source code\AuxiliaryFunctions.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source code\Queue.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -33,17 +30,29 @@
     <ClCompile Include="Source code\BST.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source code\CheckDynamicAllocation.c">
+    <ClCompile Include="Source code\displayError.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source code\LinkedList.c">
+    <ClCompile Include="Source code\loadLine.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source code\loadPatients.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source code\printMenu.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source code\searchPatient.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source code\loadDoctors.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source code\updateFiles.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source code\AuxiliaryFunctions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source code\Structure.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -59,10 +68,25 @@
     <ClInclude Include="Source code\BST.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source code\CheckDynamicAllocation.h">
+    <ClInclude Include="Source code\displayError.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source code\linkedList.h">
+    <ClInclude Include="Source code\loadLine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source code\loadPatients.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source code\printMenu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source code\searchPatient.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source code\loadDoctors.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source code\updateFiles.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
