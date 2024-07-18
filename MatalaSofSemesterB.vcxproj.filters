@@ -51,6 +51,15 @@
     <ClCompile Include="Source code\updateFiles.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source code\QueuePatient.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source code\BSTPatient.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source code\StackVisit.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source code\Structure.h">
@@ -89,5 +98,38 @@
     <ClInclude Include="Source code\updateFiles.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Source code\QueuePatient.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source code\BSTPatient.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source code\StackVisit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Resource Files\Doctors.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="Resource Files\Line.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="Resource Files\Patients.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource Files\Final Project in Advanced C Course - Spring_2024.pdf">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resource Files\Structure Scheme">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resource Files\Scheme.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

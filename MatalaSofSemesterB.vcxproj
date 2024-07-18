@@ -52,6 +52,18 @@
     <ClInclude Include="Source code\Structure.h" />
     <ClInclude Include="Source code\updateFiles.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="Resource Files\Doctors.txt" />
+    <Text Include="Resource Files\Line.txt" />
+    <Text Include="Resource Files\Patients.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource Files\Final Project in Advanced C Course - Spring_2024.pdf" />
+    <None Include="Resource Files\Structure Scheme" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resource Files\Scheme.png" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
