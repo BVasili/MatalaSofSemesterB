@@ -335,10 +335,10 @@ Visit Visit_removeFromTail(List* list)
 
 //Functions for loadLine
 
-void Line_initList(List* list)
+void Line_initList(pLine* LineADT)
 {
-	checkNullLogExit(list, LIST_POINTER_ERROR);
-	list->head = list->tail = EMPTY_LIST;
+	checkNullLogExit(LineADT, LIST_POINTER_ERROR);
+	LineADT->head = EMPTY_LIST;
 }
 
 void Line_checkNullLogExit(const void* object, const char* message)
@@ -355,40 +355,37 @@ void Line_checkNullLogExit(const void* object, const char* message)
 	}
 }
 
-Patient* Line_removeFromHead(List* list)
+Patient* Line_removeFromHead(pLine* LineADT)
 {
-	checkNullLogExit(list, LIST_POINTER_ERROR);
-	checkNullLogExit(list->head, LIST_POINTER_ERROR);
+	checkNullLogExit(LineADT, LIST_POINTER_ERROR);
+	checkNullLogExit(LineADT->head, LIST_POINTER_ERROR);
 
-	Patient* toReturn = list->head->Ptr2Patient; //save return value
-	Node* temp = list->head->next; //save new list head
-	free(list->head);
-	list->head = temp;//update list
+	Patient* toReturn = LineADT->head->Patient; //save return value
+	Node* temp = LineADT->head->next; //save new list head
+	free(LineADT->head);
+	LineADT->head = temp;//update list
 	//check if list has become empty after removal
-	if (list->head == EMPTY_LIST)
-	{
-		list->tail = EMPTY_LIST;//update list
-	}
+	
 	return toReturn;
 }
 
-Patient* Line_peekList(const List* list)
+Patient* Line_peekList(const pLine* LineADT)
 {
-	checkNullLogExit(list, LIST_POINTER_ERROR);
-	checkNullLogExit(list->head, LIST_POINTER_ERROR);
-	return list->head->Ptr2Patient;
+	checkNullLogExit(LineADT, LIST_POINTER_ERROR);
+	checkNullLogExit(LineADT->head, LIST_POINTER_ERROR);
+	return LineADT->head->Patient;
 }
 
-void Line_printList(const List* list, const char* delimiter)
+void Line_printList(const pLine* LineADT, const char* delimiter)
 {
-	checkNullLogExit(list, LIST_POINTER_ERROR);
+	checkNullLogExit(LineADT, LIST_POINTER_ERROR);
 
-	if (list->head == EMPTY_LIST)
+	if (LineADT->head == EMPTY_LIST)
 	{
 		return;
 	}
 
-	Node* temp = list->head;
+	Node* temp = LineADT->head;
 	Patient* Ptr2Patient = temp->Ptr2Patient;
 	while (temp != LIST_END)
 	{
@@ -408,41 +405,22 @@ void Line_printList(const List* list, const char* delimiter)
 
 }
 
-void Line_addToTail(List* list, Patient* Ptr2Patient)
-{
-	checkNullLogExit(list, LIST_POINTER_ERROR);
-	//create new list node
-	Node* newTail = (Node*)calloc(1, sizeof(Node));
-	checkNullLogExit(newTail, BAD_ALLOC);
-	newTail->Ptr2Patient = Ptr2Patient;
-	//case this is very first list element added to empty list
-	if (list->tail == EMPTY_LIST)
-	{
-		list->head = list->tail = newTail;//update list
-		return;
-	}
-	else //list has at least one element
-	{
-		list->tail->next = newTail;
-		list->tail = newTail;//update list
-	}
-}
 
-int Line_isEmptyList(const List* list)
+int Line_isEmptyList(const pLine* LineADT)
 {
-	checkNullLogExit(list, LIST_POINTER_ERROR);
+	checkNullLogExit(LineADT, LIST_POINTER_ERROR);
 	//double check for testing purposes
-	return (list->head == EMPTY_LIST && list->tail == EMPTY_LIST);
+	return (LineADT->head == EMPTY_LIST);
 }
 
-void Line_destroyList(List* list)
+void Line_destroyList(pLine* LineADT)
 {
-	if (list == NULL)
+	if (LineADT == NULL)
 	{
 		return;
 	}
 
-	Node* toDestroy = list->head;
+	Node* toDestroy = LineADT->head;
 	Node* next;
 	while (toDestroy != LIST_END)
 	{
@@ -451,56 +429,29 @@ void Line_destroyList(List* list)
 		toDestroy = next;
 	}
 
-	list->head = list->tail = EMPTY_LIST;//update list
+	LineADT->head = EMPTY_LIST;//update list
 }
 
-void Line_addToHead(List* list, Patient Patient)
+void Line_addToHead(pLine* LineADT, Patient* Patient)
 {
-	checkNullLogExit(list, LIST_POINTER_ERROR);
+	checkNullLogExit(LineADT, LIST_POINTER_ERROR);
 	//create new list node
-	Node* newHead = (Node*)calloc(1, sizeof(Node));
+	pInLine* newHead = (pInLine*)calloc(1, sizeof(pInLine));
 	checkNullLogExit(newHead, BAD_ALLOC);
 	newHead->Patient = Patient;
 	//case this is very first list element added to empty list
-	if (list->head == EMPTY_LIST)
+	if (LineADT->head == EMPTY_LIST)
 	{
-		list->head = list->tail = newHead;//update list
+		LineADT->head = newHead;//update list
 	}
 	else //list has at least one element
 	{
-		newHead->next = list->head;
-		list->head = newHead;//update list
+		newHead->next = LineADT->head;
+		LineADT->head = newHead;//update list
 	}
 }
 
-Patient* Line_removeFromTail(List* list)
-{
-	checkNullLogExit(list, LIST_POINTER_ERROR);
-	checkNullLogExit(list->head, LIST_POINTER_ERROR);
-	//temp nodes to iterate over list and find the element previous to tail
-	Node* current = list->head;
-	Node* previous = NULL;
-	while (current->next != LIST_END)
-	{
-		previous = current;
-		current = current->next;
-	}
 
-	Patient* toReturn = current->Ptr2Patient;//save return value
-	free(current);
-	list->tail = previous;//update list
-	//check if list has become empty after removal
-	if (list->tail == EMPTY_LIST)
-	{
-		list->head = EMPTY_LIST;//update list
-	}
-	else
-	{
-		list->tail->next = LIST_END;//update tail to point to null (was previously pointing to freed element)
-	}
-
-	return toReturn;
-}
 
 //Functions for Doc Structure
 

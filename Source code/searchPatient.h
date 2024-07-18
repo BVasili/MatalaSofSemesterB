@@ -1,4 +1,4 @@
 #pragma once
-#include "BST.h"
+#include "BSTPatient.h"
 
 pInTree* searchPatient(pTree* , char* );
