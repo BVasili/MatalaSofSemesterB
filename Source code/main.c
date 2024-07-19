@@ -11,13 +11,22 @@
 #define TESTVISIT_
 
 int main() {
-	
-	loadDoctors();
+
+	NodeDoc* list = loadDoctors();
+	while (list = assignDoc2Case(list))
+	{
+		PrintDocList(list);
+		if (list->doctor.nPatients == 4)
+		{
+			break;
+		}
+	}
+	list = assignDoc2Case(list);
 	printMenu();
-	
+
 
 #ifdef TESTBST
-		pTree* PatientBST = malloc(sizeof(pTree));
+	pTree* PatientBST = malloc(sizeof(pTree));
 	printf("address %p\n", PatientBST);
 	PatientBST = loadPatients();
 	printf("is empty: %d\n", Patient_BstEmpty(PatientBST));

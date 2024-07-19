@@ -11,8 +11,8 @@ void PrintDocList(NodeDoc* head)
 	while (head != NULL)
 	{
 		DocNum++;
-		printf("%d.\tNAME: %s\t\tLICENSE: %s\t\tNUMBER OF PATIENTS: %d\n",\
-		 DocNum,head->doctor.Name,head->doctor.nLicense,head->doctor.nPatients);
+		printf("%d.\tNAME: %s\t\tLICENSE: %s\t\tNUMBER OF PATIENTS: %d\n", \
+			DocNum, head->doctor.Name, head->doctor.nLicense, head->doctor.nPatients);
 		head = head->next;
 	}
 
@@ -31,20 +31,16 @@ void freeList(NodeDoc* head)
 }
 
 
-NodeDoc* createNode(Doc* doctor, NodeDoc* next) {
+NodeDoc* createNode(Doc* doctor, NodeDoc* next)
+{
 	// Allocate memory for the new node
 	NodeDoc* newNode = (NodeDoc*)malloc(sizeof(NodeDoc));
-	if (!newNode) {
-		printf("allocation failed\n");
-		exit(1);
-	}
+	CheckDynamicAllocation(newNode);
 
 	// Allocate memory for the doctor's name
 	newNode->doctor.Name = (char*)malloc(strlen(doctor->Name) + 1);
-	if (!newNode->doctor.Name) {
-		printf("allocation failed\n");
-		exit(1);
-	}
+	CheckDynamicAllocation(newNode->doctor.Name);
+
 
 	// Copy the doctor's information
 	strcpy(newNode->doctor.Name, doctor->Name);
@@ -69,7 +65,7 @@ NodeDoc* addFirst(Doc* doctor, NodeDoc* head)
 NodeDoc* addSorted(Doc* doctor, NodeDoc* head)
 {
 	NodeDoc* newNode = createNode(doctor, NULL);
-	//check allocation errors
+	CheckDynamicAllocation(newNode);
 
 	if (head == NULL) return newNode;
 

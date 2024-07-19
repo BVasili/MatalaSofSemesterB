@@ -44,7 +44,7 @@ int printMenu(void)
   #   10. Remove visit\n\n\
   #   11. Remove patient\n\n\
   #   12. Close the hospital\n");
-		printf("\n\nplease enter a the number of the wanted action:\t");
+		printf("\n\nplease enter the number of the wanted action:\t");
 		fseek(stdin, 0, SEEK_END);
 		scanf("%d", &action);
 		if (action < 0 || action>12 || isdigit(action) != 0)
@@ -360,3 +360,154 @@ NodeDoc* loadDoctors() {
 	PrintDocList(head);
 	return head;
 }
+
+// Function to insert a node into the sorted list
+NodeDoc* insertSorted(NodeDoc* head, NodeDoc* node) {
+	if (head == NULL || head->doctor.nPatients > node->doctor.nPatients) {
+		node->next = head;
+		return node;
+	}
+
+	NodeDoc* current = head;
+	while (current->next != NULL && current->next->doctor.nPatients <= node->doctor.nPatients) {
+		current = current->next;
+	}
+	node->next = current->next;
+	current->next = node;
+
+	return head;
+}
+
+// Function to remove a node from the list
+NodeDoc* removeNode(NodeDoc* head, NodeDoc* node) {
+	if (head == NULL) {
+		return NULL;
+	}
+
+	if (head == node) {
+		return head->next;
+	}
+
+	NodeDoc* current = head;
+	while (current->next != NULL && current->next != node) {
+		current = current->next;
+	}
+
+	if (current->next == node) {
+		current->next = node->next;
+	}
+
+	return head;
+}
+
+// Function to assign a case to a doctor and re-sort the list
+NodeDoc* assignDoc2Case(NodeDoc* root) {
+	NodeDoc* temp = root;
+	NodeDoc* selectedDoctor = NULL;
+
+	if (temp == NULL) {
+		printf("List of doctors is empty\n");
+		return root;
+	}
+
+	if (root->doctor.nPatients == 4)
+	{
+		printf("\t###THERE ARE NO AVAILABLE DOCTORS###\n");
+		return root;
+	}
+
+	// Find the first doctor with fewer than 4 patients
+	while (temp != NULL) {
+		if (temp->doctor.nPatients < 4) {
+			selectedDoctor = temp;
+			break;
+		}
+		temp = temp->next;
+	}
+
+	if (selectedDoctor == NULL) {
+		printf("No available doctors.\n");
+		return root;
+	}
+
+	// Print available doctors and their patient count
+	temp = root;
+	while (temp != NULL) {
+		if (temp->doctor.nPatients < 4) {
+			printf("NAME: %s is available and has %d active patients\n", temp->doctor.Name, temp->doctor.nPatients);
+		}
+		temp = temp->next;
+	}
+	printf("\n\n");
+	// Increment the patient count of the selected doctor
+	selectedDoctor->doctor.nPatients++;
+
+	// Remove the selected doctor from its current position
+	root = removeNode(root, selectedDoctor);
+
+	// Re-insert the doctor into the list in sorted order
+	root = insertSorted(root, selectedDoctor);
+
+	
+	return root;
+}
+
+
+
+//NodeDoc* assignDoc2Case(NodeDoc* root)
+//{
+//	NodeDoc* temp = root;
+//	int numOfDoc = 1, valid = 0;;
+//
+//	if (temp == NULL)
+//	{
+//		printf("list of doctors is empty\n");
+//		return root;
+//	}
+//
+//	//chek if there's an available doctor and print the available docs
+//	while (temp != NULL && temp->doctor.nPatients < 4)
+//	{
+//		//validating there's an available doctors
+//		if (valid == 0)
+//		{
+//			valid++;
+//		}
+//
+//		//printing the available doctors and the number of patients one has
+//		printf("%d. NAME: %s is available and has %d active patients\n"\
+//			, numOfDoc, temp->doctor.Name, temp->doctor.nPatients);
+//		//breaking condition
+//		if (temp->next == NULL || temp->next->doctor.nPatients == 4)
+//		{
+//
+//			break;
+//		}
+//		//move to the next doctor
+//		temp = temp->next;
+//		numOfDoc++;
+//	}
+//
+//	//our validity test says we have an available doctor and because the list is sorted he's the first member of the list
+//	if (valid == 1)
+//	{
+//		int amount = root->doctor.nPatients + 1;
+//		NodeDoc* moveThisMem = root;
+//		NodeDoc* newNext = root->next;
+//		NodeDoc* prev = newNext;
+//
+//		while (newNext != NULL)
+//		{
+//			if (newNext->doctor.nPatients >= amount)
+//			{
+//				prev->next = moveThisMem;
+//				moveThisMem->next = newNext;
+//				moveThisMem->doctor.nPatients++;
+//				break;
+//			}
+//			prev = newNext;
+//			newNext = newNext->next;
+//		}
+//		return root->next;
+//	}
+//}
