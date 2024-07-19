@@ -11,8 +11,8 @@ void PrintDocList(NodeDoc* head)
 	while (head != NULL)
 	{
 		DocNum++;
-		printf("%d.\tNAME: %s\t\tLICENSE: %s\t\tNUMBER OF PATIENTS: %d\n", \
-			DocNum, head->doctor.Name, head->doctor.nLicense, head->doctor.nPatients);
+		printf("%d.\tNAME: %s\t\tNUMBER OF PATIENTS: %d\n", \
+			DocNum, head->doctor.Name, head->doctor.nPatients);
 		head = head->next;
 	}
 

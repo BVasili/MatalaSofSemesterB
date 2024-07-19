@@ -29,5 +29,6 @@ NodeDoc* loadDoctors();
 NodeDoc* assignDoc2Case(NodeDoc*);
 NodeDoc* removeNode(NodeDoc* head, NodeDoc* node);
 NodeDoc* insertSorted(NodeDoc* head, NodeDoc* node);
+void goToFunc(int choice, NodeDoc* head);
 //return the head of the list of the doctors
 #endif // AUXILIARY_FUNCTIONS_HEADER__

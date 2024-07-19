@@ -357,11 +357,9 @@ NodeDoc* loadDoctors() {
 	}
 
 	fclose(DocsFile);
-	PrintDocList(head);
 	return head;
 }
 
-// Function to insert a node into the sorted list
 NodeDoc* insertSorted(NodeDoc* head, NodeDoc* node) {
 	if (head == NULL || head->doctor.nPatients > node->doctor.nPatients) {
 		node->next = head;
@@ -378,7 +376,6 @@ NodeDoc* insertSorted(NodeDoc* head, NodeDoc* node) {
 	return head;
 }
 
-// Function to remove a node from the list
 NodeDoc* removeNode(NodeDoc* head, NodeDoc* node) {
 	if (head == NULL) {
 		return NULL;
@@ -400,20 +397,20 @@ NodeDoc* removeNode(NodeDoc* head, NodeDoc* node) {
 	return head;
 }
 
-// Function to assign a case to a doctor and re-sort the list
-NodeDoc* assignDoc2Case(NodeDoc* root) {
-	NodeDoc* temp = root;
+
+NodeDoc* assignDoc2Case(NodeDoc* head) {
+	NodeDoc* temp = head;
 	NodeDoc* selectedDoctor = NULL;
 
 	if (temp == NULL) {
 		printf("List of doctors is empty\n");
-		return root;
+		return head;
 	}
 
-	if (root->doctor.nPatients == 4)
+	if (head->doctor.nPatients == 4)
 	{
 		printf("\t###THERE ARE NO AVAILABLE DOCTORS###\n");
-		return root;
+		return head;
 	}
 
 	// Find the first doctor with fewer than 4 patients
@@ -427,11 +424,11 @@ NodeDoc* assignDoc2Case(NodeDoc* root) {
 
 	if (selectedDoctor == NULL) {
 		printf("No available doctors.\n");
-		return root;
+		return head;
 	}
 
 	// Print available doctors and their patient count
-	temp = root;
+	temp = head;
 	while (temp != NULL) {
 		if (temp->doctor.nPatients < 4) {
 			printf("NAME: %s is available and has %d active patients\n", temp->doctor.Name, temp->doctor.nPatients);
@@ -443,71 +440,70 @@ NodeDoc* assignDoc2Case(NodeDoc* root) {
 	selectedDoctor->doctor.nPatients++;
 
 	// Remove the selected doctor from its current position
-	root = removeNode(root, selectedDoctor);
+	head = removeNode(head, selectedDoctor);
 
 	// Re-insert the doctor into the list in sorted order
-	root = insertSorted(root, selectedDoctor);
+	head = insertSorted(head, selectedDoctor);
 
-	
-	return root;
+
+	return head;
 }
 
-
-
-//NodeDoc* assignDoc2Case(NodeDoc* root)
-//{
-//	NodeDoc* temp = root;
-//	int numOfDoc = 1, valid = 0;;
-//
-//	if (temp == NULL)
-//	{
-//		printf("list of doctors is empty\n");
-//		return root;
-//	}
-//
-//	//chek if there's an available doctor and print the available docs
-//	while (temp != NULL && temp->doctor.nPatients < 4)
-//	{
-//		//validating there's an available doctors
-//		if (valid == 0)
-//		{
-//			valid++;
-//		}
-//
-//		//printing the available doctors and the number of patients one has
-//		printf("%d. NAME: %s is available and has %d active patients\n"\
-//			, numOfDoc, temp->doctor.Name, temp->doctor.nPatients);
-//		//breaking condition
-//		if (temp->next == NULL || temp->next->doctor.nPatients == 4)
-//		{
-//
-//			break;
-//		}
-//		//move to the next doctor
-//		temp = temp->next;
-//		numOfDoc++;
-//	}
-//
-//	//our validity test says we have an available doctor and because the list is sorted he's the first member of the list
-//	if (valid == 1)
-//	{
-//		int amount = root->doctor.nPatients + 1;
-//		NodeDoc* moveThisMem = root;
-//		NodeDoc* newNext = root->next;
-//		NodeDoc* prev = newNext;
-//
-//		while (newNext != NULL)
-//		{
-//			if (newNext->doctor.nPatients >= amount)
-//			{
-//				prev->next = moveThisMem;
-//				moveThisMem->next = newNext;
-//				moveThisMem->doctor.nPatients++;
-//				break;
-//			}
-//			prev = newNext;
-//			newNext = newNext->next;
-//		}
-//		return root->next;
-//	}
-//}
+void goToFunc(int choice, NodeDoc* head)
+{
+	switch (choice) {
+	case 0:
+		printf("You chose option to exit the program\n\n");
+		// Your code for option 0 goes here
+		break;
+	case 1:
+		printf("You chose option to admit a patient\n\n");
+		// Your code for option 1 goes here
+		break;
+	case 2:
+		printf("You chose to check for patients allergies \n\n");
+		// Your code for option 2 goes here
+		break;
+	case 3:
+		printf("You chose to display all patients\n\n");
+		// Your code for option 3 goes here
+		break;
+	case 4:
+		printf("You chose to display all patient's admissions\n\n");
+		// Your code for option 4 goes here
+		break;
+	case 5:
+		printf("You chose to display all patients in line\n\n");
+		// Your code for option 5 goes here
+		break;
+	case 6:
+		printf("You chose to advance patient in line\n\n");
+		// Your code for option 6 goes here
+		break;
+	case 7:
+		printf("You chose to display list of all doctors\n\n");
+		PrintDocList(head);
+		// Your code for option 7 goes here
+		break;
+	case 8:
+		printf("You chose to dispaly all patients assigned to a doctor\n\n");
+		// Your code for option 8 goes here
+		break;
+	case 9:
+		printf("You chose to discharge patient\n\n");
+		// Your code for option 9 goes here
+		break;
+	case 10:
+		printf("You chose to remove a visit\n\n");
+		// Your code for option 10 goes here
+		break;
+	case 11:
+		printf("You chose to remove patient\n\n");
+		// Your code for option 11 goes here
+		break;
+	case 12:
+		printf("You chose to close the hospital\n\n");
+		// Your code for option 12 goes here
+		break;
+	}
+}

@@ -11,18 +11,18 @@
 #define TESTVISIT_
 
 int main() {
-
+	int choice = 0;
 	NodeDoc* list = loadDoctors();
-	while (list = assignDoc2Case(list))
+	while (1)
 	{
-		PrintDocList(list);
-		if (list->doctor.nPatients == 4)
+		choice = printMenu();
+		goToFunc(choice,list);
+		if (choice == 12 || choice == 0)
 		{
+			exit(1);//we need to free all memory
 			break;
 		}
 	}
-	list = assignDoc2Case(list);
-	printMenu();
 
 
 #ifdef TESTBST
