@@ -1,6 +1,8 @@
 #pragma once
 #ifndef BST_HEADER__
 #define BST_HEADER__
+#include"Structure.h"
+// Forward declaration
 
 
 typedef struct bst_node
@@ -28,7 +30,6 @@ int find(BST* tree, int toFind);
 int isBstEmpty(BST* tree);
 void printBST(BST* tree);
 void printParent(BST* tree, int child);
-
 
 
 #endif // !_BST_HEADER__

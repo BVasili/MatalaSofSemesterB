@@ -27,6 +27,7 @@ typedef struct pInLine
 typedef struct pLine
 {
 	pInLine* head;
+	int size;
 } pLine;
 
 typedef struct Node

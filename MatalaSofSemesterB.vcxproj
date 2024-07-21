@@ -19,36 +19,33 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source code\BST.c" />
+    <ClCompile Include="pLine.c" />
+    <ClCompile Include="pTree.c" />
     <ClCompile Include="Source code\displayError.c" />
-    <ClCompile Include="Source code\QueuePatient.c" />
     <ClCompile Include="Source code\loadDoctors.c" />
     <ClCompile Include="Source code\loadLine.c" />
     <ClCompile Include="Source code\loadPatients.c" />
     <ClCompile Include="Source code\main.c" />
-    <ClCompile Include="Source code\BSTPatient.c" />
     <ClCompile Include="Source code\printMenu.c" />
     <ClCompile Include="Source code\Queue.c" />
     <ClCompile Include="Source code\searchPatient.c" />
     <ClCompile Include="Source code\SLL.c" />
     <ClCompile Include="Source code\Stack.c" />
-    <ClCompile Include="Source code\StackVisit.c" />
     <ClCompile Include="Source code\updateFiles.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source code\BST.h" />
+    <ClInclude Include="pLine.h" />
+    <ClInclude Include="pTree.h" />
     <ClInclude Include="Source code\displayError.h" />
     <ClInclude Include="Source code\QueuePatient.h" />
     <ClInclude Include="Source code\loadDoctors.h" />
     <ClInclude Include="Source code\loadLine.h" />
     <ClInclude Include="Source code\loadPatients.h" />
-    <ClInclude Include="Source code\BSTPatient.h" />
     <ClInclude Include="Source code\printMenu.h" />
     <ClInclude Include="Source code\Queue.h" />
     <ClInclude Include="Source code\searchPatient.h" />
     <ClInclude Include="Source code\SLL.h" />
     <ClInclude Include="Source code\Stack.h" />
-    <ClInclude Include="Source code\StackVisit.h" />
     <ClInclude Include="Source code\Structure.h" />
     <ClInclude Include="Source code\updateFiles.h" />
   </ItemGroup>

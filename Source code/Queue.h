@@ -10,6 +10,15 @@ typedef struct Queue
 	int size;
 }Queue;
 
+typedef struct pInLine {
+	Patient* lpatient;
+	pInLine* next;
+}pInLine;
+
+typedef struct pLine {
+	pInLine* head;
+	int size;
+};
 
 void initQueue(Queue* q);
 void destroyQueue(Queue* q);
@@ -19,5 +28,6 @@ int peekQueue(const Queue* q);
 int isEmptyQueue(const Queue* q);
 void printQueue(const Queue* q);
 int getQueueSize(const Queue* q);
+
 
 #endif // QUEUE_HEADER__
