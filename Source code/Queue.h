@@ -10,15 +10,6 @@ typedef struct Queue
 	int size;
 }Queue;
 
-typedef struct pInLine {
-	Patient* lpatient;
-	pInLine* next;
-}pInLine;
-
-typedef struct pLine {
-	pInLine* head;
-	int size;
-};
 
 void initQueue(Queue* q);
 void destroyQueue(Queue* q);

@@ -19,7 +19,7 @@ void loadPatients(pTree* tree, char* FileName)
 		Patient PatientTemp = { 0 };
 		Visit PatientsTempVisit = { 0 };
 	
-		Patient_initializeBST(tree);
+		initializePTree(tree);
 
 		FILE* Ptr2File = fopen(FileName, "r"); //add variable to function
 		if (!Ptr2File)
@@ -264,7 +264,7 @@ void loadPatients(pTree* tree, char* FileName)
 				} while (1);
 
 				//inserting patient into bst with all the needed information
-				Patient_insertBST(tree, PatientTemp);
+				insertPTree(tree, PatientTemp);
 
 				//reseting PatientTemp for the next patient in the txt file
 				PatientTemp.Name = NULL;

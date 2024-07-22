@@ -2,6 +2,7 @@
 #include "Queue.h"
 #include"displayError.h"
 #include"Structure.h"
-#include "searchPatient.h"
+#include"pTree.h"
+#include"pLine.h"
 #define ID_SIZE 10
-void loadLine(Queue*, char*, pTree*);
+void loadLine(pLine*, char*, pTree*);

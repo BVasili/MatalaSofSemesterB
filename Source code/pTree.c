@@ -7,14 +7,14 @@ void insertPInTree(pInTree* root, Patient PatientToBeInserted)
 	if (strcmp(PatientToBeInserted.ID, root->tpatient.ID) < 0)
 	{
 		if (root->left == NULL)//no left child
-			root->left = Patient_createBstNode(NULL, NULL, PatientToBeInserted);
-		else Patient_insertNode(root->left, PatientToBeInserted);
+			root->left = createPInTree(NULL, NULL, PatientToBeInserted);
+		else insertPInTree(root->left, PatientToBeInserted);
 	}
 	else
 	{
 		if (root->right == NULL)//no right child
-			root->right = Patient_createBstNode(NULL, NULL, PatientToBeInserted);
-		else Patient_insertNode(root->right, PatientToBeInserted);
+			root->right = createPInTree(NULL,NULL,PatientToBeInserted);
+		else insertPInTree(root->right, PatientToBeInserted);
 	}
 }
 
@@ -42,8 +42,8 @@ int searchInTree(pInTree* root, char* ID)
 {
 	if (root == NULL) return 0;
 	if (strcmp(root->tpatient.ID, ID) == 0) return 1;
-	if (strcmp(root->tpatient.ID, ID) < 0) return Patient_searchInTree(root->right, ID);
-	else return Patient_searchInTree(root->left, ID);
+	if (strcmp(root->tpatient.ID, ID) < 0) return searchInTree(root->right, ID);
+	else return searchInTree(root->left, ID);
 }
 
 void initializePTree(pTree* tree)
@@ -53,7 +53,7 @@ void initializePTree(pTree* tree)
 
 void insertPTree(pTree* tree, Patient PatientToBeInserted)
 {
-	if (Patient_BstEmpty(tree))
+	if (isPTreeEmpty(tree))
 	{
 		tree->root = createPInTree(NULL, NULL, PatientToBeInserted);
 		return;

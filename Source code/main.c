@@ -7,7 +7,7 @@
 #include"loadPatients.h"
 #include "loadDoctors.h"
 #include"printMenu.h"
-#include"searchPatient.h"
+#include"pTree.h"
 #include"loadLine.h"
 
 
@@ -22,20 +22,20 @@ int main() {
 	//loadDoctors();
 
 #ifdef TESTBST
-	pTree PatientBST = { 0 };
+	//pTree PatientBST = { 0 };
+	////printf("address %p\n", PatientBST);
+	//loadPatients(&PatientBST,"Patients.txt");
+	//printf("is empty: %d\n", Patient_BstEmpty(&PatientBST));
 	//printf("address %p\n", PatientBST);
-	loadPatients(&PatientBST,"Patients.txt");
-	printf("is empty: %d\n", Patient_BstEmpty(&PatientBST));
-	printf("address %p\n", PatientBST);
-	//Patient_initializeBST -works --->its inside loadPatients()
-	//void Patient_insertBST -works
-	printf("is %s in tree? :%d\n", "203389445", Patient_find(&PatientBST, "203389445"));
-	Patient_PrintTree(&PatientBST);
-	Patient_destroyBST(&PatientBST);
-	printf("address %p\n", PatientBST);
-	pInTree* Patient_adress = searchPatient(&PatientBST, "123456789");
-	printf("patient id  \"123456789\" adress is: %p\n", Patient_adress);
-	//loadLine(&hello, "Line.txt", &PatientBST);
+	////Patient_initializeBST -works --->its inside loadPatients()
+	////void Patient_insertBST -works
+	//printf("is %s in tree? :%d\n", "203389445", Patient_find(&PatientBST, "203389445"));
+	//Patient_PrintTree(&PatientBST);
+	//Patient_destroyBST(&PatientBST);
+	//printf("address %p\n", PatientBST);
+	//pInTree* Patient_adress = searchPatient(&PatientBST, "123456789");
+	//printf("patient id  \"123456789\" adress is: %p\n", Patient_adress);
+	////loadLine(&hello, "Line.txt", &PatientBST);
 	//Line_printQueue(&hello);
 
 	/*Patient* test= Line_dequeue(&hello);

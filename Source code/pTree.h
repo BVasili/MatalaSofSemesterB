@@ -1,5 +1,7 @@
 #pragma once
-#include"Source code/Structure.h"
+#ifndef PTREE_HEADER__
+#define PTREE_HEADER__
+#include"Structure.h"
 
 struct pInTree;
 
@@ -32,4 +34,4 @@ void printPTree(pTree* tree);
 pInTree* searchPatientInTree(pInTree*, char*);
 pInTree* searchPatient(pTree* tree, char* ID);
 
-
+#endif //PTREE_HEADER__

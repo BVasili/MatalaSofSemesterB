@@ -2,7 +2,7 @@
 #include "Structure.h"
 #include "displayError.h"
 #include "Stack.h"
-#include "BSTPatient.h"
+#include "pTree.h"
 
 #define ID_SIZE 10
 #define NAME_SIZE 100

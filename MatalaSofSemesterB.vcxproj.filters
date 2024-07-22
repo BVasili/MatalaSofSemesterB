@@ -27,9 +27,6 @@
     <ClCompile Include="Source code\Stack.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source code\BST.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source code\displayError.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -42,22 +39,16 @@
     <ClCompile Include="Source code\printMenu.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source code\searchPatient.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source code\loadDoctors.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source code\updateFiles.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source code\QueuePatient.c">
+    <ClCompile Include="Source code\pTree.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source code\BSTPatient.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source code\StackVisit.c">
+    <ClCompile Include="Source code\pLine.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -74,9 +65,6 @@
     <ClInclude Include="Source code\Queue.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source code\BST.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source code\displayError.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -89,22 +77,16 @@
     <ClInclude Include="Source code\printMenu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source code\searchPatient.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source code\loadDoctors.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source code\updateFiles.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source code\QueuePatient.h">
+    <ClInclude Include="Source code\pTree.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source code\BSTPatient.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source code\StackVisit.h">
+    <ClInclude Include="Source code\pLine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

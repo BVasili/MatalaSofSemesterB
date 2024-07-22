@@ -47,53 +47,5 @@ int getQueueSize(const Queue *q)
 }
 
 
-///////// line
-
-void initLine(pLine* q)
-{
-	initList(&(q->qList));
-	q->size = 0;
-}
-
-void destroyLine(pLine* q)
-{
-	destroyList(&(q->qList));
-	q->size = 0;
-}
-
-void enLine(pLine* q, int data)
-{
-	addToTail(&(q->qList), data);
-	q->size++;
-}
-
-int deLine(pLine* q)
-{
-	q->size--;
-	return removeFromHead(&(q->qList));
-}
-
-int peekLine(const pLine* q)
-{
-	return peekList(&(q->qList));
-}
-
-int isEmptyLine(const pLine* q)
-{
-	return isEmptyList(&(q->qList));
-}
-
-void printLine(const pLine* q)
-{
-	printf("Head of Queue| ");
-	printList(&(q->qList), " | ");
-	printf(" |Tail of Queue\n\n");
-}
-
-int getLineSize(const pLine* q)
-{
-	return q->size;
-}
-
 
 

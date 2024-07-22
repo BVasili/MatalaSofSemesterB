@@ -14,21 +14,6 @@
 
 
 
-typedef struct pInLine pInLine;
-
-// Definition of pInLine
-typedef struct pInLine
-{
-	Patient* Patient;
-	pInLine* next;
-} pInLine;
-
-// Definition of pLine
-typedef struct pLine
-{
-	pInLine* head;
-	int size;
-} pLine;
 
 typedef struct Node
 {
@@ -71,16 +56,7 @@ void Visit_printList(const List* list, const char* delimiter);
 int Visit_isEmptyList(const List* list);
 void Visit_destroyList(List* list);
 
-//SLL function declaration for Patient Structure
 
-void Line_checkNullLogExit(const void* object, const char* message);
-void Line_initList(pLine* LineADT);
-void Line_addToHead(pLine* LineADT, Patient* Patient);
-Patient* Line_removeFromHead(pLine* LineADT);
-Patient* Line_peekList(const pLine* LineADT);
-void Line_printList(const pLine* LineADT, const char* delimiter);
-int Line_isEmptyList(const pLine* LineADT);
-void Line_destroyList(pLine* LineADT);
 
 //SLL function declaration for Doc Structure
 
