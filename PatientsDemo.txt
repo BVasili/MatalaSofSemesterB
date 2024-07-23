@@ -1,0 +1,9 @@
+Name;ID;Allergies
+=============================
+0.Inna Gefen;123456789;
+Arrival:28/06/2024 00:26
+Dismissed:00/00/0000 00:00
+Duration: 0.00
+Doctor:Michal Rappaport
+Summary:Broken finger.
+

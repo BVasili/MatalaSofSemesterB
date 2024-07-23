@@ -10,6 +10,9 @@
 #include"pTree.h"
 #include"loadLine.h"
 #include"assignDoctor2case.h"
+#include"updateFiles.h"
+#define _CRT_SECURE_NO_WARNINGS
+#define _CRT_SECURE_NO_DEPRECATE 
 
 #define DOCSFILE "Doctors.txt"
 
