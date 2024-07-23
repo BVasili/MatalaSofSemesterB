@@ -23,8 +23,9 @@
 #define TEST_LOADPATIETS_DOC_
 int main()
 { 
-	List* doctors = NULL;
-	loadDoctors(doctors, DOCSFILE);
+	List doctors ;
+	initList(&doctors);
+	loadDoctors(&doctors, DOCSFILE);
 	int choice = -1;
 	while (1)
 	{
