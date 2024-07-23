@@ -90,7 +90,7 @@ void updateFiles(char* DoctorsFile,char* PatientsFile,char* LineFile, List* Doct
 
 
     // Open  doctor file for writing
-    FILE* doctorsFile = fopen(doctorsTxt, "w")
+    FILE* doctorsFile = fopen(DoctorsFile, "w");
 
     // Check if the file was opened successfully
     if (!doctorsFile)
@@ -100,12 +100,12 @@ void updateFiles(char* DoctorsFile,char* PatientsFile,char* LineFile, List* Doct
         return;
     }
     // Write doctors to file
-    writeDoctorsToFile(doctorsFile, doctorList);
+    writeDoctorsToFile(doctorsFile, DoctorsList);
     // Close the doctors file
     fclose(doctorsFile);
 
     // Open line file for writing
-    FILE* lineFile = fopen(lineTxt, "w");
+    FILE* lineFile = fopen(LineFile, "w");
     // Check if the file was opened successfully
     if (!lineFile)
     {
@@ -117,7 +117,7 @@ void updateFiles(char* DoctorsFile,char* PatientsFile,char* LineFile, List* Doct
     fprintf(lineFile, "Patients' IDs in line\n");
     fprintf(lineFile, "=====================\n");
     // Write patient queue to file
-    writePatientQueueToFile(lineFile, queue);
+    writePatientQueueToFile(lineFile, PatientsLine);
     // Close the line file
     fclose(lineFile);
 }
