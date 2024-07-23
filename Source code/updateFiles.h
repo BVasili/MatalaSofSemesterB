@@ -1,5 +1,6 @@
 #pragma once
-
+#define _CRT_SECURE_NO_WARNINGS
+#define _CRT_SECURE_NO_DEPRECATE 
 #include"Structure.h"
 #include"SLL.h"
 #include"Stack.h"
@@ -7,4 +8,4 @@
 #include"pTree.h"
 #include"displayError.h"
 
-//void updateFiles(Queue*,pTree*);
+void updateFiles(char*, char*, char*, List*, pLine*, pTree*);

@@ -10,14 +10,21 @@
 #include"pTree.h"
 #include"loadLine.h"
 #include"assignDoctor2case.h"
-
+#include"updateFiles.h"
+#define _CRT_SECURE_NO_WARNINGS
+#define _CRT_SECURE_NO_DEPRECATE 
 
 //Debug
 #define TESTVISIT_
 #define PTREE_
 #define TEST_LOADPATIETS_DOC_
 int main() {
+	pTree PatientTree = { 0 };
+	initializePTree(&PatientTree);
+	printf("test isPTreeEmpty : %d\n", isPTreeEmpty(&PatientTree));
+	loadPatients(&PatientTree, "Patients.txt");
 
+		updateFiles(NULL, "PatientsDemo.txt", NULL, NULL, NULL, &PatientTree);
 #ifdef TEST_LOADPATIETS_DOC
 	List DoctorsList = { 0 };
 	pLine PatientsLine;
