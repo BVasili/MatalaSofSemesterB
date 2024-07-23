@@ -11,13 +11,28 @@
 #include"loadLine.h"
 #include"assignDoctor2case.h"
 
+#define DOCSFILE "Doctors.txt"
+
 
 //Debug
 #define TESTVISIT_
 #define PTREE_
 #define TEST_LOADPATIETS_DOC_
-int main() {
-
+int main()
+{ 
+	List* doctors = NULL;
+	loadDoctors(doctors, DOCSFILE);
+	int choice = -1;
+	while (1)
+	{
+		choice = printMenu();
+		goToFunc(choice, doctors );
+		if (choice == 12 || choice == 0)
+		{
+			exit(1);//we need to free all memory
+			break;
+		}
+	}
 #ifdef TEST_LOADPATIETS_DOC
 	List DoctorsList = { 0 };
 	pLine PatientsLine;
