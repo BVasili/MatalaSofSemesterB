@@ -35,7 +35,7 @@ Node* assignDoc2Case( List* DoctorsList) {
 		}
 	}
 
-	if (nPatientsArray[MAX_PATIENTS+1] == numberOfDoctors)
+	if (nPatientsArray[MAX_PATIENTS] == numberOfDoctors)
 	{
 		printf("\t###THERE ARE NO AVAILABLE DOCTORS###\n");
 		return NULL;
