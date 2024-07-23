@@ -18,7 +18,7 @@ void updateFiles(char* DoctorsFile,char* PatientsFile,char* LineFile, List* Doct
     // Write header for patient file
     fprintf(ptr2PatientsFile, "Name;ID;Allergies\n");
     fprintf(ptr2PatientsFile, "=============================\n");
-    for (int i = 0; i <999999999; i++)
+    for (int i = 0; i <999999999; i++)// a while loop is needed if the amount of intertions is unknown
     {
         itoa(i, ID, 10);
         ptrTempPatient = searchPatient(PatientsTree, ID);
@@ -26,7 +26,7 @@ void updateFiles(char* DoctorsFile,char* PatientsFile,char* LineFile, List* Doct
         if (!ptrTempPatient)
             continue;
         
-        fprintf(ptr2PatientsFile, "%d.%s;%s;%s\n", index, ptrTempPatient->Name, ptrTempPatient->ID, /*encodeAllergies(patient->Allergies)*/);
+        fprintf(ptr2PatientsFile, "%d.%s;%s;%s\n", index, ptrTempPatient->Name, ptrTempPatient->ID ,/* encodeAllergies(patient->Allergies)*/);
 
         tempStack1 = malloc(sizeof(Stack));
         if (checkPointer(tempStack1, CANNOT_OPEN_FILE))
@@ -83,12 +83,15 @@ void updateFiles(char* DoctorsFile,char* PatientsFile,char* LineFile, List* Doct
             currentVisit = currentVisit->next;
         }
 
-            }
+            
     }
     fclose(ptr2PatientsFile);
 
+
+
     // Open  doctor file for writing
-    FILE* doctorsFile = fopen(doctorsTxt, "w");
+    FILE* doctorsFile = fopen(doctorsTxt, "w")
+
     // Check if the file was opened successfully
     if (!doctorsFile)
     {
@@ -213,17 +216,17 @@ void writePatientToFile(FILE* file, Patient* patient, int index)
 }
 
 // Function to write the list of doctors to file
-void writeDoctorsToFile(FILE* file, DoctorList* doctorList)
+void writeDoctorsToFile(FILE* file, List* doctorList)
 {
     // Print header for doctors file
     fprintf(file, "Full Name; License Number; Number of Patients\n");
     fprintf(file, "=================================================\n");
     // Initialize current node
-    docListNode* current = doctorList->head;
+    Node* current = doctorList->head;
     // Write doctors details to file
     while (current != NULL)
     {
-        fprintf(file, "%s;%s;%d\n", current->doctor.Name, current->doctor.nLicense, current->doctor.nPatients);
+        fprintf(file, "%s;%s;%d\n", current->Doctor.Name, current->Doctor.nLicense, current->Doctor.nPatients);
         // Move to the next doctor
         current = current->next;
     }
@@ -231,7 +234,7 @@ void writeDoctorsToFile(FILE* file, DoctorList* doctorList)
 
 
 // Function to write the patient queue to file
-void writePatientQueueToFile(FILE* file, PatientQueue* queue)
+void writePatientQueueToFile(FILE* file, pLine* queue)
 {
     // Initialize current node
     pInLine* current = queue->head;
@@ -240,7 +243,7 @@ void writePatientQueueToFile(FILE* file, PatientQueue* queue)
     // Write patient queue details to file
     while (current != NULL)
     {
-        fprintf(file, "%d.%s\n", position, current->patient->ID);
+        fprintf(file, "%d.%s\n", position, current->lpatient->ID);
         // Move to the next patient in line
         current = current->next;
         // Increment position counter
