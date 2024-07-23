@@ -9,40 +9,52 @@
 #include"printMenu.h"
 #include"pTree.h"
 #include"loadLine.h"
+#include"assignDoctor2case.h"
 
 
 //Debug
-#define TESTBST
 #define TESTVISIT_
-
+#define PTREE_
+#define TEST_LOADPATIETS_DOC_
 int main() {
-	Queue hello = { 0 };
-	//Line_initQueue(&hello);
-	//printMenu();
-	//loadDoctors();
 
-#ifdef TESTBST
-	//pTree PatientBST = { 0 };
-	////printf("address %p\n", PatientBST);
-	//loadPatients(&PatientBST,"Patients.txt");
-	//printf("is empty: %d\n", Patient_BstEmpty(&PatientBST));
-	//printf("address %p\n", PatientBST);
-	////Patient_initializeBST -works --->its inside loadPatients()
-	////void Patient_insertBST -works
-	//printf("is %s in tree? :%d\n", "203389445", Patient_find(&PatientBST, "203389445"));
-	//Patient_PrintTree(&PatientBST);
-	//Patient_destroyBST(&PatientBST);
-	//printf("address %p\n", PatientBST);
-	//pInTree* Patient_adress = searchPatient(&PatientBST, "123456789");
-	//printf("patient id  \"123456789\" adress is: %p\n", Patient_adress);
-	////loadLine(&hello, "Line.txt", &PatientBST);
-	//Line_printQueue(&hello);
+#ifdef TEST_LOADPATIETS_DOC
+	List DoctorsList = { 0 };
+	pLine PatientsLine;
+	Doc TestDoc = { 0 };
+	printf("DoctorsList head address before initializing: %p\n", DoctorsList.head);
+	initList(&DoctorsList);
+	loadDoctors(&DoctorsList, "Doctors.txt");
+	printf("DoctorsList head address after initializing and loading doctors: %p\n\n\n", DoctorsList.head);
+	TestDoc = Doc_peekList(&DoctorsList);
+	printf("Test peekList : name is %s\n", TestDoc.Name);
+	//TestDoc = Doc_removeFromHead(&DoctorsList);
+	TestDoc = Doc_peekList(&DoctorsList);
+	//printf("Test removeFromHead : name is %s\n\n", TestDoc.Name);
+	printf("test printlist :\n\n");
+	Doc_printList(&DoctorsList);
+	//printf("\n\ntest isEmptyList: %d\n", Doc_isEmptyList(&DoctorsList));
+	//Doc_destroyList(&DoctorsList);
+	printf("test after destroyList isEmptyList: %d\n", Doc_isEmptyList(&DoctorsList));
+	Node* testnode = assignDoc2Case(&DoctorsList);
+	//works for now
+#endif // TEST_LOADPATIETS_DOC
 
-	/*Patient* test= Line_dequeue(&hello);
-	List DoctorList = { 0 };*/
-	//loadDoctors(&DoctorList, "Doctors.txt");
-	//Doc_printList(&DoctorList, "s");
-#endif // TESTBST
+
+#ifdef PTREE
+	pLine PatientTree = { 0 };
+	initializePTree(&PatientTree);
+	printf("test isPTreeEmpty : %d\n", isPTreeEmpty(&PatientTree));
+	loadPatients(&PatientTree, "Patients.txt");
+	printf("test isPTreeEmpty : %d\n", isPTreeEmpty(&PatientTree));
+	printPTree(&PatientTree);
+	pInTree* testNode = NULL;
+	testNode = searchPatient(&PatientTree, "123456789");
+	destroyPTree(&PatientTree);
+	printPTree(&PatientTree);
+	printf("test isPTreeEmpty : %d\n", isPTreeEmpty(&PatientTree));
+#endif // PTREE
+		
 
 #ifdef TESTVISIT
 	Visit Test = { 0 };
@@ -63,19 +75,19 @@ int main() {
 	Test.Doctor = malloc(sizeof(Doc));
 	Test.Doctor->Name = "Boris";
 	Stack* VisitList = malloc(sizeof(Stack));
-	Visit_initStack(VisitList);
-	Visit_push(VisitList, Test);
-	Visit_printStack(VisitList);
-	Visit testVisit = Visit_peekStack(VisitList);
+	initStack(VisitList);
+	push(VisitList, Test);
+	printStack(VisitList);
+	Visit testVisit = peekStack(VisitList);
 	printf(" name %s\n", testVisit.Doctor->Name);
-	Visit testVisit2 = Visit_pop(VisitList);
+	Visit testVisit2 = pop(VisitList);
 	printf(" name %s\n", testVisit2.Doctor->Name);
-	Visit_printStack(VisitList);
-	Visit_push(VisitList, testVisit2);
-	Visit_printStack(VisitList);
-	printf(" stack size: %d\n", Visit_getStackSize(VisitList));
-	Visit_destroyStack(VisitList);
-	printf(" stack size: %d\n", Visit_getStackSize(VisitList));
+	printStack(VisitList);
+	push(VisitList, testVisit2);
+	printStack(VisitList);
+	printf(" stack size: %d\n", getStackSize(VisitList));
+	destroyStack(VisitList);
+	printf(" stack size: %d\n", getStackSize(VisitList));
 #endif // TESTVISIT
 
 

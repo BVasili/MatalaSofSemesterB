@@ -20,6 +20,7 @@ void loadDoctors(List* ListADT, char* FileName) {
 
 	while (fgets(Line, sizeof(Line), DocsFile)) {
 
+	
 		if (sscanf(Line, "%[^;]; %[^;]; %[^;]", DocName, nLicense, nPatientsRead) != 3) {
 			printf("Error reading line: %s\n", Line);
 			continue;
@@ -27,10 +28,10 @@ void loadDoctors(List* ListADT, char* FileName) {
 
 		nPatients = atoi(nPatientsRead);
 
-		tempDoctor.Name = (char*)malloc(strlen(DocName) + 1);
+		tempDoctor.Name=  (char*)malloc(strlen(DocName) + 1);
 		if (!tempDoctor.Name) {
-			printf("allocation failed\n");
-			exit(1);
+			displayError(ALLOCATION_FAILED);
+			return;
 		}
 
 		strcpy(tempDoctor.Name, DocName);
@@ -45,6 +46,7 @@ void loadDoctors(List* ListADT, char* FileName) {
 		strcpy(nPatientsRead, "\0");
 		nPatients = 0;
 		Line[0] = '\0';
+
 	}
 
 	fclose(DocsFile);

@@ -1,6 +1,8 @@
 #include "loadLine.h"
 #include "pLine.h"
 #include<string.h>
+#include<stdlib.h>
+#include<stdio.h>
 
 void loadLine(pLine* PatientsLine, char* FileName,pTree* tree)
 {

@@ -65,6 +65,7 @@ void insertPTree(pTree* tree, Patient PatientToBeInserted)
 void destroyPTree(pTree* tree)
 {
 	freeTree(tree->root);
+	tree->root = NULL;
 }
 
 int find(pTree* tree, char* ID)
@@ -81,10 +82,11 @@ void printPInTree(pInTree* root)
 {
 	if (root != NULL) {
 		// Traverse the left subtree
+		
 		printPInTree(root->left);
 
 		// Print the root node's id
-		printf("%s\n", root->tpatient.ID);
+		printf("Name: %s  ID: %s\n", root->tpatient.Name, root->tpatient.ID);
 
 		// Traverse the right subtree
 		printPInTree(root->right);

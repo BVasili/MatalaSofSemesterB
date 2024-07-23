@@ -19,7 +19,6 @@ void loadPatients(pTree* tree, char* FileName)
 		Patient PatientTemp = { 0 };
 		Visit PatientsTempVisit = { 0 };
 	
-		initializePTree(tree);
 
 		FILE* Ptr2File = fopen(FileName, "r"); //add variable to function
 		if (!Ptr2File)
@@ -99,7 +98,7 @@ void loadPatients(pTree* tree, char* FileName)
 					}
 
 					//initiating stack
-					Visit_initStack(PatientTemp.Visits);
+					initStack(PatientTemp.Visits);
 
 #ifdef DEBUG
 					printf("%s %s \n", PatientTemp.Name, PatientTemp.ID);
@@ -150,12 +149,21 @@ void loadPatients(pTree* tree, char* FileName)
 					fgets(Line, sizeof(Line), Ptr2File);
 					sscanf(Line, "Dismissed:%[^/]/%[^/]/%[^ ] %[^:]:%[^\n]", Day, Month, Year, Hour, Minute);
 
-					//Converting from string to int and putting the variables in their right place
-					PatientsTempVisit.tDismissed.Day = atoi(Day);
-					PatientsTempVisit.tDismissed.Month = atoi(Month);
-					PatientsTempVisit.tDismissed.Year = atoi(Year);
-					PatientsTempVisit.tDismissed.Hour = atoi(Hour);
-					PatientsTempVisit.tDismissed.Min = atoi(Minute);
+					if (Day == 0) {
+						PatientsTempVisit.tDismissed.Day = -1;
+						PatientsTempVisit.tDismissed.Month = -1;
+						PatientsTempVisit.tDismissed.Year = -1;
+						PatientsTempVisit.tDismissed.Hour = -1;
+						PatientsTempVisit.tDismissed.Min = -1;
+					}
+					else {
+						//Converting from string to int and putting the variables in their right place
+						PatientsTempVisit.tDismissed.Day = atoi(Day);
+						PatientsTempVisit.tDismissed.Month = atoi(Month);
+						PatientsTempVisit.tDismissed.Year = atoi(Year);
+						PatientsTempVisit.tDismissed.Hour = atoi(Hour);
+						PatientsTempVisit.tDismissed.Min = atoi(Minute);
+					}
 					//Reseting the temporary variables.
 					strcpy(Day, "\0");
 					strcpy(Month, "\0");
@@ -171,9 +179,13 @@ void loadPatients(pTree* tree, char* FileName)
 					//Getting Duration of visit
 					fgets(Line, sizeof(Line), Ptr2File);
 					sscanf(Line, "Duration:%[^:]:%[^\n]", Hour, Minute);
-
-					//(for debugging) Converting it to hour and minutes
-					PatientsTempVisit.Duration = 60 * atoi(Hour) + atoi(Minute);
+					if (PatientsTempVisit.tDismissed.Day == -1) {
+						PatientsTempVisit.Duration = -1;
+					}
+					else {
+						PatientsTempVisit.Duration = 60 * atoi(Hour) + atoi(Minute);
+					}
+					
 					strcpy(Hour, "\0");
 					strcpy(Minute, "\0");
 #ifdef DEBUG
@@ -231,7 +243,7 @@ void loadPatients(pTree* tree, char* FileName)
 					strcpy(Summary, "\0");
 
 					//pushing each visit into stack
-					Visit_push(PatientTemp.Visits, PatientsTempVisit);
+					push(PatientTemp.Visits, PatientsTempVisit);
 
 					//reseting PatientsTempVisit for the next visit
 					PatientsTempVisit.Doctor = NULL;

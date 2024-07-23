@@ -3,6 +3,7 @@
 #define SLL_HEADER__
 
 #include "Structure.h"
+#include"displayError.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -17,10 +18,7 @@
 
 typedef struct Node
 {
-	int data;
 	Visit Visit;
-	Patient Patient;
-	Patient* Ptr2Patient;
 	Doc Doctor;
 	struct Node* next;
 }Node;
@@ -29,29 +27,14 @@ typedef struct Node
 typedef struct List
 {
 	Node* head;
-	Node* tail;
 } List;
 
-//SLL function declaration for int
-void checkNullLogExit(const void* object, const char* message);
 void initList(List* list);
-void addToHead(List* list, int data);
-int removeFromHead(List* list);
-int peekList(const List* list);
-void addToTail(List* list, int data);
-int removeFromTail(List* list);
-void printList(const List* list, const char* delimiter);
-int isEmptyList(const List* list);
-void destroyList(List* list);
 
 //SLL function declaration for Visit Structure
-void Visit_checkNullLogExit(const void* object, const char* message);
-void Visit_initList(List* list);
 void Visit_addToHead(List* list, Visit Visit);
 Visit Visit_removeFromHead(List* list);
 Visit Visit_peekList(const List* list);
-void Visit_addToTail(List* list, Visit Visit);
-Visit Visit_removeFromTail(List* list);
 void Visit_printList(const List* list, const char* delimiter);
 int Visit_isEmptyList(const List* list);
 void Visit_destroyList(List* list);
@@ -59,18 +42,11 @@ void Visit_destroyList(List* list);
 
 
 //SLL function declaration for Doc Structure
-
-void Doc_checkNullLogExit(const void* object, const char* message);
-void Doc_initList(List* list);
 void Doc_addToHead(List* list, Doc Doctor);
 Doc Doc_removeFromHead(List* list);
 Doc Doc_peekList(const List* list);
-void Doc_addToTail(List* list, Doc Patient);
-Doc Doc_removeFromTail(List* list);
-void Doc_printList(const List* list, const char* delimiter);
+void Doc_printList(const List* list);
 int Doc_isEmptyList(const List* list);
 void Doc_destroyList(List* list);
-
-
 
 #endif // SLL_HEADER__

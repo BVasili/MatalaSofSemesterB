@@ -19,7 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source code\assignDoctor2case.c" />
     <ClCompile Include="Source code\displayError.c" />
+    <ClCompile Include="Source code\goToFunction.c" />
     <ClCompile Include="Source code\loadDoctors.c" />
     <ClCompile Include="Source code\loadLine.c" />
     <ClCompile Include="Source code\loadPatients.c" />
@@ -27,20 +29,20 @@
     <ClCompile Include="Source code\pLine.c" />
     <ClCompile Include="Source code\printMenu.c" />
     <ClCompile Include="Source code\pTree.c" />
-    <ClCompile Include="Source code\Queue.c" />
     <ClCompile Include="Source code\SLL.c" />
     <ClCompile Include="Source code\Stack.c" />
     <ClCompile Include="Source code\updateFiles.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source code\assignDoctor2case.h" />
     <ClInclude Include="Source code\displayError.h" />
+    <ClInclude Include="Source code\goToFunction.h" />
     <ClInclude Include="Source code\pLine.h" />
     <ClInclude Include="Source code\pTree.h" />
     <ClInclude Include="Source code\loadDoctors.h" />
     <ClInclude Include="Source code\loadLine.h" />
     <ClInclude Include="Source code\loadPatients.h" />
     <ClInclude Include="Source code\printMenu.h" />
-    <ClInclude Include="Source code\Queue.h" />
     <ClInclude Include="Source code\SLL.h" />
     <ClInclude Include="Source code\Stack.h" />
     <ClInclude Include="Source code\Structure.h" />

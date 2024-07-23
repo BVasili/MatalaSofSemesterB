@@ -9,5 +9,18 @@ void displayError(int error)
 	if (CANNOT_OPEN_FILE)
 		printf("Error: Cannot open the desired file.\n");
 
+	if (NULL_POINTER)
+		printf("Error: Cannot accses NULL pointer.\n");
+
 	return;
+}
+int checkPointer(void* ptr, int error) {
+	int flag = 0;
+	
+	if (!ptr) {
+		displayError(error);
+		flag = 1;
+	}
+
+	return flag;
 }
