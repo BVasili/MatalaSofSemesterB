@@ -22,7 +22,7 @@ int printMenu(void)
   #   10. Remove visit\n\n\
   #   11. Remove patient\n\n\
   #   12. Close the hospital\n");
-		printf("\n\nplease enter a the number of the wanted action:\t");
+		printf("\n\nplease enter the number of the wanted action:\t");
 		fseek(stdin, 0, SEEK_END);
 		scanf("%d", &action);
 		if (action < 0 || action>12 && isdigit(action) != 0)
