@@ -2,12 +2,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "sortDocList.h"
 
 void loadDoctors(List* ListADT, char* FileName) {
 
 	char DocName[NAME_SIZE] = { 0 }, nLicense[LICENSE_SIZE] = { 0 }, nPatientsRead[3] = { 0 }, Line[LINE_SIZE] = { 0 };
 	int nPatients = 0, firstRead = 0;
-	
+
 	Doc tempDoctor = { 0 };
 
 	FILE* DocsFile = fopen(FileName, "r");
@@ -20,7 +21,7 @@ void loadDoctors(List* ListADT, char* FileName) {
 
 	while (fgets(Line, sizeof(Line), DocsFile)) {
 
-	
+
 		if (sscanf(Line, "%[^;]; %[^;]; %[^;]", DocName, nLicense, nPatientsRead) != 3) {
 			printf("Error reading line: %s\n", Line);
 			continue;
@@ -28,7 +29,7 @@ void loadDoctors(List* ListADT, char* FileName) {
 
 		nPatients = atoi(nPatientsRead);
 
-		tempDoctor.Name=  (char*)malloc(strlen(DocName) + 1);
+		tempDoctor.Name = (char*)malloc(strlen(DocName) + 1);
 		if (!tempDoctor.Name) {
 			displayError(ALLOCATION_FAILED);
 			return;
@@ -37,9 +38,15 @@ void loadDoctors(List* ListADT, char* FileName) {
 		strcpy(tempDoctor.Name, DocName);
 		strcpy(tempDoctor.nLicense, nLicense);
 		tempDoctor.nPatients = nPatients;
-
-		Doc_addToHead(ListADT,tempDoctor);
-
+		if (firstRead == 0) 
+		{
+		Doc_addToHead(ListADT, tempDoctor);
+		firstRead++;
+		}
+		else
+		{
+			ListADT->head = docsSortList(ListADT, tempDoctor);
+		}
 		// Clear the tempDoctororary line and name buffers
 		strcpy(DocName, "\0");
 		strcpy(nLicense, "\0");
@@ -48,7 +55,7 @@ void loadDoctors(List* ListADT, char* FileName) {
 		Line[0] = '\0';
 
 	}
-
+	//sort list func
 	fclose(DocsFile);
 	return;
 }

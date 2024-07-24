@@ -90,7 +90,7 @@ void goToFunc(int choice, List* DoctorsList,pLine* PatientsLine,pTree* PatientsT
 		break;
 	case 7:
 		printf("You chose to display list of all doctors\n\n");
-		Doc_printList(DoctorsList);
+		Doc_printList(&DoctorsList);
 		// Your code for option 7 goes here
 		break;
 	case 8:

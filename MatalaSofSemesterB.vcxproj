@@ -30,6 +30,7 @@
     <ClCompile Include="Source code\printMenu.c" />
     <ClCompile Include="Source code\pTree.c" />
     <ClCompile Include="Source code\SLL.c" />
+    <ClCompile Include="Source code\sortDocList.c" />
     <ClCompile Include="Source code\Stack.c" />
     <ClCompile Include="Source code\updateFiles.c" />
   </ItemGroup>
@@ -44,6 +45,7 @@
     <ClInclude Include="Source code\loadPatients.h" />
     <ClInclude Include="Source code\printMenu.h" />
     <ClInclude Include="Source code\SLL.h" />
+    <ClInclude Include="Source code\sortDocList.h" />
     <ClInclude Include="Source code\Stack.h" />
     <ClInclude Include="Source code\Structure.h" />
     <ClInclude Include="Source code\updateFiles.h" />

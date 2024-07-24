@@ -15,6 +15,9 @@
 #define _CRT_SECURE_NO_WARNINGS
 #define _CRT_SECURE_NO_DEPRECATE 
 
+#define DOCSFILE "Doctors.txt"
+
+
 //Debug
 #define TESTVISIT_
 #define PTREE_
@@ -24,6 +27,23 @@ int main() {
 	
 
 		//updateFiles(NULL, "PatientsDemo.txt", NULL, NULL, NULL, &PatientTree);
+#define TEST_LOADPATIETS_DOC_
+int main()
+{ 
+	List doctors ;
+	initList(&doctors);
+	loadDoctors(&doctors, DOCSFILE);
+	int choice = -1;
+	while (1)
+	{
+		choice = printMenu();
+		goToFunc(choice, doctors );
+		if (choice == 12 || choice == 0)
+		{
+			exit(1);//we need to free all memory
+			break;
+		}
+	}
 #ifdef TEST_LOADPATIETS_DOC
 	pTree PatientsTree;
 	initializePTree(&PatientsTree);
