@@ -11,25 +11,29 @@
 #include"loadLine.h"
 #include"assignDoctor2case.h"
 #include"updateFiles.h"
+#include"goToFunction.h"
 #define _CRT_SECURE_NO_WARNINGS
 #define _CRT_SECURE_NO_DEPRECATE 
 
 //Debug
 #define TESTVISIT_
 #define PTREE_
-#define TEST_LOADPATIETS_DOC_
+#define TEST_LOADPATIETS_DOC
 int main() {
-	pTree PatientTree = { 0 };
-	initializePTree(&PatientTree);
-	printf("test isPTreeEmpty : %d\n", isPTreeEmpty(&PatientTree));
-	loadPatients(&PatientTree, "Patients.txt");
 
-		updateFiles(NULL, "PatientsDemo.txt", NULL, NULL, NULL, &PatientTree);
+	
+
+		//updateFiles(NULL, "PatientsDemo.txt", NULL, NULL, NULL, &PatientTree);
 #ifdef TEST_LOADPATIETS_DOC
-	List DoctorsList = { 0 };
+	pTree PatientsTree;
+	initializePTree(&PatientsTree);
+	loadPatients(&PatientsTree, "Patients.txt");
+	List DoctorsList;
 	pLine PatientsLine;
+	initLine(&PatientsLine);
+	loadLine(&PatientsLine, "Line.txt", &PatientsTree);
 	Doc TestDoc = { 0 };
-	printf("DoctorsList head address before initializing: %p\n", DoctorsList.head);
+	//printf("DoctorsList head address before initializing: %p\n", DoctorsList.head);
 	initList(&DoctorsList);
 	loadDoctors(&DoctorsList, "Doctors.txt");
 	printf("DoctorsList head address after initializing and loading doctors: %p\n\n\n", DoctorsList.head);
@@ -43,7 +47,9 @@ int main() {
 	//printf("\n\ntest isEmptyList: %d\n", Doc_isEmptyList(&DoctorsList));
 	//Doc_destroyList(&DoctorsList);
 	printf("test after destroyList isEmptyList: %d\n", Doc_isEmptyList(&DoctorsList));
-	Node* testnode = assignDoc2Case(&DoctorsList);
+	int answer = 5;
+	goToFunc(answer, &DoctorsList, &PatientsLine,&PatientsTree);
+	//Node* testnode = assignDoc2Case(&DoctorsList);
 	//works for now
 #endif // TEST_LOADPATIETS_DOC
 

@@ -80,6 +80,7 @@ int isPTreeEmpty(pTree* tree)
 
 void printPInTree(pInTree* root)
 {
+	
 	if (root != NULL) {
 		// Traverse the left subtree
 		
@@ -96,9 +97,9 @@ void printPInTree(pInTree* root)
 
 void printPTree(pTree* tree)
 {
+	printf("Patients in BST:\n");
 	if (tree != NULL)
 		return printPInTree(tree->root);
-
 }
 
 pInTree* searchPatientInTree(pInTree* root, char* ID)

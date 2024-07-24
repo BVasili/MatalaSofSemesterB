@@ -45,15 +45,26 @@ void printStack(Stack* s)
 		printf("%d/%d/%d ", popped.tArrival.Day, popped.tArrival.Month, popped.tArrival.Year);
 		printf("%d:%d\n", popped.tArrival.Hour, popped.tArrival.Min);
 		printf("Dismissed:");
-		printf("%d/%d/%d ", popped.tDismissed.Day, popped.tDismissed.Month, popped.tDismissed.Year);
-		printf("%d:%d\n", popped.tDismissed.Hour, popped.tDismissed.Min);
-		printf("Duration: %0.f\n", popped.Duration);//finish this later
+
+		if (popped.tDismissed.Day == -1) 
+			printf("ONGOING\n");
+		else
+		{
+			printf("%d/%d/%d ", popped.tDismissed.Day, popped.tDismissed.Month, popped.tDismissed.Year);
+			printf("%d:%d\n", popped.tDismissed.Hour, popped.tDismissed.Min);
+		}
+
+		if (popped.Duration == -1.0)
+			printf("Duration:ONGOING\n", popped.Duration);
+		else 
+			printf("Durtaion: %d:%d\n", ((int)(popped.Duration) - ((int)(popped.Duration) % 60)) / 60, (int)(popped.Duration) % 60);
+		
+		
 		printf("Doctor:%s\n", popped.Doctor->Name);
 		printf("Summary:%s\n", popped.vSummary);
-
+		printf("------------------------------\n\n");
 	}
-	printf("------------------------------\n\n");
-
+	
 	while (!isEmptyStack(&temp))
 	{
 		push(s, pop(&temp));

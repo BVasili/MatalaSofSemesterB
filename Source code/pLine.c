@@ -99,10 +99,40 @@ void printLineADT(const pLine* q)
 	}
 }
 
+void printLineWithVisit(const pLine* q) {
+	{
+		if (q->head == NULL)
+			return;
 
+		pInLine* temp = q->head;
+		Visit CurrentVisit;
+		while (temp != NULL)
+		{
+			printf("Name:%s ID:%s\n", temp->lpatient->Name,temp->lpatient->ID);
+			CurrentVisit = peekStack(temp->lpatient->Visits);
+			if (CurrentVisit.Duration == -1) {
+				printf("Arrival: ");
+				printf("%d/%d/%d ", CurrentVisit.tArrival.Day, CurrentVisit.tArrival.Month, CurrentVisit.tArrival.Year);
+				printf("%d:%d\n", CurrentVisit.tArrival.Hour, CurrentVisit.tArrival.Min);
+				//printf("Dismissed:");
+				//printf("%d/%d/%d ", CurrentVisit.tDismissed.Day, CurrentVisit.tDismissed.Month, CurrentVisit.tDismissed.Year);
+				//printf("%d:%d\n", CurrentVisit.tDismissed.Hour, CurrentVisit.tDismissed.Min);
+				//printf("Duration:");//finish this later
+				printf("Doctor:%s\n", CurrentVisit.Doctor->Name);
+				printf("Summary:%s\n", CurrentVisit.vSummary);
+				printf("--------------------------\n");
+			
+			}
+			temp = temp->next;
+
+	
+		}
+	}
+}
 void initLine(pLine* q)
 {
 	q->head = NULL;
+	q->tail = NULL;
 	q->size = 0;
 }
 void enLine(pLine* q, char* ID, pTree* tree)
@@ -134,4 +164,16 @@ void printLine(const pLine* q)
 int getLineSize(const pLine* q)
 {
 	return q->size;
+}
+pInLine* searchPatientLine(pInLine* PatientInLine, char* ID)
+{
+	if (PatientInLine == NULL) return NULL;
+	if (strcmp(PatientInLine->lpatient->ID, ID) == 0) return PatientInLine;
+	else
+		searchPatientLine(PatientInLine->next, ID);
+}
+
+pInLine* searchPatientInLine(pLine* queue, char* ID)
+{
+	return searchPatientLine(queue->head, ID);
 }

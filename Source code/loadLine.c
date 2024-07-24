@@ -31,10 +31,9 @@ void loadLine(pLine* PatientsLine, char* FileName,pTree* tree)
 	
 		enLine(PatientsLine,ID,tree);
 
-		//printf("%s", ID);
-		
 		if (strcmp(Line, " ") == 0)
 			break;
+
 		fgets(Line, sizeof(Line), Ptr2File);
 		strcpy(ID, "\0");
 	}

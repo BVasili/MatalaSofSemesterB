@@ -1,4 +1,7 @@
 #pragma once
-#include"Source code/SLL.h"
+#include"SLL.h"
+#include"pLine.h"
+#include"pTree.h"
+#include"Stack.h"
 
-void goToFunc(int choice, List* DoctorsList);
+void goToFunc(int, List*, pLine*, pTree*);

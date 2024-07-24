@@ -2,6 +2,7 @@
 #ifndef PLINE_HEADER__
 #define PLINE_HEADER__
 #include "pTree.h"
+#include"Stack.h"
 
 typedef struct pInLine pInLine;
 
@@ -47,5 +48,11 @@ int isEmptyLine(const pLine* q);
 void printLine(const pLine* q);
 
 int getLineSize(const pLine* q);
+
+pInLine* searchPatientLine(pInLine* , char*);
+
+pInLine* searchPatientInLine(pLine*, char* );
+
+void printLineWithVisit(const pLine* q);
 
 #endif //PLINE_HEADER__

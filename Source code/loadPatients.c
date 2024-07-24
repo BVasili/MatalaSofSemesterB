@@ -57,7 +57,7 @@ void loadPatients(pTree* tree, char* FileName)
 					//checking for allergies and using bitwise to add them.
 					for (int i = 0; i < 8; i++)
 					{
-						if (strcmp(Allergies[i], "none") == 0)
+						if (strcmp(Allergies[i], "") == 0)
 							PatientTemp.Allergies |= NONE;
 						if (strcmp(Allergies[i], "Penicillin") == 0)
 							PatientTemp.Allergies |= PENICILLIN;
@@ -74,6 +74,7 @@ void loadPatients(pTree* tree, char* FileName)
 						if (strcmp(Allergies[i], "Preservatives") == 0)
 							PatientTemp.Allergies |= PRESERVATIVES;
 					}
+
 
 					//Reset allergies for the next patient
 					for (int i = 0; i < 8; i++)
@@ -149,7 +150,7 @@ void loadPatients(pTree* tree, char* FileName)
 					fgets(Line, sizeof(Line), Ptr2File);
 					sscanf(Line, "Dismissed:%[^/]/%[^/]/%[^ ] %[^:]:%[^\n]", Day, Month, Year, Hour, Minute);
 
-					if (Day == 0) {
+					if (atoi(Year) == 0) {
 						PatientsTempVisit.tDismissed.Day = -1;
 						PatientsTempVisit.tDismissed.Month = -1;
 						PatientsTempVisit.tDismissed.Year = -1;
@@ -180,7 +181,7 @@ void loadPatients(pTree* tree, char* FileName)
 					fgets(Line, sizeof(Line), Ptr2File);
 					sscanf(Line, "Duration:%[^:]:%[^\n]", Hour, Minute);
 					if (PatientsTempVisit.tDismissed.Day == -1) {
-						PatientsTempVisit.Duration = -1;
+						PatientsTempVisit.Duration = -1.0;
 					}
 					else {
 						PatientsTempVisit.Duration = 60 * atoi(Hour) + atoi(Minute);

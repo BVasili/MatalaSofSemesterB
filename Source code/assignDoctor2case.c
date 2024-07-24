@@ -1,6 +1,6 @@
 #include"assignDoctor2case.h"
 
-Node* assignDoc2Case( List* DoctorsList) {
+Node* assignDoc2Case(List* DoctorsList) {
 
 	if(checkPointer(DoctorsList,NULL_POINTER))
 		return NULL;
