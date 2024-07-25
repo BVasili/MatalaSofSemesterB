@@ -1,6 +1,6 @@
 Name;ID;Allergies
 =============================
-1.Shuli Abutbul;012345678;Penicillin,Anesthetics,Eggs
+1.Shuli Abutbul;012345678;nonePenicillin,Anesthetics,Eggs
 
 Arrival:29/06/2024 14:08
 Dismissed:
@@ -8,7 +8,7 @@ Duration:
 Doctor:Muhammad Yunus
 Summary:
 =============================
-3.Nasreen Hamdi;026547894;Penicillin,Anesthetics,Eggs
+3.Nasreen Hamdi;026547894;none
 
 Arrival:29/06/2024 11:04
 Dismissed:
@@ -16,7 +16,7 @@ Duration:
 Doctor:Muhammad Yunus
 Summary:
 =============================
-5.Inna Gefen;123456789;Penicillin,Anesthetics,EggsSulfa,Latex
+5.Inna Gefen;123456789;noneSulfa,Latex
 
 Arrival:28/06/2024 00:26
 Dismissed:
@@ -30,7 +30,7 @@ Duration: 515.00
 Doctor:Muhammad Yunus
 Summary:Broken right leg. Placed in cast. 
 =============================
-7.Michael Shore;203389445;Penicillin,Anesthetics,EggsSulfa,LatexPenicillin
+7.Michael Shore;203389445;nonePenicillin
 
 Arrival:29/06/2024 15:44
 Dismissed:
@@ -50,7 +50,7 @@ Duration: 217.00
 Doctor:Diana Prokonov
 Summary:Fell from a bycicle. Broken arm. In cast.
 =============================
-9.Gali Libovitz;308456713;Penicillin,Anesthetics,EggsSulfa,LatexPenicillin
+9.Gali Libovitz;308456713;none
 
 Arrival:29/06/2024 23:26
 Dismissed:
@@ -64,7 +64,7 @@ Duration: 1599.00
 Doctor:Hanni Barlev
 Summary:Gallstones.Severe pain.Laproscopic cholecystectomy.
 =============================
-11.Haim Ezer;312488813;Penicillin,Anesthetics,EggsSulfa,LatexPenicillin
+11.Haim Ezer;312488813;none
 
 Arrival:29/06/2024 01:17
 Dismissed:

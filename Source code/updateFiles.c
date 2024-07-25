@@ -3,10 +3,10 @@
 
 char* TranslateBitWiseIntoString(Patient* Patient)
 {
-	static char AllergiesString[500] = "";
+	char AllergiesString[500] = "";
 	char AllergiesArray[8][20] = { "" }; // Initialize array to prevent uninitialized memory usage
 
-	if (Patient->Allergies & NONE) strcpy(AllergiesArray[0], "");
+	if (Patient->Allergies & NONE) strcpy(AllergiesArray[0], "none");
 	if (Patient->Allergies & PENICILLIN) strcpy(AllergiesArray[1], "Penicillin,");
 	if (Patient->Allergies & SULFA) strcpy(AllergiesArray[2], "Sulfa,");
 	if (Patient->Allergies & OPIOIDS) strcpy(AllergiesArray[3], "Opioids,");
@@ -20,7 +20,7 @@ char* TranslateBitWiseIntoString(Patient* Patient)
 	}
 
 	// Remove trailing comma if present
-	size_t len = strlen(AllergiesString);
+	int len = strlen(AllergiesString);
 	if (len > 0 && AllergiesString[len - 1] == ',') {
 		AllergiesString[len - 1] = '\0';
 	}
@@ -30,7 +30,7 @@ char* TranslateBitWiseIntoString(Patient* Patient)
 
 void InsertPatientsTreeToFile(FILE* file, pInTree* treeNode, int* index)
 {
-	if (checkPointer(treeNode, NULL_POINTER))
+	if (!treeNode)
 		return;
 
 	InsertPatientsTreeToFile(file, treeNode->left, index);
