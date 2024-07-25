@@ -7,3 +7,4 @@ Node* assignDoc2Case(List*);
 Node* insertSorted(Node* head, Node* node);
 Node* removeNode(Node* head, Node* node);
 Node* assignDoc2Case(List* DoctorsList);
+#endif //ASSIGNDOCTOR2CASE__
