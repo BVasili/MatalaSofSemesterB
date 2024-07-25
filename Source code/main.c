@@ -23,7 +23,7 @@
 #define PTREE_ //test for loadPatients + initializePTree + printPTree + searchPatient + destroyPTree + isPTreeEmpty
 #define TEST_LOADPATIETS_DOC__
 #define DOCTORS_FUNC_TEST_ // test for loadDoctors + assignDoctor2case + sortDocList + initList + Doc_printList
-
+#define GOTOFUNC_PRINTMENU_TEST // test for print menu + gotofunc + 
 
 int main()
 {
@@ -51,6 +51,7 @@ int main()
 	
 
 #endif // DOCTORS_FUNC_TEST
+
 
 
 
@@ -121,7 +122,7 @@ int main()
 	Test.tDismissed.Year = 2024;
 	Test.tDismissed.Min = 20;
 	Test.tDismissed.Hour = 10;
-
+	Test.vSummary = "please give us 100";
 	Test.Duration = 40;
 
 	Test.Doctor = malloc(sizeof(Doc));
@@ -132,8 +133,9 @@ int main()
 	printStack(VisitList);
 	Visit testVisit = peekStack(VisitList);
 	printf(" name %s\n", testVisit.Doctor->Name);
+
 	Visit testVisit2 = pop(VisitList);
-	printf(" name %s\n", testVisit2.Doctor->Name);
+	printf("test pop---> name %s\n", testVisit2.Doctor->Name);
 	printStack(VisitList);
 	push(VisitList, testVisit2);
 	printStack(VisitList);
