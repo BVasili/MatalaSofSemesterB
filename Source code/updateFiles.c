@@ -114,7 +114,7 @@ void updateFiles(char* DoctorsFile, char* PatientsFile, char* LineFile, List* Do
 
 	pInLine* PatientsInLine = PatientsLine->head;
 
-	fprintf(LineFilePtr, "Patients' IDs in line \n");
+	fprintf(LineFilePtr, "Patients' IDs in line\n");
 	fprintf(LineFilePtr, "=====================\n");
 
 	while (PatientsInLine)

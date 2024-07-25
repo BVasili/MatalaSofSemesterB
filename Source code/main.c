@@ -20,14 +20,13 @@
 
 //Debug
 #define TESTVISIT__
-#define PTREE__
+#define PTREE_ //test for loadPatients + initializePTree + printPTree + searchPatient + destroyPTree + isPTreeEmpty
 #define TEST_LOADPATIETS_DOC__
 #define DOCTORS_FUNC_TEST_ // test for loadDoctors + assignDoctor2case + sortDocList + initList + Doc_printList
 
 
 int main()
 {
-
 
 #ifdef DOCTORS_FUNC_TEST
 
@@ -58,18 +57,6 @@ int main()
 
 
 
-	//
-	//int choice = -1;
-	//while (1)
-	//{
-	//	choice = printMenu();
-	//	goToFunc(choice, &doctors );
-	//	if (choice == 12 || choice == 0)
-	//	{
-	//		exit(1);//we need to free all memory
-	//		break;
-	//	}
-	//}
 #ifdef TEST_LOADPATIETS_DOC
 	pTree PatientsTree;
 	initializePTree(&PatientsTree);
@@ -103,17 +90,23 @@ int main()
 #ifdef PTREE
 	pTree PatientTree = { 0 };
 	initializePTree(&PatientTree);
-	printf("test isPTreeEmpty : %d\n", isPTreeEmpty(&PatientTree));
+	printf("test isPTreeEmpty before loading : %d ----> 1 means yes\n\n", isPTreeEmpty(&PatientTree));
 	loadPatients(&PatientTree, "Patients.txt");
-	printf("test isPTreeEmpty : %d\n", isPTreeEmpty(&PatientTree));
+	printf("test isPTreeEmpty after loading : %d ----> 0 means no\n\n", isPTreeEmpty(&PatientTree));
+	printf("prints ptree:\n\n");
 	printPTree(&PatientTree);
 	pInTree* testNode = NULL;
+	printf("\n\ntestNode address before using \"searchPatient\" : %p \n",testNode);
 	testNode = searchPatient(&PatientTree, "123456789");
+	printf("testNode address after using \"searchPatient\" : %p \n\n", testNode);
+	printf("searched for:%s and got %s\n\n", "123456789", testNode->tpatient.ID);
+
 	destroyPTree(&PatientTree);
+	printf("print tree after destoryPTree----->\n");
 	printPTree(&PatientTree);
-	printf("test isPTreeEmpty : %d\n", isPTreeEmpty(&PatientTree));
+	printf("\ntest isPTreeEmpty : %d ----> 1 means yes\n", isPTreeEmpty(&PatientTree));
 #endif // PTREE
-	//updateFiles("DoctorsDemo.txt", "PatientsDemo.txt", "LineDemo.txt", &DoctorsList, &PatientsLine, &PatientsTree);
+	
 
 #ifdef TESTVISIT
 	Visit Test = { 0 };
