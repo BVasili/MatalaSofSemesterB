@@ -85,7 +85,7 @@ int main()
 		}
 	}
 #endif // GOTOFUNC_PRINTMENU_TEST
-#endif // GOTOFUNC_PRINTMENU_TEST
+
 
 #ifdef TEST_LOADPATIETS_DOC
 	pTree PatientsTree;
