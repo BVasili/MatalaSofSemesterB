@@ -15,5 +15,4 @@
 #include"assignDoctor2case.h"
 #include"updateFiles.h"
 
-Node* docsSortList(List*,Doc);
-
+Node* docsSortList(List*, Doc);

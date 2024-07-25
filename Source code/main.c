@@ -20,30 +20,26 @@
 
 //Debug
 #define TESTVISIT_
-#define PTREE_
+#define PTREE
 #define TEST_LOADPATIETS_DOC
-int main() {
 
-	
 
-		//updateFiles(NULL, "PatientsDemo.txt", NULL, NULL, NULL, &PatientTree);
-#define TEST_LOADPATIETS_DOC_
 int main()
 { 
-	List doctors ;
-	initList(&doctors);
-	loadDoctors(&doctors, DOCSFILE);
-	int choice = -1;
-	while (1)
-	{
-		choice = printMenu();
-		goToFunc(choice, doctors );
-		if (choice == 12 || choice == 0)
-		{
-			exit(1);//we need to free all memory
-			break;
-		}
-	}
+	//List doctors;
+	//initList(&doctors);
+	//loadDoctors(1,&doctors, DOCSFILE);
+	//int choice = -1;
+	//while (1)
+	//{
+	//	choice = printMenu();
+	//	goToFunc(choice, &doctors );
+	//	if (choice == 12 || choice == 0)
+	//	{
+	//		exit(1);//we need to free all memory
+	//		break;
+	//	}
+	//}
 #ifdef TEST_LOADPATIETS_DOC
 	pTree PatientsTree;
 	initializePTree(&PatientsTree);
@@ -56,26 +52,26 @@ int main()
 	//printf("DoctorsList head address before initializing: %p\n", DoctorsList.head);
 	initList(&DoctorsList);
 	loadDoctors(&DoctorsList, "Doctors.txt");
-	printf("DoctorsList head address after initializing and loading doctors: %p\n\n\n", DoctorsList.head);
-	TestDoc = Doc_peekList(&DoctorsList);
-	printf("Test peekList : name is %s\n", TestDoc.Name);
+	//printf("DoctorsList head address after initializing and loading doctors: %p\n\n\n", DoctorsList.head);
+	//TestDoc = Doc_peekList(&DoctorsList);
+	//printf("Test peekList : name is %s\n", TestDoc.Name);
 	//TestDoc = Doc_removeFromHead(&DoctorsList);
-	TestDoc = Doc_peekList(&DoctorsList);
+	//TestDoc = Doc_peekList(&DoctorsList);
 	//printf("Test removeFromHead : name is %s\n\n", TestDoc.Name);
-	printf("test printlist :\n\n");
-	Doc_printList(&DoctorsList);
+	//printf("test printlist :\n\n");
+	//Doc_printList(&DoctorsList);
 	//printf("\n\ntest isEmptyList: %d\n", Doc_isEmptyList(&DoctorsList));
 	//Doc_destroyList(&DoctorsList);
-	printf("test after destroyList isEmptyList: %d\n", Doc_isEmptyList(&DoctorsList));
-	int answer = 5;
-	goToFunc(answer, &DoctorsList, &PatientsLine,&PatientsTree);
+	//printf("test after destroyList isEmptyList: %d\n", Doc_isEmptyList(&DoctorsList));
+	//int answer = 5;
+	//goToFunc(answer, &DoctorsList, &PatientsLine,&PatientsTree);
 	//Node* testnode = assignDoc2Case(&DoctorsList);
 	//works for now
 #endif // TEST_LOADPATIETS_DOC
 
 
 #ifdef PTREE
-	pLine PatientTree = { 0 };
+	pTree PatientTree = { 0 };
 	initializePTree(&PatientTree);
 	printf("test isPTreeEmpty : %d\n", isPTreeEmpty(&PatientTree));
 	loadPatients(&PatientTree, "Patients.txt");
@@ -83,11 +79,11 @@ int main()
 	printPTree(&PatientTree);
 	pInTree* testNode = NULL;
 	testNode = searchPatient(&PatientTree, "123456789");
-	destroyPTree(&PatientTree);
+	//destroyPTree(&PatientTree);
 	printPTree(&PatientTree);
 	printf("test isPTreeEmpty : %d\n", isPTreeEmpty(&PatientTree));
 #endif // PTREE
-		
+	updateFiles("DoctorsDemo.txt", "PatientsDemo.txt", "LineDemo.txt", &DoctorsList, &PatientsLine,&PatientsTree);
 
 #ifdef TESTVISIT
 	Visit Test = { 0 };

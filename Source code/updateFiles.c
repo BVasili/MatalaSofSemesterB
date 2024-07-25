@@ -1,307 +1,156 @@
 #include "updateFiles.h"
 #include<string.h>
 
+char* TranslateBitWiseIntoString(Patient* Patient)
+{
+	static char AllergiesString[500] = "";
+	char AllergiesArray[8][20] = { "" }; // Initialize array to prevent uninitialized memory usage
+
+	if (Patient->Allergies & NONE) strcpy(AllergiesArray[0], "");
+	if (Patient->Allergies & PENICILLIN) strcpy(AllergiesArray[1], "Penicillin,");
+	if (Patient->Allergies & SULFA) strcpy(AllergiesArray[2], "Sulfa,");
+	if (Patient->Allergies & OPIOIDS) strcpy(AllergiesArray[3], "Opioids,");
+	if (Patient->Allergies & ANESTHETICS) strcpy(AllergiesArray[4], "Anesthetics,");
+	if (Patient->Allergies & EGGS) strcpy(AllergiesArray[5], "Eggs,");
+	if (Patient->Allergies & LATEX) strcpy(AllergiesArray[6], "Latex,");
+	if (Patient->Allergies & PRESERVATIVES) strcpy(AllergiesArray[7], "Preservatives,");
+
+	for (int i = 0; i < 8; i++) {
+		strcat(AllergiesString, AllergiesArray[i]);
+	}
+
+	// Remove trailing comma if present
+	size_t len = strlen(AllergiesString);
+	if (len > 0 && AllergiesString[len - 1] == ',') {
+		AllergiesString[len - 1] = '\0';
+	}
+
+	return AllergiesString;
+}
+
+void InsertPatientsTreeToFile(FILE* file, pInTree* treeNode, int* index)
+{
+	if (checkPointer(treeNode, NULL_POINTER))
+		return;
+
+	InsertPatientsTreeToFile(file, treeNode->left, index);
+
+	(*index)++;
+	writePatientToFile(file, treeNode, index);
+
+	InsertPatientsTreeToFile(file, treeNode->right, index);
+}
+
+void writePatientToFile(FILE* file, pInTree* treeNode, int* index)
+{
+	Patient Patient = treeNode->tpatient;
+
+	fprintf(file, "%d.%s;%s;%s\n\n", *index, Patient.Name, Patient.ID, TranslateBitWiseIntoString(&Patient));
+
+	Stack* PatientsStack = Patient.Visits;
+
+	Stack* TempStack = malloc(sizeof(Stack));
+
+	Visit TempVisit;
+
+	if (checkPointer(TempStack, ALLOCATION_FAILED))
+		return;
+
+	initStack(TempStack);
+
+	while (!isEmptyStack(PatientsStack))
+	{
+		TempVisit = pop(PatientsStack); //Popping from patients stack
+
+		fprintf(file, "Arrival:%02d/%02d/%04d %02d:%02d\n", TempVisit.tArrival.Day, TempVisit.tArrival.Month, TempVisit.tArrival.Year, TempVisit.tArrival.Hour, TempVisit.tArrival.Min);
+
+		if (TempVisit.Duration != -1.0)
+			fprintf(file, "Dismissed:%02d/%02d/%04d %02d:%02d\n", TempVisit.tDismissed.Day, TempVisit.tDismissed.Month, TempVisit.tDismissed.Year, TempVisit.tDismissed.Hour, TempVisit.tDismissed.Min);
+		else
+			fprintf(file, "Dismissed:\n");
+
+		if (TempVisit.Duration != -1.0)
+			fprintf(file, "Duration: %.2f\n", TempVisit.Duration);
+		else
+			fprintf(file, "Duration:\n");
+
+		if (TempVisit.Doctor->Name != NULL)
+			fprintf(file, "Doctor:%s\n", TempVisit.Doctor->Name);
+		else
+			fprintf(file, "Doctor:\n");
+
+		if (TempVisit.vSummary != NULL)
+			fprintf(file, "Summary:%s\n", TempVisit.vSummary);
+		else
+			fprintf(file, "Summary:\n");
+
+		if(!isEmptyStack(PatientsStack))
+		fprintf(file, "\n");
+
+		push(TempStack, TempVisit); //pushing visit into temporary stack
+
+	}
+	fprintf(file, "=============================\n");
+
+	(*index)++;
+
+	while (!isEmptyStack(TempStack)) { //popping from temporary stack into patients original stack
+		TempVisit = pop(TempStack);
+		push(PatientsStack, TempVisit);
+	}
+	free(TempStack);
+}
+
 void updateFiles(char* DoctorsFile, char* PatientsFile, char* LineFile, List* DoctorsList, pLine* PatientsLine, pTree* PatientsTree)
 {
-    // Open patient file for writing
-    FILE* patientFile = fopen(PatientsFile, "w");
-    // Check if the file was opened successfully
-    if (!patientFile)
-    {
-        // Return if the file could not be opened
-        printf("Error opening patient file for writing.\n");
-        return;
-    }
-    // Write header for patient file
-    fprintf(patientFile, "Name;ID;Allergies\n");
-    fprintf(patientFile, "=============================\n");
-    // Initialize index for patient numbering
-    int index = 1;
-    // Write patients from tree to file
-    writePatientsFromTree(patientFile, PatientsTree->root , &index);
-    // Close the patient file
-    fclose(patientFile);
+	int index_line = 1;
+	int index = 0;
 
-    // Open  doctor file for writing
-    FILE* doctorsFile = fopen(DoctorsFile, "w");
-    // Check if the file was opened successfully
-    if (!doctorsFile)
-    {
-        // Return if the file could not be opened
-        printf("Error opening doctors file for writing.\n");
-        return;
-    }
-    // Write doctors to file
-    writeDoctorsToFile(doctorsFile, DoctorsList);
-    // Close the doctors file
-    fclose(doctorsFile);
+	// Patient Line To File
+	FILE* LineFilePtr = fopen(LineFile, "w");
+	if (checkPointer(LineFilePtr, CANNOT_OPEN_FILE))
+		return;
 
-    // Open line file for writing
-    FILE* lineFile = fopen(LineFile, "w");
-    // Check if the file was opened successfully
-    if (!lineFile)
-    {
-        // Return if the file could not be opened
-        printf("Error opening line file for writing.\n");
-        return;
-    }
-    // Write header for line file
-    fprintf(lineFile, "Patients' IDs in line\n");
-    fprintf(lineFile, "=====================\n");
-    // Write patient queue to file
-    writePatientQueueToFile(lineFile, PatientsLine);
-    // Close the line file
-    fclose(lineFile);
+	pInLine* PatientsInLine = PatientsLine->head;
+
+	fprintf(LineFilePtr, "Patients' IDs in line\n");
+	fprintf(LineFilePtr, "=====================\n");
+
+	while (PatientsInLine)
+	{
+		fprintf(LineFilePtr, "%d.%s\n", index_line++, PatientsInLine->lpatient->ID);
+		PatientsInLine = PatientsInLine->next;
+	}
+
+	fclose(LineFilePtr);
+
+	// Patient BST To File
+	FILE* PatientFilePtr = fopen(PatientsFile, "w");
+	if (checkPointer(PatientFilePtr, CANNOT_OPEN_FILE))
+		return;
+
+	fprintf(PatientFilePtr, "Name;ID;Allergies\n");
+	fprintf(PatientFilePtr, "=============================\n");
+	
+	InsertPatientsTreeToFile(PatientFilePtr, PatientsTree->root, &index);
+
+	fclose(PatientFilePtr);
+
+	// Doctors List Into File
+	FILE* DoctorsFilePtr = fopen(DoctorsFile, "w");
+	if (checkPointer(DoctorsFilePtr, CANNOT_OPEN_FILE))
+		return;
+
+	Node* TempDoctorInSLL = DoctorsList->head;
+
+	fprintf(DoctorsFilePtr, "Full Name; License Number; Number of Patients\n");
+	fprintf(DoctorsFilePtr, "=================================================\n");
+
+	while (TempDoctorInSLL != NULL)
+	{
+		fprintf(DoctorsFilePtr, "%s;%s;%d\n", TempDoctorInSLL->Doctor.Name, TempDoctorInSLL->Doctor.nLicense, TempDoctorInSLL->Doctor.nPatients);
+		TempDoctorInSLL = TempDoctorInSLL->next;
+	}
+	fclose(DoctorsFilePtr);
 }
 
-//void updateFiles(char* DoctorsFile, char* PatientsFile, char* LineFile, List* DoctorsList, pLine* PatientsLine, pTree* PatientsTree)
-//{
-//    char ID[10] = { 0 };
-//    int index = 0;
-//    Stack* tempStack1;
-//    Stack* tempStack2;
-//    Stack* PatientsVisitStack;
-//    Visit TempVisit;
-//    Patient* ptrTempPatient = NULL;
-//
-//    //open the patietns file
-//    FILE* ptr2PatientsFile = fopen(PatientsFile, "w");
-//    if (checkPointer(ptr2PatientsFile, CANNOT_OPEN_FILE))
-//        return;
-//
-//    // Write header for patient file
-//    fprintf(ptr2PatientsFile, "Name;ID;Allergies\n");
-//    fprintf(ptr2PatientsFile, "=============================\n");
-//    for (int i = 0; i < 999999999; i++)// a while loop is needed if the amount of intertions is unknown
-//    {
-//        itoa(i, ID, 10);//need a retun id func
-//        ptrTempPatient = searchPatient(PatientsTree, ID);
-//
-//        if (!ptrTempPatient)
-//            continue;
-//
-//        fprintf(ptr2PatientsFile, "%d.%s;%s;%s\n", index, ptrTempPatient->Name, ptrTempPatient->ID,/* encodeAllergies(patient->Allergies)*/);
-//
-//        tempStack1 = malloc(sizeof(Stack));
-//        if (checkPointer(tempStack1, CANNOT_OPEN_FILE))
-//            return;
-//        tempStack2 = malloc(sizeof(Stack));
-//        if (checkPointer(tempStack2, CANNOT_OPEN_FILE))
-//            return;
-//        initStack(tempStack1);
-//        initStack(tempStack2);
-//
-//        PatientsVisitStack = ptrTempPatient->Visits;
-//
-//        while (isEmptyStack(PatientsVisitStack))
-//        {
-//
-//            TempVisit = pop(PatientsVisitStack);
-//            push(tempStack1, TempVisit);
-//
-//            fprintf(ptr2PatientsFile, "Arrival:%02d/%02d/%04d %02d:%02d\n", TempVisit.tArrival.Day, TempVisit.tArrival.Month, TempVisit.tArrival.Year, TempVisit.tArrival.Hour, TempVisit.tArrival.Min);
-//            // Write dismissed details
-//            if (TempVisit.tDismissed.Year != -1)
-//                fprintf(ptr2PatientsFile, "Dismissed:%02d/%02d/%04d %02d:%02d\n", TempVisit.tDismissed.Day, TempVisit.tDismissed.Month, TempVisit.tDismissed.Year, TempVisit.tDismissed.Hour, TempVisit.tDismissed.Min);
-//            else
-//                fprintf(ptr2PatientsFile, "Dismissed:\n");
-//
-//            // Write duration details
-//            if (TempVisit.Duration != -1.0)
-//            {
-//                fprintf(PatientsVisitStack, "Duration: %.2f\n", TempVisit.Duration);
-//            }
-//            else
-//            {
-//                fprintf(PatientsVisitStack, "Duration:\n");
-//            }
-//            // Write doctor details
-//            if (TempVisit.Doctor != NULL)
-//            {
-//                fprintf(file, "Doctor:%s\n", visit->Doctor->Name);
-//            }
-//            else
-//            {
-//                fprintf(file, "Doctor:\n");
-//            }
-//            // Write summary details
-//            if (visit->vSummery != NULL) {
-//                fprintf(file, "Summary:%s\n", visit->vSummery);
-//            }
-//            else
-//            {
-//                fprintf(file, "Summary:\n");
-//            }
-//            // Print blank line between visits
-//            fprintf(file, "\n");
-//            // Move to the next visit
-//            currentVisit = currentVisit->next;
-//        }
-//
-//
-//    }
-//    fclose(ptr2PatientsFile);
-//
-//
-//
-//    // Open  doctor file for writing
-//    FILE* doctorsFile = fopen(DoctorsFile, "w");
-//
-//    // Check if the file was opened successfully
-//    if (!doctorsFile)
-//    {
-//        // Return if the file could not be opened
-//        printf("Error opening doctors file for writing.\n");
-//        return;
-//    }
-//    // Write doctors to file
-//    writeDoctorsToFile(doctorsFile, DoctorsList);
-//    // Close the doctors file
-//    fclose(doctorsFile);
-//
-//    // Open line file for writing
-//    FILE* lineFile = fopen(LineFile, "w");
-//    // Check if the file was opened successfully
-//    if (!lineFile)
-//    {
-//        // Return if the file could not be opened
-//        printf("Error opening line file for writing.\n");
-//        return;
-//    }
-//    // Write header for line file
-//    fprintf(lineFile, "Patients' IDs in line\n");
-//    fprintf(lineFile, "=====================\n");
-//    // Write patient queue to file
-//    writePatientQueueToFile(lineFile, PatientsLine);
-//    // Close the line file
-//    fclose(lineFile);
-//}
-
-
-// Function to write patients from the binary search tree to file
-void writePatientsFromTree(FILE* file, pInTree* node, int* index)
-{
-    // Return if the node is NULL
-    if (node == NULL)
-    {
-        return;
-    }
-    // Recursively write left subtree
-    writePatientsFromTree(file, node->left, index);
-    // Write current patient
-    writePatientToFile(file, &(node->tpatient), (*index)++);
-    // Recursively write right subtree
-    writePatientsFromTree(file, node->right, index);
-}
-
-
-// Function to write a single patient's details and visits to file
-void writePatientToFile(FILE* file, Patient* patient, int index)
-{
-    // Write patient details
-    fprintf(file, "%d.%s;%s;%s\n", index, patient->Name, patient->ID, patient->Allergies);
-    // Initialize current visit node
-    Node* currentVisit = patient->Visits;
-    // Initialize reversed visit stack
-    Node* reversedVisits = NULL;
-    // Reverse the visit stack
-    while (currentVisit != NULL)
-    {
-        // Store next visit node
-        Node* nextVisit = currentVisit->next;
-        currentVisit->next = reversedVisits;
-        // Update reversed visit stack
-        reversedVisits = currentVisit;
-        // Move to the next visit
-        currentVisit = nextVisit;
-    }
-    // Write visits in the correct order
-    // Set current visit to the reversed stack
-    currentVisit = reversedVisits;
-    while (currentVisit != NULL)
-    {
-        // Get visit details
-        Visit* visit = &currentVisit->Visit;
-        // Write arrival details
-        fprintf(file, "Arrival:%02d/%02d/%04d %02d:%02d\n", visit->tArrival.Day, visit->tArrival.Month, visit->tArrival.Year, visit->tArrival.Hour, visit->tArrival.Min);
-        // Write dismissed details
-        if (visit->tDismissed.Year != -1)
-        {
-            fprintf(file, "Dismissed:%02d/%02d/%04d %02d:%02d\n", visit->tDismissed.Day, visit->tDismissed.Month, visit->tDismissed.Year, visit->tDismissed.Hour, visit->tDismissed.Min);
-        }
-        else
-        {
-            fprintf(file, "Dismissed:\n");
-        }
-        // Write duration details
-        if (visit->Duration != -1.0)
-        {
-            fprintf(file, "Duration: %.2f\n", visit->Duration);
-        }
-        else
-        {
-            fprintf(file, "Duration:\n");
-        }
-        // Write doctor details
-        if (visit->Doctor != NULL)
-        {
-            fprintf(file, "Doctor:%s\n", visit->Doctor->Name);
-        }
-        else
-        {
-            fprintf(file, "Doctor:\n");
-        }
-        // Write summary details
-        if (visit->vSummary != NULL) {
-            fprintf(file, "Summary:%s\n", visit->vSummary);
-        }
-        else
-        {
-            fprintf(file, "Summary:\n");
-        }
-        // Print blank line between visits
-        fprintf(file, "\n");
-        // Move to the next visit
-        currentVisit = currentVisit->next;
-    }
-    // Print separator line
-    fprintf(file, "=============================\n");
-    // Increment index
-    index++;
-}
-
-// Function to write the list of doctors to file
-void writeDoctorsToFile(FILE* file, List* doctorList)
-{
-    // Print header for doctors file
-    fprintf(file, "Full Name; License Number; Number of Patients\n");
-    fprintf(file, "=================================================\n");
-    // Initialize current node
-    Node* current = doctorList->head;
-    // Write doctors details to file
-    while (current != NULL)
-    {
-        fprintf(file, "%s;%s;%d\n", current->Doctor.Name, current->Doctor.nLicense, current->Doctor.nPatients);
-        // Move to the next doctor
-        current = current->next;
-    }
-}
-
-
-// Function to write the patient queue to file
-void writePatientQueueToFile(FILE* file, pLine* queue)
-{
-    // Initialize current node
-    pInLine* current = queue->head;
-    // Initialize position counter
-    int position = 1;
-    // Write patient queue details to file
-    while (current != NULL)
-    {
-        fprintf(file, "%d.%s\n", position, current->lpatient->ID);
-        // Move to the next patient in line
-        current = current->next;
-        // Increment position counter
-        position++;
-    }
-}

@@ -1,7 +1,8 @@
-#include "C:\Users\shale\source\repos\DAHH\Source code\sortDocList.h"
+#include"sortDocList.h"
 
-Node* docsSortList(List* docsList,Doc Doctor)
+Node* docsSortList(List* docsList, Doc Doctor)
 {
+
 	//create new list node
 	Node* newNode = (Node*)malloc(sizeof(Node));
 	if (checkPointer(newNode, ALLOCATION_FAILED))
