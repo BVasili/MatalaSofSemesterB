@@ -26,8 +26,6 @@ void loadLine(pLine* PatientsLine, char* FileName,pTree* tree)
 
 	while (!feof(Ptr2File))
 	{
-
-		printf("%s", Line);
 		sscanf(Line, "%*d.%[^\n]",ID);
 	
 		enLine(PatientsLine,ID,tree);

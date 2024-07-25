@@ -11,7 +11,7 @@ void goToFunc(int choice, List* DoctorsList,pLine* PatientsLine,pTree* PatientsT
 		updateFiles("DoctorsTest.txt", "PatientsTest.txt", "LineTest.txt", DoctorsList, PatientsLine, PatientsTree);
 		destroyLine(PatientsLine);
 		destroyPTree(PatientsTree);
-		destroyLine(PatientsLine);
+		Doc_destroyList(DoctorsList);
 		break;
 	case 1:
 		printf("You chose option to admit a patient\n\n");

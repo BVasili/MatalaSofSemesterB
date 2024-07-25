@@ -4,16 +4,14 @@
 #include"displayError.h"
 
 //Functions for ADT
-void deletePLine(pLine* ToBeDeleted)
+void deletePLine(pInLine* ToBeDeleted)
 {
 	if (ToBeDeleted == NULL)
 	{
 		return;
 	}
 
-	ToBeDeleted->size = 0;
-
-	pInLine* toDestroy = ToBeDeleted->head;
+	pInLine* toDestroy = ToBeDeleted;
 	pInLine* next;
 	while (toDestroy != NULL)
 	{
@@ -155,7 +153,8 @@ Patient* deLine(pLine* q)
 }
 void destroyLine(pLine* q)
 {
-	deletePLine(q);
+	deletePLine(q->head);
+	q->size = 0;
 }
 Patient peekLine(const pLine* q)
 {

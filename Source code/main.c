@@ -79,11 +79,12 @@ int main()
 	printPTree(&PatientTree);
 	pInTree* testNode = NULL;
 	testNode = searchPatient(&PatientTree, "123456789");
-	//destroyPTree(&PatientTree);
+	destroyPTree(&PatientTree);
 	printPTree(&PatientTree);
 	printf("test isPTreeEmpty : %d\n", isPTreeEmpty(&PatientTree));
 #endif // PTREE
-	updateFiles("DoctorsDemo.txt", "PatientsDemo.txt", "LineDemo.txt", &DoctorsList, &PatientsLine,&PatientsTree);
+	goToFunc(0, &DoctorsList, &PatientsLine, &PatientsTree);
+	//updateFiles("DoctorsDemo.txt", "PatientsDemo.txt", "LineDemo.txt", &DoctorsList, &PatientsLine,&PatientsTree);
 
 #ifdef TESTVISIT
 	Visit Test = { 0 };
