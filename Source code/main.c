@@ -19,16 +19,46 @@
 
 
 //Debug
-#define TESTVISIT_
-#define PTREE
-#define TEST_LOADPATIETS_DOC
+#define TESTVISIT__
+#define PTREE__
+#define TEST_LOADPATIETS_DOC__
+#define DOCTORS_FUNC_TEST_ // test for loadDoctors + assignDoctor2case + sortDocList + initList + Doc_printList
 
 
 int main()
-{ 
-	//List doctors;
-	//initList(&doctors);
-	//loadDoctors(1,&doctors, DOCSFILE);
+{
+
+
+#ifdef DOCTORS_FUNC_TEST
+
+
+	List doctors;
+	initList(&doctors);
+	if (doctors.head == NULL) //checking if the initializing the doctors list func worked
+	{
+		printf("INITIALIZED DOCTORS LIST\n\n");
+	}
+	loadDoctors( &doctors, DOCSFILE);
+	Doc_printList(&doctors);//checking if the print is the same as the list and sorted by npatients
+	while (1)
+	{
+		if (assignDoc2Case(&doctors) == NULL)
+		{
+			printf("reached max capity in the active patients\n");
+			break;
+		}
+		Doc_printList(&doctors);//prints the list of the doctors after assigned a case and checks the print of the doctor's list
+	}
+	
+
+#endif // DOCTORS_FUNC_TEST
+
+
+
+
+
+
+	//
 	//int choice = -1;
 	//while (1)
 	//{
@@ -83,8 +113,7 @@ int main()
 	printPTree(&PatientTree);
 	printf("test isPTreeEmpty : %d\n", isPTreeEmpty(&PatientTree));
 #endif // PTREE
-	goToFunc(0, &DoctorsList, &PatientsLine, &PatientsTree);
-	//updateFiles("DoctorsDemo.txt", "PatientsDemo.txt", "LineDemo.txt", &DoctorsList, &PatientsLine,&PatientsTree);
+	//updateFiles("DoctorsDemo.txt", "PatientsDemo.txt", "LineDemo.txt", &DoctorsList, &PatientsLine, &PatientsTree);
 
 #ifdef TESTVISIT
 	Visit Test = { 0 };

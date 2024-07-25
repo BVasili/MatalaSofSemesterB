@@ -5,7 +5,7 @@
 #include<string.h>
 
 void loadPatients(pTree* tree, char* FileName)
-	{
+{
 		//Declaring variables for function
 		char Name[NAME_SIZE] = { 0 }, Doctor_Name[NAME_SIZE] = { 0 }, ID[ID_SIZE] = { 0 };
 		char Allergies_String[LINE_SIZE], Line[LINE_SIZE] = { 0 }, Summary[SUMAMRY_SIZE] = { 0 };
