@@ -158,8 +158,8 @@ void Doc_printList(const List* list)
 	while (temp != NULL)
 	{
 
-		printf("%d.\tNAME: %s\t\tLICENSE: %s\t\tNUMBER OF PATIENTS: %d\n", \
-			DocNum, TempDoctor.Name, TempDoctor.nLicense, TempDoctor.nPatients);
+		printf("%d.\tNAME: %s\t\tNUMBER OF PATIENTS: %d\n", \
+			DocNum, TempDoctor.Name, TempDoctor.nPatients);
 		DocNum++;
 		temp = temp->next;
 

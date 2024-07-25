@@ -12,6 +12,7 @@ void goToFunc(int choice, List* DoctorsList,pLine* PatientsLine,pTree* PatientsT
 		destroyLine(PatientsLine);
 		destroyPTree(PatientsTree);
 		Doc_destroyList(DoctorsList);
+		printf("memory has been freed\n\n\t\t#EXITING PROGRAM\n\n");
 		break;
 	case 1:
 		printf("You chose option to admit a patient\n\n");
@@ -92,7 +93,7 @@ void goToFunc(int choice, List* DoctorsList,pLine* PatientsLine,pTree* PatientsT
 		break;
 	case 7:
 		printf("You chose to display list of all doctors\n\n");
-		Doc_printList(&DoctorsList);
+		Doc_printList(DoctorsList);
 		
 		break;
 	case 8:
