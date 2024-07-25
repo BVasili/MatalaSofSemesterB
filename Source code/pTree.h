@@ -2,7 +2,7 @@
 #ifndef PTREE_HEADER__
 #define PTREE_HEADER__
 #include"Structure.h"
-
+#include"Stack.h"
 struct pInTree;
 
 // Typedef for tree node

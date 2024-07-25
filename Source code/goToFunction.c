@@ -8,7 +8,10 @@ void goToFunc(int choice, List* DoctorsList,pLine* PatientsLine,pTree* PatientsT
 	switch (choice){
 	case 0:
 		printf("You chose option to exit the program\n\n");
-		
+		updateFiles("DoctorsTest.txt", "PatientsTest.txt", "LineTest.txt", DoctorsList, PatientsLine, PatientsTree);
+		destroyLine(PatientsLine);
+		destroyPTree(PatientsTree);
+		destroyLine(PatientsLine);
 		break;
 	case 1:
 		printf("You chose option to admit a patient\n\n");
