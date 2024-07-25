@@ -118,7 +118,7 @@ int main()
 	printPTree(&PatientTree);
 	pInTree* testNode = NULL;
 	testNode = searchPatient(&PatientTree, "123456789");
-	//destroyPTree(&PatientTree);
+	destroyPTree(&PatientTree);
 	printPTree(&PatientTree);
 	printf("test isPTreeEmpty : %d\n", isPTreeEmpty(&PatientTree));
 #endif // PTREE

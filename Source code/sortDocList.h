@@ -1,7 +1,9 @@
 #pragma once
-#pragma once
 
 #define _CRT_SECURE_NO_WARNINGS
+#ifndef SORTDOCTLIST__
+#define SORTDOCTLIST__
+
 #include <stdio.h>
 #include<string.h>
 #include"BST.h"
@@ -16,3 +18,5 @@
 #include"updateFiles.h"
 
 Node* docsSortList(List*, Doc);
+#endif // !SORTDOCTLIST__
+

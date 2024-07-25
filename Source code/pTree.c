@@ -23,6 +23,7 @@ void freeTree(pInTree* root)
 	if (root == NULL) return;
 	freeTree(root->left);
 	freeTree(root->right);
+	destroyStack(root->tpatient.Visits);
 	free(root);
 }
 

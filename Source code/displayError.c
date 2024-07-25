@@ -21,6 +21,6 @@ int checkPointer(void* ptr, int error) {
 		displayError(error);
 		flag = 1;
 	}
-
+	//return 1 if there is a problem
 	return flag;
 }

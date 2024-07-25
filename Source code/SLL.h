@@ -10,12 +10,6 @@
 #define LIST_END NULL
 #define EMPTY_LIST NULL
 
-#define LIST_POINTER_ERROR "Error - NULL pointer.\n"
-#define BAD_ALLOC "Error - allocation error.\n"
-
-
-
-
 typedef struct Node
 {
 	Visit Visit;

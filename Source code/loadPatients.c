@@ -57,7 +57,7 @@ void loadPatients(pTree* tree, char* FileName)
 					//checking for allergies and using bitwise to add them.
 					for (int i = 0; i < 8; i++)
 					{
-						if (strcmp(Allergies[i], "") == 0)
+						if (strcmp(Allergies[i], "none") == 0)
 							PatientTemp.Allergies |= NONE;
 						if (strcmp(Allergies[i], "Penicillin") == 0)
 							PatientTemp.Allergies |= PENICILLIN;
@@ -91,7 +91,7 @@ void loadPatients(pTree* tree, char* FileName)
 
 					strcpy(PatientTemp.Name, Name);
 
-					PatientTemp.Visits = malloc(sizeof(Stack));//check for fucks
+					PatientTemp.Visits = malloc(sizeof(Stack));
 
 					if (!PatientTemp.Visits) {
 						displayError(ALLOCATION_FAILED);

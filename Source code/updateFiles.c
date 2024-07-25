@@ -6,14 +6,14 @@ char* TranslateBitWiseIntoString(Patient* Patient)
 	char AllergiesString[500] = "";
 	char AllergiesArray[8][20] = { "" }; // Initialize array to prevent uninitialized memory usage
 
-	if (Patient->Allergies & NONE) strcpy(AllergiesArray[0], "none");
-	if (Patient->Allergies & PENICILLIN) strcpy(AllergiesArray[1], "Penicillin,");
-	if (Patient->Allergies & SULFA) strcpy(AllergiesArray[2], "Sulfa,");
-	if (Patient->Allergies & OPIOIDS) strcpy(AllergiesArray[3], "Opioids,");
-	if (Patient->Allergies & ANESTHETICS) strcpy(AllergiesArray[4], "Anesthetics,");
-	if (Patient->Allergies & EGGS) strcpy(AllergiesArray[5], "Eggs,");
-	if (Patient->Allergies & LATEX) strcpy(AllergiesArray[6], "Latex,");
-	if (Patient->Allergies & PRESERVATIVES) strcpy(AllergiesArray[7], "Preservatives,");
+	if (Patient->Allergies & NONE ) strcpy(AllergiesArray[0], "none");
+	if (Patient->Allergies & PENICILLIN) strcpy(AllergiesArray[1], "Penicillin;");
+	if (Patient->Allergies & SULFA) strcpy(AllergiesArray[2], "Sulfa;");
+	if (Patient->Allergies & OPIOIDS) strcpy(AllergiesArray[3], "Opioids;");
+	if (Patient->Allergies & ANESTHETICS) strcpy(AllergiesArray[4], "Anesthetics;");
+	if (Patient->Allergies & EGGS) strcpy(AllergiesArray[5], "Eggs;");
+	if (Patient->Allergies & LATEX) strcpy(AllergiesArray[6], "Latex;");
+	if (Patient->Allergies & PRESERVATIVES) strcpy(AllergiesArray[7], "Preservatives;");
 
 	for (int i = 0; i < 8; i++) {
 		strcat(AllergiesString, AllergiesArray[i]);
@@ -21,7 +21,7 @@ char* TranslateBitWiseIntoString(Patient* Patient)
 
 	// Remove trailing comma if present
 	int len = strlen(AllergiesString);
-	if (len > 0 && AllergiesString[len - 1] == ',') {
+	if (len > 0 && AllergiesString[len - 1] == ';') {
 		AllergiesString[len - 1] = '\0';
 	}
 
@@ -43,6 +43,7 @@ void InsertPatientsTreeToFile(FILE* file, pInTree* treeNode, int* index)
 
 void writePatientToFile(FILE* file, pInTree* treeNode, int* index)
 {
+	int Duration_Hours = 0;
 	Patient Patient = treeNode->tpatient;
 
 	fprintf(file, "%d.%s;%s;%s\n\n", *index, Patient.Name, Patient.ID, TranslateBitWiseIntoString(&Patient));
@@ -58,9 +59,15 @@ void writePatientToFile(FILE* file, pInTree* treeNode, int* index)
 
 	initStack(TempStack);
 
-	while (!isEmptyStack(PatientsStack))
+	while (!isEmptyStack(PatientsStack)) {
+		TempVisit = pop(PatientsStack);
+		push(TempStack, TempVisit);
+	}
+	
+	while (!isEmptyStack(TempStack))
 	{
-		TempVisit = pop(PatientsStack); //Popping from patients stack
+		TempVisit = pop(TempStack); //Popping from patients stack
+		int Duration_Hours = (int)(TempVisit.Duration) - ((int)(TempVisit.Duration) % 60);
 
 		fprintf(file, "Arrival:%02d/%02d/%04d %02d:%02d\n", TempVisit.tArrival.Day, TempVisit.tArrival.Month, TempVisit.tArrival.Year, TempVisit.tArrival.Hour, TempVisit.tArrival.Min);
 
@@ -70,7 +77,8 @@ void writePatientToFile(FILE* file, pInTree* treeNode, int* index)
 			fprintf(file, "Dismissed:\n");
 
 		if (TempVisit.Duration != -1.0)
-			fprintf(file, "Duration: %.2f\n", TempVisit.Duration);
+			
+			fprintf(file, "Duration:%d:%.2d\n", Duration_Hours/60, (int)(TempVisit.Duration)%60);
 		else
 			fprintf(file, "Duration:\n");
 
@@ -84,20 +92,13 @@ void writePatientToFile(FILE* file, pInTree* treeNode, int* index)
 		else
 			fprintf(file, "Summary:\n");
 
-		if(!isEmptyStack(PatientsStack))
+		if(!isEmptyStack(TempStack))
 		fprintf(file, "\n");
 
-		push(TempStack, TempVisit); //pushing visit into temporary stack
+		push(PatientsStack, TempVisit); //pushing visit into temporary stack
 
 	}
-	fprintf(file, "=============================\n");
-
-	(*index)++;
-
-	while (!isEmptyStack(TempStack)) { //popping from temporary stack into patients original stack
-		TempVisit = pop(TempStack);
-		push(PatientsStack, TempVisit);
-	}
+	fprintf(file, "========================\n");
 	free(TempStack);
 }
 
@@ -113,7 +114,7 @@ void updateFiles(char* DoctorsFile, char* PatientsFile, char* LineFile, List* Do
 
 	pInLine* PatientsInLine = PatientsLine->head;
 
-	fprintf(LineFilePtr, "Patients' IDs in line\n");
+	fprintf(LineFilePtr, "Patients' IDs in line \n");
 	fprintf(LineFilePtr, "=====================\n");
 
 	while (PatientsInLine)
@@ -129,11 +130,12 @@ void updateFiles(char* DoctorsFile, char* PatientsFile, char* LineFile, List* Do
 	if (checkPointer(PatientFilePtr, CANNOT_OPEN_FILE))
 		return;
 
-	fprintf(PatientFilePtr, "Name;ID;Allergies\n");
-	fprintf(PatientFilePtr, "=============================\n");
+	fprintf(PatientFilePtr, "Name; ID; Allergies\n");
+	fprintf(PatientFilePtr, "========================\n");
 	
 	InsertPatientsTreeToFile(PatientFilePtr, PatientsTree->root, &index);
-
+	fprintf(PatientFilePtr, "\n");
+	fprintf(PatientFilePtr, "\t");
 	fclose(PatientFilePtr);
 
 	// Doctors List Into File
@@ -148,7 +150,7 @@ void updateFiles(char* DoctorsFile, char* PatientsFile, char* LineFile, List* Do
 
 	while (TempDoctorInSLL != NULL)
 	{
-		fprintf(DoctorsFilePtr, "%s;%s;%d\n", TempDoctorInSLL->Doctor.Name, TempDoctorInSLL->Doctor.nLicense, TempDoctorInSLL->Doctor.nPatients);
+		fprintf(DoctorsFilePtr, "%s; %s; %d\n", TempDoctorInSLL->Doctor.Name, TempDoctorInSLL->Doctor.nLicense, TempDoctorInSLL->Doctor.nPatients);
 		TempDoctorInSLL = TempDoctorInSLL->next;
 	}
 	fclose(DoctorsFilePtr);

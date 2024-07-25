@@ -2,7 +2,7 @@
 #ifndef PTREE_HEADER__
 #define PTREE_HEADER__
 #include"Structure.h"
-
+#include"Stack.h"
 struct pInTree;
 
 // Typedef for tree node
@@ -19,10 +19,14 @@ typedef struct pTree
 	pInTree* root;
 } pTree;
 
-
+//
 void insertPInTree(pInTree* root, Patient PatientToBeInserted);
 void freeTree(pInTree* root);
 pInTree* createPInTree(pInTree* left, pInTree* right, Patient PatientToBeInserted);
+pInTree* searchPatientInTree(pInTree*, char*);
+
+//ADT functions
+pInTree* searchPatient(pTree* tree, char* ID);
 int searchInTree(pInTree* root, char*);
 void initializePTree(pTree* tree);
 void insertPTree(pTree* tree, Patient PatientToBeInserted);
@@ -32,6 +36,6 @@ int isPTreeEmpty(pTree* tree);
 void printPInTree(pInTree* root);
 void printPTree(pTree* tree);
 pInTree* searchPatientInTree(pInTree*, char*);
-pInTree* searchPatient(pTree* tree, char* ID);
+
 
 #endif //PTREE_HEADER__

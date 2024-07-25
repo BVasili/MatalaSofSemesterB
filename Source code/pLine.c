@@ -4,16 +4,14 @@
 #include"displayError.h"
 
 //Functions for ADT
-void deletePLine(pLine* ToBeDeleted) 
+void deletePLine(pInLine* ToBeDeleted)
 {
 	if (ToBeDeleted == NULL)
 	{
 		return;
 	}
 
-	ToBeDeleted->size = 0;
-
-	pInLine* toDestroy = ToBeDeleted->head;
+	pInLine* toDestroy = ToBeDeleted;
 	pInLine* next;
 	while (toDestroy != NULL)
 	{
@@ -73,20 +71,20 @@ Patient* RemoveHeadFromLine(pLine* q) {
 
 	return toReturn;
 }
-Patient GetFromHead(const pLine* q) 
+Patient GetFromHead(const pLine* q)
 {
 	Patient toBeReturned = *q->head->lpatient;
 	return toBeReturned;
 }
-int CheckLineHead(const pLine* q) 
+int CheckLineHead(const pLine* q)
 {
 	return q->head == NULL;
 }
-void printLineADT(const pLine* q) 
+void printLineADT(const pLine* q)
 {
-	if (q->head ==NULL)
+	if (q->head == NULL)
 		return;
-	
+
 	pInLine* temp = q->head;
 
 	while (temp != NULL)
@@ -98,7 +96,10 @@ void printLineADT(const pLine* q)
 			printf(" | ");
 	}
 }
-
+pInLine* searchPatientInLine(pLine* queue, char* ID)
+{
+	return searchPatientLine(queue->head, ID);
+}
 void printLineWithVisit(const pLine* q) {
 	{
 		if (q->head == NULL)
@@ -108,27 +109,34 @@ void printLineWithVisit(const pLine* q) {
 		Visit CurrentVisit;
 		while (temp != NULL)
 		{
-			printf("Name:%s ID:%s\n", temp->lpatient->Name,temp->lpatient->ID);
+			printf("Name:%s ID:%s\n", temp->lpatient->Name, temp->lpatient->ID);
 			CurrentVisit = peekStack(temp->lpatient->Visits);
-			if (CurrentVisit.Duration == -1) {
-				printf("Arrival: ");
-				printf("%d/%d/%d ", CurrentVisit.tArrival.Day, CurrentVisit.tArrival.Month, CurrentVisit.tArrival.Year);
-				printf("%d:%d\n", CurrentVisit.tArrival.Hour, CurrentVisit.tArrival.Min);
-				//printf("Dismissed:");
-				//printf("%d/%d/%d ", CurrentVisit.tDismissed.Day, CurrentVisit.tDismissed.Month, CurrentVisit.tDismissed.Year);
-				//printf("%d:%d\n", CurrentVisit.tDismissed.Hour, CurrentVisit.tDismissed.Min);
-				//printf("Duration:");//finish this later
-				printf("Doctor:%s\n", CurrentVisit.Doctor->Name);
-				printf("Summary:%s\n", CurrentVisit.vSummary);
-				printf("--------------------------\n");
-			
-			}
-			temp = temp->next;
 
-	
+			printf("Arrival: ");
+			printf("%d/%d/%d ", CurrentVisit.tArrival.Day, CurrentVisit.tArrival.Month, CurrentVisit.tArrival.Year);
+			printf("%d:%d\n", CurrentVisit.tArrival.Hour, CurrentVisit.tArrival.Min);
+
+			if (CurrentVisit.Duration == -1)
+			{
+				printf("Dismissed: ONGOING\n");
+				printf("Duration:ONGING\n");//finish this later
+			}
+			else
+			{
+				printf("%d/%d/%d ", CurrentVisit.tDismissed.Day, CurrentVisit.tDismissed.Month, CurrentVisit.tDismissed.Year);
+				printf("%d:%d\n", CurrentVisit.tDismissed.Hour, CurrentVisit.tDismissed.Min);
+			}
+
+			printf("Doctor:%s\n", CurrentVisit.Doctor->Name);
+			printf("Summary:%s\n", CurrentVisit.vSummary);
+			printf("--------------------------\n");
+
+			temp = temp->next;
 		}
 	}
 }
+
+// Public functions
 void initLine(pLine* q)
 {
 	q->head = NULL;
@@ -145,7 +153,8 @@ Patient* deLine(pLine* q)
 }
 void destroyLine(pLine* q)
 {
-	deletePLine(q);
+	deletePLine(q->head);
+	q->size = 0;
 }
 Patient peekLine(const pLine* q)
 {
@@ -173,7 +182,3 @@ pInLine* searchPatientLine(pInLine* PatientInLine, char* ID)
 		searchPatientLine(PatientInLine->next, ID);
 }
 
-pInLine* searchPatientInLine(pLine* queue, char* ID)
-{
-	return searchPatientLine(queue->head, ID);
-}

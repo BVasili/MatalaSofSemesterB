@@ -17,7 +17,8 @@ void loadLine(pLine* PatientsLine, char* FileName,pTree* tree)
 		return;
 	}
 
-	fseek(Ptr2File, 46, SEEK_CUR);
+	//get to first patients in file
+	fseek(Ptr2File, 46, SEEK_CUR); 
 	fgets(Line, sizeof(Line), Ptr2File);
 
 	if (strcmp(Line, " ") == 0)
@@ -25,8 +26,6 @@ void loadLine(pLine* PatientsLine, char* FileName,pTree* tree)
 
 	while (!feof(Ptr2File))
 	{
-
-		/*printf("%s", Line);*/
 		sscanf(Line, "%*d.%[^\n]",ID);
 	
 		enLine(PatientsLine,ID,tree);
