@@ -23,7 +23,7 @@
 #define PTREE__
 #define TEST_LOADPATIETS_DOC__
 #define DOCTORS_FUNC_TEST_ // test for loadDoctors + assignDoctor2case + sortDocList + initList + Doc_printList
-
+#define GOTOFUNC_PRINTMENU_TEST // test for print menu + gotofunc + 
 
 int main()
 {
@@ -58,18 +58,27 @@ int main()
 
 
 
-	//
-	//int choice = -1;
-	//while (1)
-	//{
-	//	choice = printMenu();
-	//	goToFunc(choice, &doctors );
-	//	if (choice == 12 || choice == 0)
-	//	{
-	//		exit(1);//we need to free all memory
-	//		break;
-	//	}
-	//}
+#ifdef GOTOFUNC_PRINTMENU_TEST
+	List doctors;
+	initList(&doctors);
+	if (doctors.head == NULL) 
+	{
+		printf("INITIALIZED DOCTORS LIST\n\n");
+	}
+	loadDoctors(&doctors, DOCSFILE);
+	int choice = -1;
+	while (1)//calling for print menu which 
+	{
+		choice = printMenu();
+		goToFunc(choice, doctors,);
+		if (choice == 12 || choice == 0)
+		{
+			exit(1);//we need to free all memory
+			break;
+		}
+	}
+#endif // GOTOFUNC_PRINTMENU_TEST
+
 #ifdef TEST_LOADPATIETS_DOC
 	pTree PatientsTree;
 	initializePTree(&PatientsTree);
