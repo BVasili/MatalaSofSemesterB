@@ -28,6 +28,7 @@ Visit pop(Stack* s)
 	return Visit_removeFromHead(&(s->sList));
 }
 
+// return 1 if stack is empty
 int isEmptyStack(const Stack* s)
 {
 	return Visit_isEmptyList(&(s->sList));
@@ -69,7 +70,6 @@ void printStack(Stack* s)
 	{
 		push(s, pop(&temp));
 	}
-
 	destroyStack(&temp);
 }
 

@@ -91,7 +91,7 @@ void loadPatients(pTree* tree, char* FileName)
 
 					strcpy(PatientTemp.Name, Name);
 
-					PatientTemp.Visits = malloc(sizeof(Stack));//check for fucks
+					PatientTemp.Visits = malloc(sizeof(Stack));
 
 					if (!PatientTemp.Visits) {
 						displayError(ALLOCATION_FAILED);
