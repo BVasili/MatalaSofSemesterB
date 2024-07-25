@@ -23,7 +23,7 @@
 #define PTREE__
 #define TEST_LOADPATIETS_DOC__
 #define DOCTORS_FUNC_TEST_ // test for loadDoctors + assignDoctor2case + sortDocList + initList + Doc_printList
-#define GOTOFUNC_PRINTMENU_TEST // test for print menu + gotofunc + 
+#define GOTOFUNC_PRINTMENU_TEST // test for print menu + gotofunc + actions in the menu (0,2,3,4,5,7) + load patients + load line
 
 int main()
 {
@@ -53,12 +53,20 @@ int main()
 
 #endif // DOCTORS_FUNC_TEST
 
-
-
-
-
-
 #ifdef GOTOFUNC_PRINTMENU_TEST
+	pTree PatientsTree;
+	initializePTree(&PatientsTree);
+	loadPatients(&PatientsTree, "Patients.txt");
+	/*printPTree(&PatientsTree);*/// testing if the patients tree has been copied 
+	
+
+	pLine PatientsLine;
+	initLine(&PatientsLine);
+	loadLine(&PatientsLine, "Line.txt", &PatientsTree);
+	/*printLine(&PatientsLine);*/
+
+
+	
 	List doctors;
 	initList(&doctors);
 	if (doctors.head == NULL) 
@@ -70,7 +78,7 @@ int main()
 	while (1)//calling for print menu which 
 	{
 		choice = printMenu();
-		goToFunc(choice, doctors,);
+		goToFunc(choice, &doctors, &PatientsLine, &PatientsTree);
 		if (choice == 12 || choice == 0)
 		{
 			exit(1);//we need to free all memory
