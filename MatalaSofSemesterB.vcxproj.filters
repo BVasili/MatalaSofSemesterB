@@ -54,6 +54,12 @@
     <ClCompile Include="Source code\goToFunction.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="admitPatient.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source code\sortDocList.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source code\Structure.h">
@@ -93,6 +99,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source code\goToFunction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source code\sortDocList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="admitPartient.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

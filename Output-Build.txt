@@ -1,0 +1,7 @@
+﻿Build started at 20:34...
+1>------ Build started: Project: MatalaSofSemesterB, Configuration: Debug Win32 ------
+1>admitPatient.obj : error LNK2019: unresolved external symbol _isAlpha referenced in function _validInput
+1>C:\Users\shale\Source\Repos\KADIMA\Debug\MatalaSofSemesterB.exe : fatal error LNK1120: 1 unresolved externals
+1>Done building project "MatalaSofSemesterB.vcxproj" -- FAILED.
+========== Build: 0 succeeded, 1 failed, 0 up-to-date, 0 skipped ==========
+========== Build completed at 20:34 and took 00.449 seconds ==========
