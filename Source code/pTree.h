@@ -35,6 +35,8 @@ int find(pTree* tree, char*);
 int isPTreeEmpty(pTree* tree);
 void printPInTree(pInTree* root);
 void printPTree(pTree* tree);
+void printDoctorsPatient(pInTree*, char*);
+void printDoctorsPatientADT(pTree*, char*);
 pInTree* searchPatientInTree(pInTree*, char*);
 
 

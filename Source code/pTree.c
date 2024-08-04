@@ -117,3 +117,31 @@ pInTree* searchPatient(pTree* tree, char* ID)
 	return searchPatientInTree(tree->root, ID);
 }
 
+//
+void printDoctorsPatient(pInTree* root,char* DoctorName)
+{
+
+	if (root != NULL) {
+		// Traverse the left subtree
+
+		printDoctorsPatient(root->left, DoctorName);
+
+		// Print the root node's id
+		Patient TempPatient = root->tpatient;
+		Visit TempVisit = peekStack(TempPatient.Visits);
+		if (!strcmp(TempVisit.Doctor, DoctorName) && TempVisit.Duration == -1.0) {
+			printf("Name: %s  ID: %s\n", root->tpatient.Name, root->tpatient.ID);
+			printVisit(TempVisit);
+		}
+		
+		
+		// Traverse the right subtree
+		printDoctorsPatient(root->right, DoctorName);
+	}
+
+}
+
+void printDoctorsPatientADT(pTree* Tree, char* DoctorName)
+{
+	return printDoctorsPatient(Tree->root, DoctorName);
+}

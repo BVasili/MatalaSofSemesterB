@@ -19,7 +19,7 @@
 
 
 //Debug
-#define TESTVISIT__
+#define TESTVISIT_
 #define PTREE_ //test for loadPatients + initializePTree + printPTree + searchPatient + destroyPTree + isPTreeEmpty
 #define TEST_LOADPATIETS_DOC__
 #define DOCTORS_FUNC_TEST_ // test for loadDoctors + assignDoctor2case + sortDocList + initList + Doc_printList

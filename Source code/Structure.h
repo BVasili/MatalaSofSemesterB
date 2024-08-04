@@ -1,7 +1,7 @@
 ﻿#pragma once
 #ifndef STRUCTURE_HEADER__
 #define STRUCTURE_HEADER__
-
+#define NAME_SIZE 100
 #define ID_SIZE 10
 #define AllergiesSize 8
 

@@ -33,6 +33,32 @@ Visit Visit_peekList(const List* list)
 		return;
 	return list->head->Visit;
 }
+void printVisit(Visit Visit) {
+
+	printf("Arrival: ");
+	printf("%d/%d/%d ", Visit.tArrival.Day, Visit.tArrival.Month, Visit.tArrival.Year);
+	printf("%d:%.2d\n", Visit.tArrival.Hour, Visit.tArrival.Min);
+	printf("Dismissed:");
+
+	if (Visit.tDismissed.Day == -1)
+		printf("ONGOING\n");
+	else
+	{
+		printf("%d/%d/%d ", Visit.tDismissed.Day, Visit.tDismissed.Month, Visit.tDismissed.Year);
+		printf("%d:%.2d\n", Visit.tDismissed.Hour, Visit.tDismissed.Min);
+	}
+
+	if (Visit.Duration == -1.0)
+		printf("Duration:ONGOING\n", Visit.Duration);
+	else
+		printf("Durtaion: %d:%.2d\n", ((int)(Visit.Duration) - ((int)(Visit.Duration) % 60)) / 60, (int)(Visit.Duration) % 60);
+
+
+	printf("Doctor:%s\n", Visit.Doctor->Name);
+	printf("Summary:%s\n", Visit.vSummary);
+	printf("------------------------------\n\n");
+
+}
 
 void Visit_printList(const List* list, const char* delimiter)
 {
@@ -42,23 +68,27 @@ void Visit_printList(const List* list, const char* delimiter)
 		return;
 
 
-	Node* temp = list->head;
-	Visit Visit = temp->Visit;
-	while (temp != LIST_END)
+	Node* temp;
+	Visit Visit;
+	do
 	{
-		printf("Arrival: ");
-		printf("%d/%d/%d ", Visit.tArrival.Day, Visit.tArrival.Month, Visit.tArrival.Year);
-		printf("%d:%d\n", Visit.tArrival.Hour, Visit.tArrival.Min);
-		printf("Dismissed:");
-		printf("%d/%d/%d ", Visit.tDismissed.Day, Visit.tDismissed.Month, Visit.tDismissed.Year);
-		printf("%d:%d\n", Visit.tDismissed.Hour, Visit.tDismissed.Min);
-		printf("Duration:");//finish this later
-		printf("Doctor:%s", Visit.Doctor->Name);
-		printf("Summary:%s", Visit.vSummary);
-		temp = temp->next;
-		if (temp != NULL)
-			printf(" %s ", delimiter);
-	}
+		temp = list->head;
+		Visit = temp->Visit;
+		printVisit(Visit);
+
+		//printf("Arrival: ");
+		//printf("%d/%d/%d ", Visit.tArrival.Day, Visit.tArrival.Month, Visit.tArrival.Year);
+		//printf("%d:%d\n", Visit.tArrival.Hour, Visit.tArrival.Min);
+		//printf("Dismissed:");
+		//printf("%d/%d/%d ", Visit.tDismissed.Day, Visit.tDismissed.Month, Visit.tDismissed.Year);
+		//printf("%d:%d\n", Visit.tDismissed.Hour, Visit.tDismissed.Min);
+		//printf("Duration:");//finish this later
+		//printf("Doctor:%s", Visit.Doctor->Name);
+		//printf("Summary:%s", Visit.vSummary);
+		//temp = temp->next;
+		//if (temp != NULL)
+		//	printf(" %s ", delimiter);
+	} while (temp != LIST_END);
 
 }
 
@@ -194,6 +224,19 @@ void Doc_destroyList(List* list)
 	}
 
 	list->head = EMPTY_LIST;//update list
+}
+
+Node* searchDoctorInList(Node* ListNode, char* DoctorName)
+{
+	if (ListNode == NULL) return NULL;
+	if (strcmp(ListNode->Doctor.Name,DoctorName) == 0) return ListNode;
+	else return searchDoctorInList(ListNode->next, DoctorName);
+}
+
+Node* searchDoctor(List* DoctorsList, char* DoctorName)
+{
+	if (DoctorsList == NULL) return NULL;
+	else return searchDoctorInList(DoctorsList->head, DoctorName);
 }
 
 void Doc_addToHead(List* list, Doc Doctor)

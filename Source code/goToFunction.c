@@ -1,9 +1,12 @@
 #include"goToFunction.h"
+#include <string.h>
 
 void goToFunc(int choice, List* DoctorsList,pLine* PatientsLine,pTree* PatientsTree)
 {
 	char ID[ID_SIZE];
+	char DoctorsName[NAME_SIZE];
 	pInLine* temp;
+	Node* tempNode;
 	Patient* ptrPatient;
 	switch (choice){
 	case 0:
@@ -98,7 +101,33 @@ void goToFunc(int choice, List* DoctorsList,pLine* PatientsLine,pTree* PatientsT
 		break;
 	case 8:
 		printf("You chose to dispaly all patients assigned to a doctor\n\n");
-		
+		Doc_printList(DoctorsList);
+		do {
+			
+			printf("Enter an Doctors Name:");
+			fseek(stdin, 0, SEEK_SET);
+			fgets(DoctorsName, 100, stdin);
+			DoctorsName[(strlen(DoctorsName) - 1)] = '\0';
+			printf("\n");
+			tempNode = searchDoctor(DoctorsList, DoctorsName);
+
+			if (strcmp(DoctorsName, "XXX\n") == 0) {
+				printf("\n\n");
+				return;
+			}
+
+			if (tempNode == NULL)
+				printf("Enter a valid ID!! or enter \"XXX\"  to return to menu");
+
+		} while (tempNode == NULL);
+		temp = PatientsLine->head;
+		while (temp) {
+			if (strcmp(temp->lpatient->Visits->sList.head->Visit.Doctor->Name, tempNode->Doctor.Name) == 0) {
+				printf("Name: %s ID %s\n", temp->lpatient->Name, temp->lpatient->ID);
+				printVisit(temp->lpatient->Visits->sList.head->Visit);
+			}
+			temp = temp->next;
+		}
 		break;
 	case 9:
 		printf("You chose to discharge patient\n\n");

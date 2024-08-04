@@ -2,6 +2,7 @@
 
 #ifndef GOTOFUNCTION__
 #define GOTOFUNCTION__
+#define _CRT_SECURE_NO_WARNINGS
 
 #include"SLL.h"
 #include"pLine.h"
