@@ -1,6 +1,7 @@
 #include"goToFunction.h"
 #include <string.h>
 
+
 void goToFunc(int choice, List* DoctorsList,pLine* PatientsLine,pTree* PatientsTree)
 {
 	char ID[ID_SIZE];
@@ -19,7 +20,7 @@ void goToFunc(int choice, List* DoctorsList,pLine* PatientsLine,pTree* PatientsT
 		break;
 	case 1:
 		printf("You chose option to admit a patient\n\n");
-		
+		admitPatient(DoctorsList, PatientsLine, PatientsTree);
 		break;
 	case 2:
 		printf("You chose to check for patients allergies \n\n");

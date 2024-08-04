@@ -9,6 +9,7 @@
 #include"pTree.h"
 #include"Stack.h"
 #include"updateFiles.h"
+#include "C:\Users\shale\source\repos\KADIMA\admitPartient.h"
 void goToFunc(int, List*, pLine*, pTree*);
 #endif // !GOTOFUNCTION__
 
