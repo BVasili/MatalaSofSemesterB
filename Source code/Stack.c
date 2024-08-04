@@ -1,6 +1,6 @@
 #include "Stack.h"
 
-//initalize
+//initalize stack
 void initStack(Stack* s)
 {
 	initList(&(s->sList));
@@ -10,7 +10,7 @@ void initStack(Stack* s)
 //destory stack
 void destroyStack(Stack* s)
 {
-	Visit_destroyList(&(s->sList));
+	destroyList(&(s->sList));
 	s->size = 0;
 }
 
@@ -31,7 +31,7 @@ Visit pop(Stack* s)
 // return 1 if stack is empty
 int isEmptyStack(const Stack* s)
 {
-	return Visit_isEmptyList(&(s->sList));
+	return isEmptyList(&(s->sList));
 }
 
 void printStack(Stack* s)

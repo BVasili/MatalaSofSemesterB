@@ -12,10 +12,12 @@ void loadDoctors(List* ListADT, char* FileName) {
 	Doc tempDoctor = { 0 };
 
 	FILE* DocsFile = fopen(FileName, "r");
-	if (!DocsFile) {
+	if (checkPointer(DocsFile, CANNOT_OPEN_FILE))
+		return;
+	/*if (!DocsFile) {
 		displayError(CANNOT_OPEN_FILE);
 		return;
-	}
+	}*/
 
 	fseek(DocsFile, 98, SEEK_CUR); // Adjust to the first letter
 

@@ -14,6 +14,7 @@ void displayError(int error)
 
 	return;
 }
+//Gets an error code and returns a flag - will be used for IF statements -  1 = problem, 0 = okey
 int checkPointer(void* ptr, int error) {
 	int flag = 0;
 	

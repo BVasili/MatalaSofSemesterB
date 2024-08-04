@@ -54,5 +54,5 @@ pInLine* searchPatientLine(pInLine* , char*);
 pInLine* searchPatientInLine(pLine*, char* );
 
 void printLineWithVisit(const pLine* q);
-
+void moveToHead(pLine* q, char* ID);
 #endif //PLINE_HEADER__

@@ -31,8 +31,8 @@ Visit Visit_removeFromHead(List* list);
 Visit Visit_peekList(const List* list);
 void printVisit(Visit);
 void Visit_printList(const List* list, const char* delimiter);
-int Visit_isEmptyList(const List* list);
-void Visit_destroyList(List* list);
+int isEmptyList(const List* list);
+void destroyList(List* list);
 
 
 
@@ -41,8 +41,8 @@ void Doc_addToHead(List* list, Doc Doctor);
 Doc Doc_removeFromHead(List* list);
 Doc Doc_peekList(const List* list);
 void Doc_printList(const List* list);
-int Doc_isEmptyList(const List* list);
-void Doc_destroyList(List* list);
+int isEmptyList(const List* list);
+void destroyList(List* list);
 Node* searchDoctorInList(Node*, char*);
 Node*  searchDoctor(List*, char*);
 #endif // SLL_HEADER__

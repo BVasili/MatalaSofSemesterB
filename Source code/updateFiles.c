@@ -117,7 +117,7 @@ void updateFiles(char* DoctorsFile, char* PatientsFile, char* LineFile, List* Do
 	fprintf(LineFilePtr, "Patients' IDs in line\n");
 	fprintf(LineFilePtr, "=====================\n");
 
-	while (PatientsInLine)
+	while (PatientsInLine && PatientsLine->size != 0)
 	{
 		fprintf(LineFilePtr, "%d.%s\n", index_line++, PatientsInLine->lpatient->ID);
 		PatientsInLine = PatientsInLine->next;

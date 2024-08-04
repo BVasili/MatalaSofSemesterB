@@ -6,13 +6,12 @@
 //Functions for ADT
 void deletePLine(pInLine* ToBeDeleted)
 {
-	if (ToBeDeleted == NULL)
-	{
+	if (ToBeDeleted == NULL) // if address is NULL it returns
 		return;
-	}
-
+	
 	pInLine* toDestroy = ToBeDeleted;
 	pInLine* next;
+
 	while (toDestroy != NULL)
 	{
 		next = toDestroy->next;
@@ -20,6 +19,7 @@ void deletePLine(pInLine* ToBeDeleted)
 		toDestroy = next;
 	}
 }
+
 void AddToTailLine(pLine* q, char* ID, pTree* tree)
 {
 	pInLine* newTail = (pInLine*)calloc(1, sizeof(pInLine));
@@ -28,7 +28,8 @@ void AddToTailLine(pLine* q, char* ID, pTree* tree)
 		displayError(ALLOCATION_FAILED);
 		return;
 	}
-	newTail->lpatient = searchPatient(tree, ID);
+
+	newTail->lpatient = searchPatient(tree, ID); //loads patient from tree using a fucntion that returns a ptr to patients structure
 
 	//case this is very first list element added to empty list
 	if (q->tail == NULL)
@@ -44,6 +45,7 @@ void AddToTailLine(pLine* q, char* ID, pTree* tree)
 
 	q->size++;
 }
+
 Patient* RemoveHeadFromLine(pLine* q) {
 
 	if (q == NULL)
@@ -54,7 +56,7 @@ Patient* RemoveHeadFromLine(pLine* q) {
 
 	q->size--;
 
-	//save return value
+	//save head
 	Patient* toReturn = q->head->lpatient;
 
 	//save new list head
@@ -71,15 +73,18 @@ Patient* RemoveHeadFromLine(pLine* q) {
 
 	return toReturn;
 }
+
 Patient GetFromHead(const pLine* q)
 {
 	Patient toBeReturned = *q->head->lpatient;
 	return toBeReturned;
 }
+
 int CheckLineHead(const pLine* q)
 {
 	return q->head == NULL;
 }
+
 void printLineADT(const pLine* q)
 {
 	if (q->head == NULL)
@@ -96,10 +101,12 @@ void printLineADT(const pLine* q)
 			printf(" | ");
 	}
 }
+
 pInLine* searchPatientInLine(pLine* queue, char* ID)
 {
 	return searchPatientLine(queue->head, ID);
 }
+
 void printLineWithVisit(const pLine* q) {
 	{
 		if (q->head == NULL)
@@ -180,5 +187,44 @@ pInLine* searchPatientLine(pInLine* PatientInLine, char* ID)
 	if (strcmp(PatientInLine->lpatient->ID, ID) == 0) return PatientInLine;
 	else
 		searchPatientLine(PatientInLine->next, ID);
+}
+void moveToHead(pLine* q, char* ID) {
+	if (q == NULL || q->head == NULL) {
+		return;
+	}
+
+	pInLine* prev = NULL;
+	pInLine* current = q->head;
+
+	// Search for the patient with the given ID
+	while (current != NULL && strcmp(current->lpatient->ID, ID) != 0) {
+		prev = current;
+		current = current->next;
+	}
+
+	// If the patient is not found, return
+	if (current == NULL) {
+		return;
+	}
+
+	// If the patient is already at the head, do nothing
+	if (current == q->head) {
+		return;
+	}
+
+	// Remove the patient from its current position
+	if (prev != NULL) {
+		prev->next = current->next;
+	}
+	if (current == q->tail) {
+		q->tail = prev;
+	}
+
+	// Insert the patient at the head of the line
+	current->next = q->head;
+	q->head = current;
+	if (q->tail == NULL) {
+		q->tail = current;
+	}
 }
 

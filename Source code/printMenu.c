@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include<stdlib.h>
 
+// Prints menu and returns an integer between 0 - 12
 int printMenu(void)
 {
 	int action = -1;

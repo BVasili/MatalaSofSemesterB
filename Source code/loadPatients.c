@@ -20,13 +20,11 @@ void loadPatients(pTree* tree, char* FileName)
 		Visit PatientsTempVisit = { 0 };
 	
 
-		FILE* Ptr2File = fopen(FileName, "r"); //add variable to function
-		if (!Ptr2File)
-		{
-			displayError(CANNOT_OPEN_FILE);
+		FILE* Ptr2File = fopen(FileName, "r");
+		if (checkPointer(Ptr2File, CANNOT_OPEN_FILE)) // checks if file opened
 			return;
-		}
 
+		//Gets files size
 		fseek(Ptr2File, 0, SEEK_END);
 		FileSize = ftell(Ptr2File);
 		fseek(Ptr2File, 0, SEEK_SET);
@@ -43,10 +41,6 @@ void loadPatients(pTree* tree, char* FileName)
 				// Read Patients NAME,ID,ALLERGIES.
 				{
 					fgets(Line, sizeof(Line), Ptr2File);
-#ifdef DEBUG
-
-					printf("%s\n", Line);
-#endif // DEBUG
 
 					//Copying line that has NAME,ID,ALLERGIES
 					sscanf(Line, "%*d.%[^;];%[^;];%s", Name, ID, Allergies_String);
@@ -93,26 +87,11 @@ void loadPatients(pTree* tree, char* FileName)
 
 					PatientTemp.Visits = malloc(sizeof(Stack));
 
-					if (!PatientTemp.Visits) {
-						displayError(ALLOCATION_FAILED);
+					if (checkPointer(PatientTemp.Visits, ALLOCATION_FAILED)) // checks if allocation is okay
 						return;
-					}
 
 					//initiating stack
 					initStack(PatientTemp.Visits);
-
-#ifdef DEBUG
-					printf("%s %s \n", PatientTemp.Name, PatientTemp.ID);
-					printf(" Allergies: ");
-					if (PatientTemp.Allergies & PENICILLIN) printf("Penicillin ");
-					if (PatientTemp.Allergies & SULFA) printf("Sulfa ");
-					if (PatientTemp.Allergies & OPIOIDS) printf("Opioids ");
-					if (PatientTemp.Allergies & ANESTHETICS) printf("Anesthetics ");
-					if (PatientTemp.Allergies & EGGS) printf("Eggs ");
-					if (PatientTemp.Allergies & LATEX) printf("Latex ");
-					if (PatientTemp.Allergies & PRESERVATIVES) printf("Preservatives ");
-					printf("\n");
-#endif // DEBUG
 
 				}
 
@@ -141,11 +120,6 @@ void loadPatients(pTree* tree, char* FileName)
 					strcpy(Year, "\0");
 					strcpy(Hour, "\0");
 					strcpy(Minute, "\0");
-#ifdef DEBUG
-
-					printf("%d/%d/%d %d:%d\n", PatientsTempVisit.tArrival.Day, PatientsTempVisit.tArrival.Month, PatientsTempVisit.tArrival.Year, PatientsTempVisit.tArrival.Hour, PatientsTempVisit.tArrival.Min);
-
-#endif // DEBUG
 
 					fgets(Line, sizeof(Line), Ptr2File);
 					sscanf(Line, "Dismissed:%[^/]/%[^/]/%[^ ] %[^:]:%[^\n]", Day, Month, Year, Hour, Minute);
@@ -171,11 +145,6 @@ void loadPatients(pTree* tree, char* FileName)
 					strcpy(Year, "\0");
 					strcpy(Hour, "\0");
 					strcpy(Minute, "\0");
-#ifdef DEBUG
-
-					printf("%d/%d/%d %d:%d\n", PatientsTempVisit.tDismissed.Day, PatientsTempVisit.tDismissed.Month, PatientsTempVisit.tDismissed.Year, PatientsTempVisit.tDismissed.Hour, PatientsTempVisit.tDismissed.Min);
-
-#endif // DEBUG
 
 					//Getting Duration of visit
 					fgets(Line, sizeof(Line), Ptr2File);
@@ -189,22 +158,13 @@ void loadPatients(pTree* tree, char* FileName)
 					
 					strcpy(Hour, "\0");
 					strcpy(Minute, "\0");
-#ifdef DEBUG
 
-					int Duration_hours = (int)(PatientsTempVisit.Duration) - ((int)(PatientsTempVisit.Duration) % 60);
-					printf("Durtaion: %d:%d\n", Duration_hours / 60, (int)(PatientsTempVisit.Duration) % 60);
-					Duration_hours = 0;
-#endif // DEBUG
 
 
 					//Getting doctors name from patient.txt
 					fgets(Line, sizeof(Line), Ptr2File);
 					sscanf(Line, "Doctor:%[^\n]", Doctor_Name);
-#ifdef DEBUG
 
-					printf("%s\n", Doctor_Name);
-
-#endif // DEBUG
 
 					//Alloctaing memory for Doc struc and Doc.name
 					PatientsTempVisit.Doctor = malloc(sizeof(Doc));
@@ -226,11 +186,6 @@ void loadPatients(pTree* tree, char* FileName)
 					//getting summary from given visit
 					fgets(Line, sizeof(Line), Ptr2File);
 					sscanf(Line, "Summary:%[^\n]", Summary);
-#ifdef DEBUG
-
-					printf("%s\n", Summary);
-
-#endif // DEBUG
 
 					//allocating memory for summary and copying information to it
 					PatientsTempVisit.vSummary = malloc(sizeof(Summary));
@@ -262,11 +217,6 @@ void loadPatients(pTree* tree, char* FileName)
 					PatientsTempVisit.tArrival.Min = 0;
 
 					fgets(Line, sizeof(Line), Ptr2File);
-
-#ifdef DEBUG
-					printf("%s\n", Line);
-
-#endif // DEBUG
 
 					//checks if there are more visits in patients file
 					if (strcmp(Line, "\n") != 0)

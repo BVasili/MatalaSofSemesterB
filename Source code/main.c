@@ -245,9 +245,9 @@ int main()
 	//printf("Test removeFromHead : name is %s\n\n", TestDoc.Name);
 	//printf("test printlist :\n\n");
 	//Doc_printList(&DoctorsList);
-	//printf("\n\ntest isEmptyList: %d\n", Doc_isEmptyList(&DoctorsList));
-	//Doc_destroyList(&DoctorsList);
-	//printf("test after destroyList isEmptyList: %d\n", Doc_isEmptyList(&DoctorsList));
+	//printf("\n\ntest isEmptyList: %d\n", isEmptyList(&DoctorsList));
+	//destroyList(&DoctorsList);
+	//printf("test after destroyList isEmptyList: %d\n", isEmptyList(&DoctorsList));
 	//int answer = 5;
 	//goToFunc(answer, &DoctorsList, &PatientsLine,&PatientsTree);
 	//Node* testnode = assignDoc2Case(&DoctorsList);

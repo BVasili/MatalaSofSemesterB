@@ -1,13 +1,39 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include "SLL.h"
 
-//InitList
+//Common function to both structure
 void initList(List* list)
 {
 	if (checkPointer(list, NULL_POINTER))
 		return;
 
 	list->head = NULL;
+}
+void destroyList(List* list)
+{
+	if (list == NULL)
+	{
+		return;
+	}
+
+	Node* toDestroy = list->head;
+	Node* next;
+	while (toDestroy != LIST_END)
+	{
+		next = toDestroy->next;
+		free(toDestroy);
+		toDestroy = next;
+	}
+
+	list->head = EMPTY_LIST;//update list
+}
+int isEmptyList(const List* list)
+{
+	if (checkPointer(list, NULL_POINTER))
+		return;
+
+	//double check for testing purposes
+	return (list->head == EMPTY_LIST);
 }
 
 //Functions for Visit Structure
@@ -24,7 +50,6 @@ Visit Visit_removeFromHead(List* list)
 	list->head = temp;//update list
 	return toReturn;
 }
-
 Visit Visit_peekList(const List* list)
 {
 	if (checkPointer(list, NULL_POINTER))
@@ -59,7 +84,6 @@ void printVisit(Visit Visit) {
 	printf("------------------------------\n\n");
 
 }
-
 void Visit_printList(const List* list, const char* delimiter)
 {
 	if (checkPointer(list, NULL_POINTER))
@@ -91,35 +115,6 @@ void Visit_printList(const List* list, const char* delimiter)
 	} while (temp != LIST_END);
 
 }
-
-int Visit_isEmptyList(const List* list)
-{
-	if (checkPointer(list, NULL_POINTER))
-		return;
-
-	//double check for testing purposes
-	return (list->head == EMPTY_LIST);
-}
-
-void Visit_destroyList(List* list)
-{
-	if (list == NULL)
-	{
-		return;
-	}
-
-	Node* toDestroy = list->head;
-	Node* next;
-	while (toDestroy != LIST_END)
-	{
-		next = toDestroy->next;
-		free(toDestroy);
-		toDestroy = next;
-	}
-
-	list->head = EMPTY_LIST;//update list
-}
-
 void Visit_addToHead(List* list, Visit Visit)
 {
 	if (checkPointer(list, NULL_POINTER))
@@ -145,7 +140,6 @@ void Visit_addToHead(List* list, Visit Visit)
 }
 
 
-
 //Functions for Doc Structure
 Doc Doc_removeFromHead(List* list)
 {
@@ -160,7 +154,6 @@ Doc Doc_removeFromHead(List* list)
 	list->head = temp;//update list
 	return toReturn;
 }
-
 Doc Doc_peekList(const List* list)
 {
 	if (checkPointer(list, NULL_POINTER))
@@ -169,7 +162,6 @@ Doc Doc_peekList(const List* list)
 		return;
 	return list->head->Doctor;
 }
-
 void Doc_printList(const List* list)
 {
 	if (checkPointer(list, NULL_POINTER))
@@ -199,46 +191,6 @@ void Doc_printList(const List* list)
 		TempDoctor = temp->Doctor;
 	}
 }
-
-int Doc_isEmptyList(const List* list)
-{
-	if (checkPointer(list, NULL_POINTER))
-		return;
-
-	return list->head == EMPTY_LIST;
-}
-
-void Doc_destroyList(List* list)
-{
-	if (list == NULL)
-		return;
-
-
-	Node* toDestroy = list->head;
-	Node* next;
-	while (toDestroy != LIST_END)
-	{
-		next = toDestroy->next;
-		free(toDestroy);
-		toDestroy = next;
-	}
-
-	list->head = EMPTY_LIST;//update list
-}
-
-Node* searchDoctorInList(Node* ListNode, char* DoctorName)
-{
-	if (ListNode == NULL) return NULL;
-	if (strcmp(ListNode->Doctor.Name,DoctorName) == 0) return ListNode;
-	else return searchDoctorInList(ListNode->next, DoctorName);
-}
-
-Node* searchDoctor(List* DoctorsList, char* DoctorName)
-{
-	if (DoctorsList == NULL) return NULL;
-	else return searchDoctorInList(DoctorsList->head, DoctorName);
-}
-
 void Doc_addToHead(List* list, Doc Doctor)
 {
 	if (checkPointer(list, NULL_POINTER))
@@ -262,5 +214,19 @@ void Doc_addToHead(List* list, Doc Doctor)
 		list->head = newHead;//update list
 	}
 }
+
+Node* searchDoctorInList(Node* ListNode, char* DoctorName)
+{
+	if (ListNode == NULL) return NULL;
+	if (strcmp(ListNode->Doctor.Name,DoctorName) == 0) return ListNode;
+	else return searchDoctorInList(ListNode->next, DoctorName);
+}
+Node* searchDoctor(List* DoctorsList, char* DoctorName)
+{
+	if (DoctorsList == NULL) return NULL;
+	else return searchDoctorInList(DoctorsList->head, DoctorName);
+}
+
+
 
 
