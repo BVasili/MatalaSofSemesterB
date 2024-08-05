@@ -9,6 +9,7 @@
 #include "Stack.h"
 #include"admitPatient.h"
 
+
 int validInput(char* str, char* action)//just for now later will be in a file
 {
 	int counter = 0;
@@ -146,7 +147,7 @@ void insertNewPatientInfo(char* id_str, List* doctors, pLine* PatientsLine, pTre
 	printf("please enter the summary of the visit:\t");
 	fseek(stdin, 0, SEEK_END);
 	char summary[LINE_SIZE];
-	scanf("%s", summary);
+	scanf("%[^\n]", summary);
 	printf("\n");
 
 	temp.vSummary = (char*)malloc(sizeof(strlen(summary)) + 1);
@@ -210,14 +211,16 @@ void insertNewPatientInfo(char* id_str, List* doctors, pLine* PatientsLine, pTre
 	insertPTree(PatientsTree, new_patient);
 
 	/*printPTree(PatientsTree);*/
+
 	//add the new patient to the line 
 	AddToTailLine(PatientsLine, id_str, PatientsTree);
+
 	//print line
 	/*printLineWithVisit(PatientsLine);*/
 	return;
 }
 
-void insertExisPatient(char* id_str, List* doctors, pLine* PatientsLine, pTree* PatientsTree)
+void insertExisPatient(char* id_str, List* doctors, pLine* PatientsLine, pTree* PatientsTree)//need to check if working
 {
 	//get current time 
 	Visit temp;
@@ -244,7 +247,7 @@ void insertExisPatient(char* id_str, List* doctors, pLine* PatientsLine, pTree* 
 	printf("please enter the summary of the visit:\t");
 	fseek(stdin, 0, SEEK_END);
 	char summary[LINE_SIZE];
-	scanf("%s", summary);
+	scanf("%[^\n]", summary);
 	printf("\n");
 
 	temp.vSummary = (char*)malloc(sizeof(strlen(summary)) + 1);
