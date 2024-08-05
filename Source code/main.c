@@ -59,7 +59,7 @@ int main()
 		goToFunc(choice, &doctors, &PatientsLine, &PatientsTree);
 		if (choice == 12 || choice == 0)
 		{
-			exit(1);//we need to free all memory
+			/*exit(1);*///we need to free all memory
 			break;
 		}
 	}
