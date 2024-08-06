@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="Source code\admitPatient.c" />
     <ClCompile Include="Source code\assignDoctor2case.c" />
+    <ClCompile Include="Source code\DischargePatient.c" />
     <ClCompile Include="Source code\displayError.c" />
     <ClCompile Include="Source code\goToFunction.c" />
     <ClCompile Include="Source code\loadDoctors.c" />
@@ -38,6 +39,7 @@
   <ItemGroup>
     <ClInclude Include="Source code\admitPatient.h" />
     <ClInclude Include="Source code\assignDoctor2case.h" />
+    <ClInclude Include="Source code\DischargePatient.h" />
     <ClInclude Include="Source code\displayError.h" />
     <ClInclude Include="Source code\goToFunction.h" />
     <ClInclude Include="Source code\pLine.h" />

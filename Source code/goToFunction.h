@@ -10,6 +10,7 @@
 #include"Stack.h"
 #include"updateFiles.h"
 #include "admitPatient.h"
+#include "DischargePatient.h"
 void goToFunc(int, List*, pLine*, pTree*);
 void Function2(pLine*);
 void Function4(pLine*);
