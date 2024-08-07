@@ -63,7 +63,7 @@ void DischargePatient(pLine* PatientsLine, pTree* PatientsTree, List* DoctorsLis
 	//Adjusts doctor's number of patients 
 	DoctorsNode = searchDoctor(DoctorsList, VisistToDischarge.Doctor->Name); //------> needs to be in patients structure
 	--(DoctorsNode->Doctor.nPatients);
-	DoctorsNode = docsSortList(DoctorsNode, DoctorsNode->Doctor);
+	DoctorsNode = docsSortList(DoctorsList, DoctorsNode->Doctor);
 
 	//Gets current time and duration and stores in Visit
 	Arrival.tm_year = VisistToDischarge.tArrival.Year - 1900;

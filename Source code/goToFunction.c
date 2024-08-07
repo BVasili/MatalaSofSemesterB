@@ -80,6 +80,10 @@ void goToFunc(int choice, List* DoctorsList,pLine* PatientsLine,pTree* PatientsT
 	case 11:
 		printf("You chose to remove patient\n\n");
 		//add here input from user
+		//if (/*user has active visits*/) {
+		//	printf("Discharge Patient before deleting records from system");
+		//	break;
+		//}
 		moveToHead(PatientsLine, "123456789");
 		deLine(PatientsLine);
 	
