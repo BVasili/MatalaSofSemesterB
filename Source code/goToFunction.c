@@ -21,7 +21,7 @@ void goToFunc(int choice, List* DoctorsList,pLine* PatientsLine,pTree* PatientsT
 
 	case 1:
 		printf("You chose option to admit a patient\n\n");
-		//admitPatient(DoctorsList, PatientsLine, PatientsTree);
+		admitPatient(DoctorsList, PatientsLine, PatientsTree);
 		break;
 
 	case 2:

@@ -189,30 +189,31 @@ pInLine* searchPatientLine(pInLine* PatientInLine, char* ID)
 		searchPatientLine(PatientInLine->next, ID);
 }
 void moveToHead(pLine* q, char* ID) {
-	if (q == NULL || q->head == NULL) {
+
+	if (q == NULL || q->head == NULL) 
 		return;
-	}
+	
 
 	pInLine* prev = NULL;
 	pInLine* current = q->head;
 
-	// Search for the patient with the given ID
+	// search for the patient with the given ID
 	while (current != NULL && strcmp(current->lpatient->ID, ID) != 0) {
 		prev = current;
 		current = current->next;
 	}
 
-	// If the patient is not found, return
+	// if the patient is not found, return
 	if (current == NULL) {
 		return;
 	}
 
-	// If the patient is already at the head, do nothing
+	// if the patient is already at the head, do nothing
 	if (current == q->head) {
 		return;
 	}
 
-	// Remove the patient from its current position
+	// remove the patient from its current position
 	if (prev != NULL) {
 		prev->next = current->next;
 	}
@@ -220,7 +221,7 @@ void moveToHead(pLine* q, char* ID) {
 		q->tail = prev;
 	}
 
-	// Insert the patient at the head of the line
+	// insert the patient at the head of the line
 	current->next = q->head;
 	q->head = current;
 	if (q->tail == NULL) {
