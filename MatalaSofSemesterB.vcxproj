@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="removeVisit.c" />
     <ClCompile Include="Source code\admitPatient.c" />
     <ClCompile Include="Source code\assignDoctor2case.c" />
     <ClCompile Include="Source code\displayError.c" />
@@ -36,6 +37,7 @@
     <ClCompile Include="Source code\updateFiles.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="removeVisit.h" />
     <ClInclude Include="Source code\admitPatient.h" />
     <ClInclude Include="Source code\assignDoctor2case.h" />
     <ClInclude Include="Source code\displayError.h" />

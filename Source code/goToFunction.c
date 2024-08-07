@@ -31,7 +31,6 @@ void goToFunc(int choice, List* DoctorsList,pLine* PatientsLine,pTree* PatientsT
 			Function2(PatientsLine);
 			break;
 		
-
 	case 3:
 		printf("You chose to display all patients\n\n");
 		printPTree(PatientsTree);
@@ -64,7 +63,6 @@ void goToFunc(int choice, List* DoctorsList,pLine* PatientsLine,pTree* PatientsT
 		printf("You chose to dispaly all patients assigned to a doctor\n\n");
 		Doc_printList(DoctorsList);
 		Function8(DoctorsList, PatientsLine);
-		
 		break;
 
 	case 9:
@@ -76,9 +74,7 @@ void goToFunc(int choice, List* DoctorsList,pLine* PatientsLine,pTree* PatientsT
 
 	case 10:
 		printf("You chose to remove a visit\n\n");
-		///////////////////
-		///////////////////
-		///////////////////
+		removeVisit(PatientsTree);
 		break;
 
 	case 11:
