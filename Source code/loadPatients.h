@@ -11,4 +11,4 @@
 #define ALLERGY_SIZE 8
 #define ALLERGY_MAX_NAME_SIZE 15
 
-void loadPatients(pTree*,char*);
+void loadPatients(pTree*,char*,List*);

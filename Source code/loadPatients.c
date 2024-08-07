@@ -4,7 +4,7 @@
 #include<stdio.h>
 #include<string.h>
 
-void loadPatients(pTree* tree, char* FileName)
+void loadPatients(pTree* tree, char* FileName,List* DoctorsList)
 {
 		//Declaring variables for function
 		char Name[NAME_SIZE] = { 0 }, Doctor_Name[NAME_SIZE] = { 0 }, ID[ID_SIZE] = { 0 };
@@ -18,7 +18,7 @@ void loadPatients(pTree* tree, char* FileName)
 		char* NamePtr = NULL;
 		Patient PatientTemp = { 0 };
 		Visit PatientsTempVisit = { 0 };
-	
+		Node* DoctorNode;
 
 		FILE* Ptr2File = fopen(FileName, "r");
 		if (checkPointer(Ptr2File, CANNOT_OPEN_FILE)) // checks if file opened
@@ -166,8 +166,13 @@ void loadPatients(pTree* tree, char* FileName)
 					sscanf(Line, "Doctor:%[^\n]", Doctor_Name);
 
 
-					//Alloctaing memory for Doc struc and Doc.name
-					PatientsTempVisit.Doctor = malloc(sizeof(Doc));
+					//giving each visit a pointer to its doctor
+					DoctorNode = searchDoctor(DoctorsList, Doctor_Name);
+					PatientsTempVisit.Doctor = &(DoctorNode->Doctor);
+
+					//Alloctaing memory for Doc struc and Doc.name if no doctor is found
+					if (PatientsTempVisit.Doctor == NULL) {
+						PatientsTempVisit.Doctor = malloc(sizeof(Doc));
 
 					if (!PatientsTempVisit.Doctor) {
 						displayError(ALLOCATION_FAILED);
@@ -182,6 +187,8 @@ void loadPatients(pTree* tree, char* FileName)
 
 					//Copying doctors name into PatientsTempVisit
 					strcpy(PatientsTempVisit.Doctor->Name, Doctor_Name);
+					}
+					
 
 					//getting summary from given visit
 					fgets(Line, sizeof(Line), Ptr2File);

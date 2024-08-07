@@ -12,31 +12,29 @@ void loadDoctors(List* ListADT, char* FileName) {
 	Doc tempDoctor = { 0 };
 
 	FILE* DocsFile = fopen(FileName, "r");
-	if (checkPointer(DocsFile, CANNOT_OPEN_FILE))
+	if (checkPointer(DocsFile, CANNOT_OPEN_FILE)) //Checks if file opened 
 		return;
-	/*if (!DocsFile) {
-		displayError(CANNOT_OPEN_FILE);
-		return;
-	}*/
+	
 
 	fseek(DocsFile, 98, SEEK_CUR); // Adjust to the first letter
 
-	while (fgets(Line, sizeof(Line), DocsFile)) {
+	while (fgets(Line, sizeof(Line), DocsFile)) { //while not end of file
 
-
+		//reading from file and inserting into variable
 		if (sscanf(Line, "%[^;]; %[^;]; %[^;]", DocName, nLicense, nPatientsRead) != 3) {
 			printf("Error reading line: %s\n", Line);
 			continue;
 		}
 
-		nPatients = atoi(nPatientsRead);
+		nPatients = atoi(nPatientsRead); //string ---> int
 
-		tempDoctor.Name = (char*)malloc(strlen(DocName) + 1);
+		tempDoctor.Name = (char*)malloc(strlen(DocName) + 1);// alloctaing memory for name
+
 		if (!tempDoctor.Name) {
 			displayError(ALLOCATION_FAILED);
 			return;
 		}
-
+		//copying from variables into doctors structure
 		strcpy(tempDoctor.Name, DocName);
 		strcpy(tempDoctor.nLicense, nLicense);
 		tempDoctor.nPatients = nPatients;

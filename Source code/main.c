@@ -46,7 +46,7 @@ int main()
 
 	pTree PatientsTree;
 	initializePTree(&PatientsTree);
-	loadPatients(&PatientsTree, "Patients.txt");
+	loadPatients(&PatientsTree, "Patients.txt",&doctors);
 
 	pLine PatientsLine;
 	initLine(&PatientsLine);

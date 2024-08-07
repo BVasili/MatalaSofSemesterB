@@ -57,10 +57,10 @@
     <ClCompile Include="Source code\sortDocList.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source code\admitPatient.c">
+    <ClCompile Include="Source code\DischargePatient.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source code\DischargePatient.c">
+    <ClCompile Include="Source code\admitPatient.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="deletePatient.c">

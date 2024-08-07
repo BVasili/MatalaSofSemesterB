@@ -27,17 +27,17 @@ pInTree* searchPatientInTree(pInTree*, char*);
 
 //ADT functions
 pInTree* searchPatient(pTree* tree, char* ID);
-int searchInTree(pInTree* root, char*);
 void initializePTree(pTree* tree);
 void insertPTree(pTree* tree, Patient PatientToBeInserted);
 void destroyPTree(pTree* tree);
-int find(pTree* tree, char*);
 int isPTreeEmpty(pTree* tree);
 void printPInTree(pInTree* root);
 void printPTree(pTree* tree);
 void printDoctorsPatient(pInTree*, char*);
 void printDoctorsPatientADT(pTree*, char*);
 pInTree* searchPatientInTree(pInTree*, char*);
+int searchInTree(pInTree* root, char*);
+int find(pTree* tree, char*);
 
 
 #endif //PTREE_HEADER__

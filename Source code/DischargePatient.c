@@ -20,8 +20,8 @@ void DischargePatient(pLine* PatientsLine, pTree* PatientsTree, List* DoctorsLis
 	Node* DoctorsNode;
 
 	//Gets ID from user while search returns NULL pointer
-	do {
-		printf("Enter an ID:");
+	do { 
+		printf("\nEnter an ID:");
 		fgets(Patients_ID, 10, stdin);
 		fgets(Patients_ID, 10, stdin);
 		PatientToDischarge = searchPatient(PatientsTree, Patients_ID);
@@ -43,6 +43,7 @@ void DischargePatient(pLine* PatientsLine, pTree* PatientsTree, List* DoctorsLis
 	}
 	//pop and print ongoing visit
 	VisistToDischarge = pop(PatientToDischarge->tpatient.Visits);
+	printf("\nPatients Ongoing visit:\n");
 	printVisit(VisistToDischarge);
 
 	//Asks User to input summary for visit
