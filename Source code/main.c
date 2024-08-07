@@ -38,10 +38,10 @@ int main()
 
 	List doctors;
 	initList(&doctors);
-	if (doctors.head == NULL) //checking if the initializing the doctors list func worked
-	{
-		printf("INITIALIZED DOCTORS LIST\n\n");
-	}
+	//if (doctors.head == NULL) //checking if the initializing the doctors list func worked
+	//{
+	//	printf("INITIALIZED DOCTORS LIST\n\n");
+	//}
 	loadDoctors(&doctors, DOCSFILE);
 
 	pTree PatientsTree;

@@ -1,6 +1,7 @@
 #include"DischargePatient.h"
 #include <time.h>
 #include<string.h>
+#include"sortDocList.h"
 
 
 void DischargePatient(pLine* PatientsLine, pTree* PatientsTree, List* DoctorsList)
@@ -19,7 +20,7 @@ void DischargePatient(pLine* PatientsLine, pTree* PatientsTree, List* DoctorsLis
 	Node* DoctorsNode;
 
 	//Gets ID from user while search returns NULL pointer
-	do { 
+	do {
 		printf("Enter an ID:");
 		fgets(Patients_ID, 10, stdin);
 		fgets(Patients_ID, 10, stdin);
@@ -36,7 +37,7 @@ void DischargePatient(pLine* PatientsLine, pTree* PatientsTree, List* DoctorsLis
 	} while (PatientToDischarge == NULL);
 
 	//If there are no visits or no ongoing visits - return to menu
-	if (PatientToDischarge->tpatient.Visits->size == 0 || PatientToDischarge->tpatient.Visits->sList.head->Visit.Duration != -1.0) {
+	if (PatientToDischarge->tpatient.nVisits == 0 || PatientToDischarge->tpatient.Visits->sList.head->Visit.Duration != -1.0) {
 		printf("No Active Visits, Returning to menu.\n");
 		return;
 	}
@@ -55,12 +56,13 @@ void DischargePatient(pLine* PatientsLine, pTree* PatientsTree, List* DoctorsLis
 
 	TempSummary[strlen(TempSummary) - 1] = '\0';
 	strcpy(VisitSummary, TempSummary);
-	
+
 	VisistToDischarge.vSummary = VisitSummary;
 
 	//Adjusts doctor's number of patients 
 	DoctorsNode = searchDoctor(DoctorsList, VisistToDischarge.Doctor->Name); //------> needs to be in patients structure
 	--(DoctorsNode->Doctor.nPatients);
+	DoctorsNode = docsSortList(DoctorsNode, DoctorsNode->Doctor);
 
 	//Gets current time and duration and stores in Visit
 	Arrival.tm_year = VisistToDischarge.tArrival.Year - 1900;
@@ -72,15 +74,15 @@ void DischargePatient(pLine* PatientsLine, pTree* PatientsTree, List* DoctorsLis
 	ArrivalTime = mktime(&Arrival);
 
 	VisistToDischarge.tDismissed.Day = Dismissed.tm_mday;
-	VisistToDischarge.tDismissed.Month = Dismissed.tm_mon +1;
-	VisistToDischarge.tDismissed.Year = Dismissed.tm_year+1900;
+	VisistToDischarge.tDismissed.Month = Dismissed.tm_mon + 1;
+	VisistToDischarge.tDismissed.Year = Dismissed.tm_year + 1900;
 	VisistToDischarge.tDismissed.Hour = Dismissed.tm_hour;
 	VisistToDischarge.tDismissed.Min = Dismissed.tm_min;
 
-	VisitDuration = (float)(difftime(DismissedTime,ArrivalTime)/60);
+	VisitDuration = (float)(difftime(DismissedTime, ArrivalTime) / 60);
 	VisistToDischarge.Duration = VisitDuration;
 
 	//pushes the visit into the patients stack and prints it
-	push(PatientToDischarge->tpatient.Visits,VisistToDischarge);
+	push(PatientToDischarge->tpatient.Visits, VisistToDischarge);
 	printVisit(PatientToDischarge->tpatient.Visits->sList.head->Visit);
 }

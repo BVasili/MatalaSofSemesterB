@@ -11,6 +11,8 @@
 #include"updateFiles.h"
 #include "admitPatient.h"
 #include "removeVisit.h"
+#include "DischargePatient.h"
+
 void goToFunc(int, List*, pLine*, pTree*);
 void Function2(pLine*);
 void Function4(pLine*);

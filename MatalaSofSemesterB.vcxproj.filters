@@ -63,6 +63,12 @@
     <ClCompile Include="Source code\DischargePatient.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="deletePatient.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="removeVisit.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source code\Structure.h">
@@ -111,6 +117,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source code\DischargePatient.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="removeVisit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source code\deletePatient.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
