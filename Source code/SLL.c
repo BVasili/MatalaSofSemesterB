@@ -4,62 +4,61 @@
 //Common function to both structure
 void initList(List* list)
 {
-	if (checkPointer(list, NULL_POINTER))
+	if (checkPointer(list, NULL_POINTER)) //checks for NULL pointer
 		return;
 
-	list->head = NULL;
+	list->head = NULL; //(:
 }
 void destroyList(List* list)
 {
-	if (list == NULL)
-	{
+	if (list == NULL) //if list is empty then it cannot be destroyd
 		return;
-	}
+	
 
 	Node* toDestroy = list->head;
 	Node* next;
-	while (toDestroy != LIST_END)
+	while (toDestroy != NULL)
 	{
 		next = toDestroy->next;
 		free(toDestroy);
 		toDestroy = next;
 	}
 
-	list->head = EMPTY_LIST;//update list
+	list->head = NULL;
 }
 int isEmptyList(const List* list)
 {
 	if (checkPointer(list, NULL_POINTER))
 		return;
 
-	//double check for testing purposes
-	return (list->head == EMPTY_LIST);
+	//1 if empty and 0 else
+	return (list->head == NULL);
 }
 
 //Functions for Visit Structure
 Visit Visit_removeFromHead(List* list)
 {
-	if (checkPointer(list, NULL_POINTER))
+	if (checkPointer(list, NULL_POINTER)) //checks for NULL pointer
 		return;
 	if (checkPointer(list->head, NULL_POINTER))
 		return;
 
-	Visit toReturn = list->head->Visit; //save return value
-	Node* temp = list->head->next; //save new list head
-	free(list->head);
-	list->head = temp;//update list
-	return toReturn;
+	Visit toReturn = list->head->Visit; //Save visit structure from head
+	Node* temp = list->head->next; //save new head
+	free(list->head); // free old head
+	list->head = temp; //Update list, New head is the next of the old head
+	return toReturn; // returns visit of old head
 }
 Visit Visit_peekList(const List* list)
 {
-	if (checkPointer(list, NULL_POINTER))
+	if (checkPointer(list, NULL_POINTER)) //checks for NULL pointer
 		return;
 	if (checkPointer(list->head, NULL_POINTER))
 		return;
-	return list->head->Visit;
+	return list->head->Visit; //get visit from head
 }
 void printVisit(Visit Visit) {
-
+	//prints visit's information
 	printf("Arrival: ");
 	printf("%d/%d/%d ", Visit.tArrival.Day, Visit.tArrival.Month, Visit.tArrival.Year);
 	printf("%d:%.2d\n", Visit.tArrival.Hour, Visit.tArrival.Min);
@@ -86,56 +85,40 @@ void printVisit(Visit Visit) {
 }
 void Visit_printList(const List* list, const char* delimiter)
 {
-	if (checkPointer(list, NULL_POINTER))
+	if (checkPointer(list, NULL_POINTER)) //checks for NULL pointer
 		return;
 	if (checkPointer(list->head, NULL_POINTER))
 		return;
 
-
 	Node* temp;
 	Visit Visit;
 	do
-	{
+	{ //prints each visit in list
 		temp = list->head;
 		Visit = temp->Visit;
 		printVisit(Visit);
-
-		//printf("Arrival: ");
-		//printf("%d/%d/%d ", Visit.tArrival.Day, Visit.tArrival.Month, Visit.tArrival.Year);
-		//printf("%d:%d\n", Visit.tArrival.Hour, Visit.tArrival.Min);
-		//printf("Dismissed:");
-		//printf("%d/%d/%d ", Visit.tDismissed.Day, Visit.tDismissed.Month, Visit.tDismissed.Year);
-		//printf("%d:%d\n", Visit.tDismissed.Hour, Visit.tDismissed.Min);
-		//printf("Duration:");//finish this later
-		//printf("Doctor:%s", Visit.Doctor->Name);
-		//printf("Summary:%s", Visit.vSummary);
-		//temp = temp->next;
-		//if (temp != NULL)
-		//	printf(" %s ", delimiter);
 	} while (temp != LIST_END);
 
 }
 void Visit_addToHead(List* list, Visit Visit)
 {
-	if (checkPointer(list, NULL_POINTER))
+	if (checkPointer(list, NULL_POINTER)) //checks for NULL pointer
 		return;
 
 	//create new list node
 	Node* newHead = (Node*)calloc(1, sizeof(Node));
-	if (checkPointer(newHead, ALLOCATION_FAILED))
+	if (checkPointer(newHead, ALLOCATION_FAILED))  //checks if allcation is ok
 		return;
 
-	newHead->Visit = Visit;
+	newHead->Visit = Visit; //inserting given visit to the newly created node
 
-	//case this is very first list element added to empty list
-	if (list->head == EMPTY_LIST)
-	{
-		list->head = newHead;//update list
-	}
-	else //list has at least one element
+	
+	if (list->head == EMPTY_LIST) //if list is empty
+		list->head = newHead;//update the list
+	else //list has atleast one node
 	{
 		newHead->next = list->head;
-		list->head = newHead;//update list
+		list->head = newHead;//update the list
 	}
 }
 
@@ -143,24 +126,24 @@ void Visit_addToHead(List* list, Visit Visit)
 //Functions for Doc Structure
 Doc Doc_removeFromHead(List* list)
 {
-	if (checkPointer(list, NULL_POINTER))
+	if (checkPointer(list, NULL_POINTER))//checks for NULL pointer
 		return;
 	if (checkPointer(list->head, NULL_POINTER))
 		return;
 
-	Doc toReturn = list->head->Doctor; //save return value
-	Node* temp = list->head->next; //save new list head
-	free(list->head);
-	list->head = temp;//update list
-	return toReturn;
+	Doc toReturn = list->head->Doctor; //Save doctor structure from head
+	Node* temp = list->head->next; //save new head
+	free(list->head);// free old head
+	list->head = temp;//Update list, New head is the next of the old head
+	return toReturn;// returns doctor structure of old head
 }
 Doc Doc_peekList(const List* list)
 {
-	if (checkPointer(list, NULL_POINTER))
+	if (checkPointer(list, NULL_POINTER)) //checks for NULL pointer
 		return;
 	if (checkPointer(list->head, NULL_POINTER))
 		return;
-	return list->head->Doctor;
+	return list->head->Doctor; //return structure
 }
 void Doc_printList(const List* list)
 {
@@ -203,23 +186,22 @@ void Doc_addToHead(List* list, Doc Doctor)
 
 	newHead->Doctor = Doctor;
 	newHead->next = NULL;
-	//case this is very first list element added to empty list
+	//if list is empty
 	if (list->head == NULL)
-	{
-		list->head = newHead;//update list
-	}
-	else //list has at least one element
+		list->head = newHead;//update the list
+	
+	else //list has at least one member
 	{
 		newHead->next = list->head;
-		list->head = newHead;//update list
+		list->head = newHead;//update  the list
 	}
 }
 
-Node* searchDoctorInList(Node* ListNode, char* DoctorName)
+Node* searchDoctorInList(Node* DoctorNode, char* DoctorName)
 {
-	if (ListNode == NULL) return NULL;
-	if (strcmp(ListNode->Doctor.Name,DoctorName) == 0) return ListNode;
-	else return searchDoctorInList(ListNode->next, DoctorName);
+	if (DoctorNode == NULL) return NULL;
+	if (strcmp(DoctorNode->Doctor.Name, DoctorName) == 0) return DoctorNode; //return doctor structure
+	else return searchDoctorInList(DoctorNode->next, DoctorName);
 }
 Node* searchDoctor(List* DoctorsList, char* DoctorName)
 {

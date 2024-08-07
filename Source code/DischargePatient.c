@@ -20,7 +20,7 @@ void DischargePatient(pLine* PatientsLine, pTree* PatientsTree, List* DoctorsLis
 
 	//Gets ID from user while search returns NULL pointer
 	do { 
-		printf("Enter an ID:");
+		printf("\nEnter an ID:");
 		fgets(Patients_ID, 10, stdin);
 		fgets(Patients_ID, 10, stdin);
 		PatientToDischarge = searchPatient(PatientsTree, Patients_ID);
@@ -36,12 +36,13 @@ void DischargePatient(pLine* PatientsLine, pTree* PatientsTree, List* DoctorsLis
 	} while (PatientToDischarge == NULL);
 
 	//If there are no visits or no ongoing visits - return to menu
-	if (PatientToDischarge->tpatient.Visits->size == 0 || PatientToDischarge->tpatient.Visits->sList.head->Visit.Duration != -1.0) {
+	if (PatientToDischarge->tpatient.nVisits == 0 || PatientToDischarge->tpatient.Visits->sList.head->Visit.Duration != -1.0) {
 		printf("No Active Visits, Returning to menu.\n");
 		return;
 	}
 	//pop and print ongoing visit
 	VisistToDischarge = pop(PatientToDischarge->tpatient.Visits);
+	printf("\nPatients Ongoing visit:\n");
 	printVisit(VisistToDischarge);
 
 	//Asks User to input summary for visit
@@ -59,8 +60,7 @@ void DischargePatient(pLine* PatientsLine, pTree* PatientsTree, List* DoctorsLis
 	VisistToDischarge.vSummary = VisitSummary;
 
 	//Adjusts doctor's number of patients 
-	DoctorsNode = searchDoctor(DoctorsList, VisistToDischarge.Doctor->Name); //------> needs to be in patients structure
-	--(DoctorsNode->Doctor.nPatients);
+	--(VisistToDischarge.Doctor->nPatients);
 
 	//Gets current time and duration and stores in Visit
 	Arrival.tm_year = VisistToDischarge.tArrival.Year - 1900;

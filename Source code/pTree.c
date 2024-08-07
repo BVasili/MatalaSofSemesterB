@@ -1,6 +1,7 @@
 #include "pTree.h"
 #include<stdlib.h>
 
+//inserts patients pInTree into tree according to ID value
 void insertPInTree(pInTree* root, Patient PatientToBeInserted)
 {
 	if (strcmp(PatientToBeInserted.ID, root->tpatient.ID) == 0) return;// returns if there are duplicates
@@ -19,6 +20,7 @@ void insertPInTree(pInTree* root, Patient PatientToBeInserted)
 	}
 }
 
+//frees tree recursivly
 void freeTree(pInTree* root)
 {
 	if (root == NULL) return;
@@ -28,6 +30,7 @@ void freeTree(pInTree* root)
 	free(root);
 }
 
+//create new pInTree*
 pInTree* createPInTree(pInTree* left, pInTree* right, Patient PatientToBeInserted)
 {
 	pInTree* newPInTree = calloc(1, sizeof(pInTree));
@@ -40,19 +43,13 @@ pInTree* createPInTree(pInTree* left, pInTree* right, Patient PatientToBeInserte
 	return newPInTree;
 }
 
-int searchInTree(pInTree* root, char* ID) // maybe will be deletd
-{
-	if (root == NULL) return 0;
-	if (strcmp(root->tpatient.ID, ID) == 0) return 1;
-	if (strcmp(root->tpatient.ID, ID) < 0) return searchInTree(root->right, ID);
-	else return searchInTree(root->left, ID);
-}
-
+//sets root to NULL
 void initializePTree(pTree* tree)
 {
 	tree->root = NULL; //sets root to NULL
 }
 
+//ADT for insertPInTree
 void insertPTree(pTree* tree, Patient PatientToBeInserted)
 {
 	if (isPTreeEmpty(tree)) 
@@ -65,21 +62,30 @@ void insertPTree(pTree* tree, Patient PatientToBeInserted)
 }
 
 void destroyPTree(pTree* tree)
-{  // frees tree - nothing else
+{  // frees tree - calls for recursive function and then sets root to NULL
 	freeTree(tree->root);
 	tree->root = NULL;
 }
+
+int searchInTree(pInTree* root, char* ID) // maybe will be deletd
+{
+	if (root == NULL) return 0;
+	if (strcmp(root->tpatient.ID, ID) == 0) return 1;
+	if (strcmp(root->tpatient.ID, ID) < 0) return searchInTree(root->right, ID);
+	else return searchInTree(root->left, ID);
+}
+
 
 int find(pTree* tree, char* ID) // maybe delete?
 {
 	return searchInTree(tree->root, ID);
 }
-
 int isPTreeEmpty(pTree* tree)
 { // Return 1 if its empty, else 0
 	return tree->root == NULL;
 }
 
+//prints patients recursivly
 void printPInTree(pInTree* root)
 {
 	if (root != NULL) {
@@ -96,12 +102,14 @@ void printPInTree(pInTree* root)
 
 }
 
+//ADT for function above
 void printPTree(pTree* tree)
 {
 	printf("Patients in BST:\n");
 	if (tree != NULL)
 		return printPInTree(tree->root);
 }
+
 
 pInTree* searchPatientInTree(pInTree* root, char* ID)
 { // Returns a pointer to a node with the wanted patients structure, if not found  - returns NULL.
