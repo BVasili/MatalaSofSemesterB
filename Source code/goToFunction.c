@@ -67,9 +67,8 @@ void goToFunc(int choice, List* DoctorsList,pLine* PatientsLine,pTree* PatientsT
 
 	case 9:
 		printf("You chose to discharge patient\n\n");
-		///////////////////
-		///////////////////
-		///////////////////
+		printPTree(PatientsTree);
+		DischargePatient(PatientsLine, PatientsTree,DoctorsList);
 		break;
 
 	case 10:

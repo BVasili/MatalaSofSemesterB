@@ -54,10 +54,13 @@
     <ClCompile Include="Source code\goToFunction.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="admitPatient.c">
+    <ClCompile Include="Source code\sortDocList.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source code\sortDocList.c">
+    <ClCompile Include="Source code\admitPatient.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source code\DischargePatient.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -104,7 +107,10 @@
     <ClInclude Include="Source code\sortDocList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="admitPartient.h">
+    <ClInclude Include="Source code\admitPatient.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source code\DischargePatient.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

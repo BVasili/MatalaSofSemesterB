@@ -4,6 +4,7 @@
 #define NAME_SIZE 100
 #define ID_SIZE 10
 #define AllergiesSize 8
+#define SUMMARY_SIZE 500
 
 //Define for allergies
 #define NONE           0b00000001
