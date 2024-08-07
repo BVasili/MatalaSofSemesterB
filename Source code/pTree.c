@@ -153,3 +153,58 @@ void printDoctorsPatientADT(pTree* Tree, char* DoctorName)
 { //ADT for function above^^^
 	return printDoctorsPatient(Tree->root, DoctorName);
 }
+
+
+// Function to delete a node with a specific ID from the tree
+pInTree* deletePInTree(pInTree* root, char* ID) {
+	if (root == NULL) {
+		return root;
+	}
+
+	// Traverse the tree to find the node to delete
+	if (strcmp(ID, root->tpatient.ID) < 0) {
+		root->left = deletePInTree(root->left, ID);
+	}
+	else if (strcmp(ID, root->tpatient.ID) > 0) {
+		root->right = deletePInTree(root->right, ID);
+	}
+	else {
+		// Node found
+		if (root->left == NULL) {
+			pInTree* temp = root->right;
+			destroyStack(root->tpatient.Visits); // Destroy the patient's visit stack
+			free(root);
+			return temp;
+		}
+		else if (root->right == NULL) {
+			pInTree* temp = root->left;
+			destroyStack(root->tpatient.Visits); // Destroy the patient's visit stack
+			free(root);
+			return temp;
+		}
+
+		// Node with two children
+		pInTree* temp = findMin(root->right);
+
+		// Copy the inorder successor's content to this node
+		root->tpatient = temp->tpatient;
+
+		// Delete the inorder successor
+		root->right = deletePInTree(root->right, temp->tpatient.ID);
+	}
+	return root;
+}
+
+// Helper function to find the minimum value node in the tree
+pInTree* findMin(pInTree* node) {
+	pInTree* current = node;
+	while (current && current->left != NULL) {
+		current = current->left;
+	}
+	return current;
+}
+
+// ADT for delete function
+void deletePTree(pTree* tree, char* ID) {
+	tree->root = deletePInTree(tree->root, ID);
+}

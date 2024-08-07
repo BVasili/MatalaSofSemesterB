@@ -25,6 +25,8 @@ void freeTree(pInTree* root);
 pInTree* createPInTree(pInTree* left, pInTree* right, Patient PatientToBeInserted);
 pInTree* searchPatientInTree(pInTree*, char*);
 
+pInTree* findMin(pInTree* node);
+pInTree* deletePInTree(pInTree* root, char* ID);
 //ADT functions
 pInTree* searchPatient(pTree* tree, char* ID);
 void initializePTree(pTree* tree);
@@ -38,6 +40,7 @@ void printDoctorsPatientADT(pTree*, char*);
 pInTree* searchPatientInTree(pInTree*, char*);
 int searchInTree(pInTree* root, char*);
 int find(pTree* tree, char*);
+void deletePTree(pTree* tree, char* ID);
 
 
 #endif //PTREE_HEADER__

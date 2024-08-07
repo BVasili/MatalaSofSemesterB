@@ -73,14 +73,19 @@ void goToFunc(int choice, List* DoctorsList,pLine* PatientsLine,pTree* PatientsT
 
 	case 10:
 		printf("You chose to remove a visit\n\n");
+		
 		removeVisit(PatientsTree);
 		break;
 
 	case 11:
 		printf("You chose to remove patient\n\n");
-		///////////////////
-		///////////////////
-		///////////////////
+		//add here input from user
+		moveToHead(PatientsLine, "123456789");
+		deLine(PatientsLine);
+	
+		deletePTree(PatientsTree, "123456789");
+		
+
 		break;
 
 	case 12:
