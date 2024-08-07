@@ -38,10 +38,10 @@ int main()
 
 	List doctors;
 	initList(&doctors);
-	if (doctors.head == NULL) //checking if the initializing the doctors list func worked
-	{
-		printf("INITIALIZED DOCTORS LIST\n\n");
-	}
+	//if (doctors.head == NULL) //checking if the initializing the doctors list func worked
+	//{
+	//	printf("INITIALIZED DOCTORS LIST\n\n");
+	//}
 	loadDoctors(&doctors, DOCSFILE);
 
 	pTree PatientsTree;
@@ -53,7 +53,7 @@ int main()
 	loadLine(&PatientsLine, "Line.txt", &PatientsTree);
 
 	int choice = -1;
-	while (1)//calling for print menu which 
+	while (1)//calling for print menu 
 	{
 		choice = printMenu();
 		goToFunc(choice, &doctors, &PatientsLine, &PatientsTree);
@@ -66,8 +66,6 @@ int main()
 
 
 #endif // TESTADMIT
-
-
 
 
 #ifdef VISITINSERTTEST

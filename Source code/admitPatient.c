@@ -16,13 +16,17 @@ int validInput(char* str, char* action)//just for now later will be in a file
 	//check id input
 	if (strcmp("id", action) == 0)
 	{
+		if (strlen(str) != ID_SIZE - 1)
+		{
+			return 0;
+		}
 		for (int i = 0; i < ID_SIZE - 1; i++)
 		{
 			if (isdigit(str[i]) == 0)
 				counter++;
 		}
-		if(counter!=0)
-		return 0;
+		if (counter != 0)
+			return 0;
 
 		return 1;
 	}
@@ -299,7 +303,7 @@ void admitPatient(List* doctors, pLine* PatientsLine, pTree* PatientsTree)
 			if (find(PatientsTree, id_str) == 1)//member is already registered
 			{
 				//check if he is already in line
-				if (searchPatientLine(PatientsLine, id_str) != NULL)
+				if (searchPatientLine(&PatientsLine, id_str) != NULL)
 				{
 					printf("Patient is already in line\n");
 					return;
