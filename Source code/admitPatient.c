@@ -65,25 +65,25 @@ void insertNewPatientInfo(char* id_str, List* doctors, pLine* PatientsLine, pTre
 
 	//get the allergies
 	char* Allergies_String[] = { "Penicillin" , "Sulfa" , "Opioids", "Anesthetics","Eggs","Latex","Preservatives" };
-	int allergyValue = 0;
+	char allergyValue[2] = { 0 };
 	char binVal = NULL;
 	//this while loop gets the binary value of the patient's allergies
 	while (1)
 	{
 		int i = 1;
-		printf("if the patient is allergic to something please enter 1, if not enter anything else:\t");
+		printf("if the patient is allergic to something please enter 1, if not enter 2:\t");
 		fseek(stdin, 0, SEEK_END);
-		scanf_s("%d", &allergyValue);
+		fgets(allergyValue,2,stdin);
 		printf("\n\n");
-		if (allergyValue == 1)
+		if (atoi(allergyValue) == 1)
 		{
 			while (1)
 			{
-				printf("is the patient allergic to %s?\n press 1 for yes, if not enter anything else:\t", Allergies_String[i - 1]);
+				printf("is the patient allergic to %s?\n press 1 for yes, and 2 for no:\t", Allergies_String[i - 1]);
 				fseek(stdin, 0, SEEK_END);
-				scanf("%d", &allergyValue);
+				fgets(allergyValue, 2, stdin);
 				printf("\n");
-				if (allergyValue == 1)
+				if (atoi(allergyValue) == 1)
 				{
 					switch (i)
 					{
@@ -111,15 +111,15 @@ void insertNewPatientInfo(char* id_str, List* doctors, pLine* PatientsLine, pTre
 					}
 					i++;
 				}
-				else
-				{
+				if (atoi(allergyValue) == 2)
 					i++;
-				}
+				if ((atoi(allergyValue) != 2) && (atoi(allergyValue) != 1))
+					printf("invalid input try again!\n");
 				if (i == 8)
 					break;
 			}
 		}
-		if (allergyValue == 0 && i == 1)
+		if (atoi(allergyValue) == 2 && i == 1)
 		{
 			binVal |= NONE;
 			break;
@@ -128,7 +128,8 @@ void insertNewPatientInfo(char* id_str, List* doctors, pLine* PatientsLine, pTre
 		{
 			break;
 		}
-
+		if (atoi(allergyValue) != 2 || atoi(allergyValue) != 1)
+			printf("invalid allergies input please enter  1 or 2\n");
 	}
 
 
@@ -188,7 +189,7 @@ void insertNewPatientInfo(char* id_str, List* doctors, pLine* PatientsLine, pTre
 
 	initStack(new_patient.Visits);
 	push(new_patient.Visits, temp);
-	
+
 	//initialize all the other fields that hasnt been inserted
 	new_patient.Visits->sList.head->Visit.Duration = -1;
 	new_patient.Visits->sList.head->Visit.tDismissed.Day = -1;

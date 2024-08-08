@@ -18,5 +18,6 @@ void Function2(pLine*);
 void Function4(pLine*);
 void Function6(pLine*);
 void Function8(List*, pLine*);
+void deletePatient(List* , pLine* , pTree* );
 #endif // !GOTOFUNCTION__
 
