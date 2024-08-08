@@ -291,9 +291,9 @@ void admitPatient(List* doctors, pLine* PatientsLine, pTree* PatientsTree)
 			if (find(PatientsTree, id_str) == 1)//member is already registered
 			{
 				//check if he is already in line
-				if (searchPatientLine(&PatientsLine, id_str) != NULL)
+				if (searchPatientInLine(PatientsLine, id_str) != NULL)
 				{
-					printf("%s is already in line\n", searchPatientLine(&PatientsLine, id_str)->lpatient->Name);
+					printf("%s is already in line\n", searchPatientInLine(PatientsLine, id_str)->lpatient->Name);
 					return;
 				}
 				else
