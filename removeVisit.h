@@ -6,3 +6,4 @@
 #include "admitPartient.h"
 
 void removeVisit(pTree*);
+int is_all_digits(const char* number_str);
