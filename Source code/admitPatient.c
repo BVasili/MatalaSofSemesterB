@@ -66,7 +66,7 @@ void insertNewPatientInfo(char* id_str, List* doctors, pLine* PatientsLine, pTre
 
 	//get the allergies
 	char* Allergies_String[] = { "Penicillin" , "Sulfa" , "Opioids", "Anesthetics","Eggs","Latex","Preservatives" };
-	char allergyValue[3] = { 0 };
+	char allergyValue[ID_SIZE] = { 0 };
 	char binVal = NULL;
 	//this while loop gets the binary value of the patient's allergies
 	while (1)
@@ -74,7 +74,7 @@ void insertNewPatientInfo(char* id_str, List* doctors, pLine* PatientsLine, pTre
 		int i = 1;
 		printf("if the patient is allergic to something please enter 1, if not enter 2:\t");
 		fseek(stdin, 0, SEEK_END);
-		fgets(allergyValue, 3, stdin);
+		fgets(allergyValue, ID_SIZE, stdin);
 		printf("\n\n");
 		if ((atoi(allergyValue)) == 1 && (is_all_digits(allergyValue) == 1))
 		{
@@ -82,7 +82,7 @@ void insertNewPatientInfo(char* id_str, List* doctors, pLine* PatientsLine, pTre
 			{
 				printf("is the patient allergic to %s?\n press 1 for yes, and 2 for no:\t", Allergies_String[i - 1]);
 				fseek(stdin, 0, SEEK_END);
-				fgets(allergyValue, 3, stdin);
+				fgets(allergyValue, ID_SIZE, stdin);
 				printf("\n");
 				if (atoi(allergyValue) == 1 && (is_all_digits(allergyValue) == 1))
 				{

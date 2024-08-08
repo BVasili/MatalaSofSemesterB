@@ -14,9 +14,9 @@ int printMenu(void)
   #   0. Exit Program\n\n\
   #   1. Admit Patient\n\n\
   #   2. Check fot patient's allergies\n\n\
-  #   3. Dispaly all patients\n\n\
-  #   4. Dispaly all patient's admission\n\n\
-  #   5. Dispaly all patients in line\n\n\
+  #   3. Display all patients\n\n\
+  #   4. Display all patient's admission\n\n\
+  #   5. Display all patients in line\n\n\
   #   6. Advance patient in line\n\n\
   #   7. Display list of all doctors\n\n\
   #   8. Display all patients assigned to a doctor\n\n\
