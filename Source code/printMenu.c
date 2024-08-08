@@ -2,12 +2,13 @@
 #include "printMenu.h"
 #include <stdio.h>
 #include<stdlib.h>
+#include "removeVisit.h"
 
 // Prints menu and returns an integer between 0 - 12
 int printMenu(void)
 {
-	int action = -1;
-	while (action < 0 || action>12)
+	char action[3] = {0};
+	do
 	{
 		printf("MENU:\n\n\
   #   0. Exit Program\n\n\
@@ -23,14 +24,15 @@ int printMenu(void)
   #   10. Remove visit\n\n\
   #   11. Remove patient\n\n\
   #   12. Close the hospital\n");
-		printf("\n\nplease enter a the number of the wanted action:\t");
+		printf("\n\nplease enter the number of the wanted action:\t");
 		fseek(stdin, 0, SEEK_END);
-		scanf("%d", &action);
-		if (action < 0 || action>12 && isdigit(action) != 0)
+		fgets(action, 3, stdin);
+		if (atoi(action) < 0 || atoi(action) > 12 || is_all_digits(action) == 0)
 		{
 			printf("\n\nERROR:\tplease enter a number between 0 and 12 include\n\n");
 		}
-	}
 
-	return action;
+	} while (atoi(action) < 0 || atoi(action) > 12|| is_all_digits(action) == 0);
+
+	return atoi(action);
 }

@@ -10,7 +10,7 @@
 // Function to check if a string contains only digits
 int is_all_digits(const char* number_str) {
     for (int i = 0; i < strlen(number_str); i++) {
-        if (!isdigit(number_str[i])) {
+        if (!isdigit(number_str[i])&&number_str[i]!='\n') {
             return 0;  // Return 0 if any character is not a digit
         }
     }
