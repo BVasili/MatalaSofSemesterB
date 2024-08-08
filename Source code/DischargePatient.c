@@ -46,19 +46,7 @@ void DischargePatient(pLine* PatientsLine, pTree* PatientsTree, List* DoctorsLis
 	printf("\nPatients Ongoing visit:\n");
 	printVisit(VisistToDischarge);
 
-	//Asks User to input summary for visit
-	printf("Enter summary for visit:");
-	fseek(stdin, 0, SEEK_SET);
-	fgets(TempSummary, SUMMARY_SIZE, stdin);
 
-	char* VisitSummary = (char*)malloc(strlen(TempSummary));
-	if (checkPointer(VisitSummary, ALLOCATION_FAILED))
-		return;
-
-	TempSummary[strlen(TempSummary) - 1] = '\0';
-	strcpy(VisitSummary, TempSummary);
-
-	VisistToDischarge.vSummary = VisitSummary;
 
 	//Adjusts doctor's number of patients 
 	DoctorsNode = searchDoctor(DoctorsList, VisistToDischarge.Doctor->Name); //------> needs to be in patients structure
@@ -73,7 +61,7 @@ void DischargePatient(pLine* PatientsLine, pTree* PatientsTree, List* DoctorsLis
 	Arrival.tm_year = VisistToDischarge.tArrival.Year - 1900;
 	Arrival.tm_mon = VisistToDischarge.tArrival.Month - 1;
 	Arrival.tm_mday = VisistToDischarge.tArrival.Day;
-	Arrival.tm_hour = VisistToDischarge.tArrival.Hour;
+	Arrival.tm_hour = VisistToDischarge.tArrival.Hour-1;
 	Arrival.tm_min = VisistToDischarge.tArrival.Min;
 
 	ArrivalTime = mktime(&Arrival);
@@ -84,11 +72,13 @@ void DischargePatient(pLine* PatientsLine, pTree* PatientsTree, List* DoctorsLis
 	VisistToDischarge.tDismissed.Hour = Dismissed.tm_hour;
 	VisistToDischarge.tDismissed.Min = Dismissed.tm_min;
 
-	VisitDuration = (float)(difftime(DismissedTime, ArrivalTime) / 60);
-	VisistToDischarge.Duration = VisitDuration;
+	VisitDuration = (float)(difftime(DismissedTime, ArrivalTime));
+	VisistToDischarge.Duration = VisitDuration/60;
 
 	//pushes the visit into the patients stack and prints it
 	push(PatientToDischarge->tpatient.Visits, VisistToDischarge);
 	printf("\n");
 	printVisit(PatientToDischarge->tpatient.Visits->sList.head->Visit);
+	moveToHead(PatientsLine, PatientToDischarge->tpatient.ID);
+	deLine(PatientsLine);
 }

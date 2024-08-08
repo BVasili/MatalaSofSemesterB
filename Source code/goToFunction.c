@@ -261,7 +261,7 @@ void deletePatient(List* DoctorsList, pLine* PatientsLine, pTree* PatientsTree)
 			printf("INVALID ID INPUT. TRY AGAIN.\n");
 		}
 	}
-	if (searchPatientLine(&PatientsLine, id_temp) != NULL)
+	if (searchPatientLine(PatientsLine, id_temp) != NULL)
 	{
 		printf("Discharge Patient before deleting records from system");
 		return;
