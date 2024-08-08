@@ -1,6 +1,6 @@
 Name; ID; Allergies
 ========================
-1.Shuli Abutbul;012345678;LÙ’
+1.Shuli Abutbul;012345678;Penicillin;Anesthetics;Eggs
 
 Arrival:29/06/2024 14:08
 Dismissed:
@@ -8,7 +8,7 @@ Duration:
 Doctor:Muhammad Yunus
 Summary:
 ========================
-2.Nasreen Hamdi;026547894;,ı’
+2.Nasreen Hamdi;026547894;none
 
 Arrival:29/06/2024 11:04
 Dismissed:
@@ -16,7 +16,15 @@ Duration:
 Doctor:Muhammad Yunus
 Summary:
 ========================
-3.Inna Gefen;123456789;ˆ’
+3.amksakdas;123456788;none
+
+Arrival:08/08/2024 18:27
+Dismissed:
+Duration:
+Doctor:Hanni Barlev
+Summary:kaskdaksda
+========================
+4.Inna Gefen;123456789;Sulfa;Latex
 
 Arrival:12/05/1990 22:13
 Dismissed:13/05/1990 06:48
@@ -30,7 +38,7 @@ Duration:
 Doctor:Michal Rappaport
 Summary:Broken finger.
 ========================
-4.Michael Shore;203389445;,ı’
+5.Michael Shore;203389445;Penicillin
 
 Arrival:12/02/2011 02:13
 Dismissed:12/02/2011 05:50
@@ -50,7 +58,7 @@ Duration:
 Doctor:Muhammad Yunus
 Summary:
 ========================
-5.Gali Libovitz;308456713;LÙ’
+6.Gali Libovitz;308456713;none
 
 Arrival:02/07/2012 12:33
 Dismissed:03/07/2012 15:12
@@ -64,21 +72,13 @@ Duration:
 Doctor:David Azrachi
 Summary:
 ========================
-6.Haim Ezer;312488813;lÛ’
+7.Haim Ezer;312488813;none
 
 Arrival:29/06/2024 01:17
 Dismissed:
 Duration:
 Doctor:David Azrachi
 Summary:
-========================
-7.shalev shemesh;323009076;åÚ’
-
-Arrival:08/08/2024 18:15
-Dismissed:
-Duration:
-Doctor:Hanni Barlev
-Summary:lal laa
 ========================
 
 	

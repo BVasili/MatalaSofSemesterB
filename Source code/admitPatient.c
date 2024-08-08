@@ -219,7 +219,7 @@ void insertNewPatientInfo(char* id_str, List* doctors, pLine* PatientsLine, pTre
 	/*printPTree(PatientsTree);*/
 
 	//add the new patient to the line 
-	AddToTailLine(PatientsLine, id_str, PatientsTree);
+	enLine(PatientsLine, id_str, PatientsTree);
 
 	//print line
 	/*printLineWithVisit(PatientsLine);*/

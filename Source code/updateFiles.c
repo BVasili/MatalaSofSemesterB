@@ -68,7 +68,7 @@ void writePatientToFile(FILE* file, pInTree* treeNode, int* index)
 	{
 		TempVisit = pop(TempStack); //Popping from patients stack
 		int Duration_Hours = (int)(TempVisit.Duration) - ((int)(TempVisit.Duration) % 60);
-
+		//writing visit to files
 		fprintf(file, "Arrival:%02d/%02d/%04d %02d:%02d\n", TempVisit.tArrival.Day, TempVisit.tArrival.Month, TempVisit.tArrival.Year, TempVisit.tArrival.Hour, TempVisit.tArrival.Min);
 
 		if (TempVisit.Duration != -1.0)
@@ -114,7 +114,7 @@ void updateFiles(char* DoctorsFile, char* PatientsFile, char* LineFile, List* Do
 
 	pInLine* PatientsInLine = PatientsLine->head;
 
-	fprintf(LineFilePtr, "Patients' IDs in line\n");
+	fprintf(LineFilePtr, "Patients' IDs in line\n"); 
 	fprintf(LineFilePtr, "=====================\n");
 
 	while (PatientsInLine && PatientsLine->size != 0)

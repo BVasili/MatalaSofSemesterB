@@ -4,15 +4,11 @@
 
 void goToFunc(int choice, List* DoctorsList, pLine* PatientsLine, pTree* PatientsTree)
 {
-	char ID[ID_SIZE];
-	char DoctorsName[NAME_SIZE];
-	pInLine* temp;
-	Node* tempNode;
-	Patient* PtrPatient;
+
 	switch (choice) {
 	case 0:
 		printf("You chose option to exit the program\n\n");
-		updateFiles("DoctorsTest.txt", "PatientsTest.txt", "LineTest.txt", DoctorsList, PatientsLine, PatientsTree);
+		updateFiles("Doctors.txt", "Patients.txt", "Line.txt", DoctorsList, PatientsLine, PatientsTree);
 		destroyLine(PatientsLine);
 		destroyPTree(PatientsTree);
 		destroyList(DoctorsList);
