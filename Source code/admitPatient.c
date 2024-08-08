@@ -57,6 +57,7 @@ void insertNewPatientInfo(char* id_str, List* doctors, pLine* PatientsLine, pTre
 		printf("please enter the patient's name:\t ");
 		fseek(stdin, 0, SEEK_END);
 		fgets(Name, NAME_SIZE, stdin);
+		Name[strlen(Name) - 1] = '\0';
 		printf("\n");
 		if (validInput(Name, "name") == 1)
 			break;
