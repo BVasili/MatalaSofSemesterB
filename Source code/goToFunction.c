@@ -2,14 +2,14 @@
 #include <string.h>
 
 
-void goToFunc(int choice, List* DoctorsList,pLine* PatientsLine,pTree* PatientsTree)
+void goToFunc(int choice, List* DoctorsList, pLine* PatientsLine, pTree* PatientsTree)
 {
 	char ID[ID_SIZE];
 	char DoctorsName[NAME_SIZE];
 	pInLine* temp;
 	Node* tempNode;
 	Patient* PtrPatient;
-	switch (choice){
+	switch (choice) {
 	case 0:
 		printf("You chose option to exit the program\n\n");
 		updateFiles("DoctorsTest.txt", "PatientsTest.txt", "LineTest.txt", DoctorsList, PatientsLine, PatientsTree);
@@ -27,10 +27,10 @@ void goToFunc(int choice, List* DoctorsList,pLine* PatientsLine,pTree* PatientsT
 	case 2:
 		printf("You chose to check for patients allergies \n\n");
 
-			printLine(PatientsLine);
-			Function2(PatientsLine);
-			break;
-		
+		printLine(PatientsLine);
+		Function2(PatientsLine);
+		break;
+
 	case 3:
 		printf("You chose to display all patients\n\n");
 		printPTree(PatientsTree);
@@ -68,27 +68,47 @@ void goToFunc(int choice, List* DoctorsList,pLine* PatientsLine,pTree* PatientsT
 	case 9:
 		printf("You chose to discharge patient\n\n");
 		printPTree(PatientsTree);
-		DischargePatient(PatientsLine, PatientsTree,DoctorsList);
+		DischargePatient(PatientsLine, PatientsTree, DoctorsList);
 		break;
 
 	case 10:
 		printf("You chose to remove a visit\n\n");
-		
+
 		removeVisit(PatientsTree);
 		break;
 
 	case 11:
 		printf("You chose to remove patient\n\n");
-		//add here input from user
-		//if (/*user has active visits*/) {
-		//	printf("Discharge Patient before deleting records from system");
-		//	break;
-		//}
-		moveToHead(PatientsLine, "123456789");
+		char id_temp[ID_SIZE] = { 0 };
+		Patient* temp_pat = NULL;
+		// Get the patient ID from the user
+		while (1) {
+			printf("\nPlease enter the ID of the patient: ");
+			scanf("%s", id_temp);
+
+			if (validInput(id_temp, "id") == 1) {
+				if ((temp_pat = searchPatient(PatientsTree, id_temp)) == NULL) {
+					printf("The ID isn't in the list of patients. Please try again.\n");
+				}
+				else
+				{
+					break;
+				}
+			}
+			else
+			{
+				printf("INVALID ID INPUT. TRY AGAIN.\n");
+			}
+		}
+		if (searchPatientLine(&PatientsLine, id_temp) != NULL)
+		{
+			printf("Discharge Patient before deleting records from system");
+			break;
+		}
+		moveToHead(PatientsLine, temp_pat->ID);
 		deLine(PatientsLine);
-	
-		deletePTree(PatientsTree, "123456789");
-		
+		deletePTree(PatientsTree, temp_pat->ID);
+
 
 		break;
 
@@ -107,7 +127,7 @@ void Function2(pLine* PatientsLine)
 	char ID[ID_SIZE];
 	pInLine* Ptr2PatientsNode;
 	Patient* PtrPatient;
-	
+
 	do {
 		printf("Enter an ID:");
 		fgets(ID, 10, stdin);
@@ -125,7 +145,7 @@ void Function2(pLine* PatientsLine)
 	} while (Ptr2PatientsNode == NULL);
 
 	PtrPatient = Ptr2PatientsNode->lpatient;
-	printf("Name:%s ID:%s \n",PtrPatient->Name,PtrPatient->ID);
+	printf("Name:%s ID:%s \n", PtrPatient->Name, PtrPatient->ID);
 	printf(" Allergies: ");
 	if (PtrPatient->Allergies & NONE) printf("None ");
 	if (PtrPatient->Allergies & PENICILLIN) printf("Penicillin ");
@@ -190,7 +210,7 @@ void Function6(pLine* PatientsLine)
 	printf("\n");
 }
 
-void Function8(List* DoctorsList,pLine* PatientsLine)
+void Function8(List* DoctorsList, pLine* PatientsLine)
 {
 	char DoctorsName[100];
 	Node* DoctorsNode;
