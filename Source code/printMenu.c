@@ -7,7 +7,7 @@
 // Prints menu and returns an integer between 0 - 12
 int printMenu(void)
 {
-	char action[3] = {0};
+	char action[ID_SIZE] = {0};
 	do
 	{
 		printf("MENU:\n\n\
@@ -26,7 +26,7 @@ int printMenu(void)
   #   12. Close the hospital\n");
 		printf("\n\nplease enter the number of the wanted action:\t");
 		fseek(stdin, 0, SEEK_END);
-		fgets(action, 3, stdin);
+		fgets(action, ID_SIZE, stdin);
 		if (atoi(action) < 0 || atoi(action) > 12 || is_all_digits(action) == 0)
 		{
 			printf("\n\nERROR:\tplease enter a number between 0 and 12 include\n\n");

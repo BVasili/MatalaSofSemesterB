@@ -246,7 +246,7 @@ void deletePatient(List* DoctorsList, pLine* PatientsLine, pTree* PatientsTree)
 	while (1) {
 		printf("\nPlease enter the ID of the patient: ");
 		scanf("%s", id_temp);
-
+		printf("\n");
 		if (validInput(id_temp, "id") == 1) {
 			if ((temp_pat = searchPatient(PatientsTree, id_temp)) == NULL) {
 				printf("The ID isn't in the list of patients. Please try again.\n");
@@ -261,9 +261,9 @@ void deletePatient(List* DoctorsList, pLine* PatientsLine, pTree* PatientsTree)
 			printf("INVALID ID INPUT. TRY AGAIN.\n");
 		}
 	}
-	if (searchPatientLine(&PatientsLine, id_temp) != NULL)
+	if (searchPatientInLine(PatientsLine, id_temp) != NULL)
 	{
-		printf("Discharge Patient before deleting records from system");
+		printf("Discharge Patient before deleting records from system\n\n");
 		return;
 	}
 	moveToHead(PatientsLine, temp_pat->ID);
