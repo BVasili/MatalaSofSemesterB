@@ -56,7 +56,7 @@ void insertNewPatientInfo(char* id_str, List* doctors, pLine* PatientsLine, pTre
 	{
 		printf("please enter the patient's name:\t ");
 		fseek(stdin, 0, SEEK_END);
-		scanf("%[^\n]", Name);
+		fgets(Name, NAME_SIZE, stdin);
 		printf("\n");
 		if (validInput(Name, "name") == 1)
 			break;
@@ -280,7 +280,7 @@ void admitPatient(List* doctors, pLine* PatientsLine, pTree* PatientsTree)
 	{
 		printf("please enter an id number:\t");
 		fseek(stdin, 0, SEEK_END);
-		scanf("%s", id_str);
+		fgets(id_str, ID_SIZE + 5, stdin);
 		printf("\n");
 
 		//check if the number is valid
