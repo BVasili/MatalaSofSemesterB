@@ -60,7 +60,7 @@ void insertPTree(pTree* tree, Patient PatientToBeInserted)
 
 	insertPInTree(tree->root, PatientToBeInserted); //else it inserts it regulary 
 }
-
+//destory tree
 void destroyPTree(pTree* tree)
 {  // frees tree - calls for recursive function and then sets root to NULL
 	freeTree(tree->root);
@@ -155,13 +155,13 @@ void printDoctorsPatientADT(pTree* Tree, char* DoctorName)
 }
 
 
-// Function to delete a node with a specific ID from the tree
+// function to delete a node with a specific ID from the tree
 pInTree* deletePInTree(pInTree* root, char* ID) {
 	if (root == NULL) {
 		return root;
 	}
 
-	// Traverse the tree to find the node to delete
+	// go through the tree to find the node to delete
 	if (strcmp(ID, root->tpatient.ID) < 0) {
 		root->left = deletePInTree(root->left, ID);
 	}
@@ -169,33 +169,33 @@ pInTree* deletePInTree(pInTree* root, char* ID) {
 		root->right = deletePInTree(root->right, ID);
 	}
 	else {
-		// Node found
+		// node found
 		if (root->left == NULL) {
 			pInTree* temp = root->right;
-			destroyStack(root->tpatient.Visits); // Destroy the patient's visit stack
+			destroyStack(root->tpatient.Visits); // destroy the patients visit stack
 			free(root);
 			return temp;
 		}
 		else if (root->right == NULL) {
 			pInTree* temp = root->left;
-			destroyStack(root->tpatient.Visits); // Destroy the patient's visit stack
+			destroyStack(root->tpatient.Visits); // destroy the patients visit stack
 			free(root);
 			return temp;
 		}
 
-		// Node with two children
+		// if node with two children  -- (:
 		pInTree* temp = findMin(root->right);
 
-		// Copy the inorder successor's content to this node
+		// copy to the node
 		root->tpatient = temp->tpatient;
 
-		// Delete the inorder successor
+		// delete the node
 		root->right = deletePInTree(root->right, temp->tpatient.ID);
 	}
 	return root;
 }
 
-// Helper function to find the minimum value node in the tree
+// helper function to find the minimum value node in the tree
 pInTree* findMin(pInTree* node) {
 	pInTree* current = node;
 	while (current && current->left != NULL) {
