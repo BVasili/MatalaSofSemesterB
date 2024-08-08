@@ -1,6 +1,6 @@
 Name; ID; Allergies
 ========================
-1.Shuli Abutbul;012345678;LôÕ
+1.Shuli Abutbul;012345678;”ð¨
 
 Arrival:29/06/2024 14:08
 Dismissed:
@@ -8,7 +8,7 @@ Duration:
 Doctor:Muhammad Yunus
 Summary:
 ========================
-2.Nasreen Hamdi;026547894;,õÕ
+2.Nasreen Hamdi;026547894;tñ¨
 
 Arrival:29/06/2024 11:04
 Dismissed:
@@ -16,7 +16,7 @@ Duration:
 Doctor:Muhammad Yunus
 Summary:
 ========================
-3.Inna Gefen;123456789;öÕ
+3.Inna Gefen;123456789;Tò¨
 
 Arrival:12/05/1990 22:13
 Dismissed:13/05/1990 06:48
@@ -30,7 +30,7 @@ Duration:
 Doctor:Michal Rappaport
 Summary:Broken finger.
 ========================
-4.Michael Shore;203389445;,õÕ
+4.Michael Shore;203389445;tñ¨
 
 Arrival:12/02/2011 02:13
 Dismissed:12/02/2011 05:50
@@ -50,7 +50,7 @@ Duration:
 Doctor:Muhammad Yunus
 Summary:
 ========================
-5.Gali Libovitz;308456713;LôÕ
+5.Gali Libovitz;308456713;”ð¨
 
 Arrival:02/07/2012 12:33
 Dismissed:03/07/2012 15:12
@@ -64,7 +64,7 @@ Duration:
 Doctor:David Azrachi
 Summary:
 ========================
-6.Haim Ezer;312488813;lóÕ
+6.Haim Ezer;312488813;´ï¨
 
 Arrival:29/06/2024 01:17
 Dismissed:
@@ -72,13 +72,13 @@ Duration:
 Doctor:David Azrachi
 Summary:
 ========================
-7.shalev shemesh;323009076;ŒòÕ
+7.shalev shemesh;323009076;Ôî¨
 
-Arrival:08/08/2024 18:15
+Arrival:08/08/2024 18:28
 Dismissed:
 Duration:
 Doctor:Hanni Barlev
-Summary:lal laa
+Summary:fever
 ========================
 
 	
