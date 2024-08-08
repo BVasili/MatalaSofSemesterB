@@ -71,7 +71,7 @@ void insertNewPatientInfo(char* id_str, List* doctors, pLine* PatientsLine, pTre
 	while (1)
 	{
 		int i = 1;
-		printf("if the patient is allergic to something please enter 1, if not enter 0:\t");
+		printf("if the patient is allergic to something please enter 1, if not enter anything else:\t");
 		fseek(stdin, 0, SEEK_END);
 		scanf_s("%d", &allergyValue);
 		printf("\n\n");
@@ -79,7 +79,7 @@ void insertNewPatientInfo(char* id_str, List* doctors, pLine* PatientsLine, pTre
 		{
 			while (1)
 			{
-				printf("is the patient allergic to %s?\n press 1 for yes, and 0 for no:\t", Allergies_String[i - 1]);
+				printf("is the patient allergic to %s?\n press 1 for yes, if not enter anything else:\t", Allergies_String[i - 1]);
 				fseek(stdin, 0, SEEK_END);
 				scanf("%d", &allergyValue);
 				printf("\n");
@@ -111,10 +111,10 @@ void insertNewPatientInfo(char* id_str, List* doctors, pLine* PatientsLine, pTre
 					}
 					i++;
 				}
-				if (allergyValue == 0)
+				else
+				{
 					i++;
-				if ((allergyValue != 0) && (allergyValue != 1))
-					printf("invalid input try again!\n");
+				}
 				if (i == 8)
 					break;
 			}
@@ -128,8 +128,7 @@ void insertNewPatientInfo(char* id_str, List* doctors, pLine* PatientsLine, pTre
 		{
 			break;
 		}
-		if (allergyValue != 0 || allergyValue != 1)
-			printf("invalid allergies input please enter  1 or 0\n");
+
 	}
 
 
