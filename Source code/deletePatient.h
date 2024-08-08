@@ -6,5 +6,7 @@
 #include "SLL.h"
 #include "Stack.h"
 #include "Structure.h"
-
+#ifndef DELETEPATIENTS__
+#define DELETEPATIENTS__
 void deletePatient(pLine* PatientsLine, pTree* PatientsTree, List* DoctorsList);
+#endif //DELETEPATIENTS__

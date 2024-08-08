@@ -57,6 +57,8 @@ Visit Visit_peekList(const List* list)
 		return;
 	return list->head->Visit; //get visit from head
 }
+
+//prints induvidual visit -- used in another function with "do while"
 void printVisit(Visit Visit) {
 	//prints visit's information
 	printf("Arrival: ");
@@ -83,6 +85,7 @@ void printVisit(Visit Visit) {
 	printf("------------------------------\n\n");
 
 }
+
 void Visit_printList(const List* list, const char* delimiter)
 {
 	if (checkPointer(list, NULL_POINTER)) //checks for NULL pointer
@@ -197,12 +200,15 @@ void Doc_addToHead(List* list, Doc Doctor)
 	}
 }
 
+//returns doctors node from list
 Node* searchDoctorInList(Node* DoctorNode, char* DoctorName)
 {
 	if (DoctorNode == NULL) return NULL;
 	if (strcmp(DoctorNode->Doctor.Name, DoctorName) == 0) return DoctorNode; //return doctor structure
 	else return searchDoctorInList(DoctorNode->next, DoctorName);
 }
+
+//ADT for function above
 Node* searchDoctor(List* DoctorsList, char* DoctorName)
 {
 	if (DoctorsList == NULL) return NULL;

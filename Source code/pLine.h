@@ -31,7 +31,7 @@ Patient GetFromHead(const pLine* q);
 
 int CheckLineHead(const pLine* q);
 
-void printLineADT(const pLine* q);
+void printLineForADT(const pLine* q);
 
 void initLine(pLine* q);
 

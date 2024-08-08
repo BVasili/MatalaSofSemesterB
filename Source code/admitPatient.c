@@ -180,7 +180,7 @@ void insertNewPatientInfo(char* id_str, List* doctors, pLine* PatientsLine, pTre
 	strcpy(new_patient.Name, Name);
 	strcpy(new_patient.ID, id_str);
 	new_patient.Allergies = binVal;
-
+	new_patient.nVisits = 1;
 	new_patient.Visits = malloc(sizeof(Stack));
 	if (!new_patient.Visits)
 	{

@@ -13,7 +13,7 @@ int printMenu(void)
 		printf("MENU:\n\n\
   #   0. Exit Program\n\n\
   #   1. Admit Patient\n\n\
-  #   2. Check fot patient's allergies\n\n\
+  #   2. Check for patient's allergies\n\n\
   #   3. Display all patients\n\n\
   #   4. Display all patient's admission\n\n\
   #   5. Display all patients in line\n\n\

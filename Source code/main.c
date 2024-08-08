@@ -18,10 +18,10 @@
 #define _CRT_SECURE_NO_DEPRECATE 
 
 #define DOCSFILE "Doctors.txt"
-
+#define LINEFILE "Line.txt"
+#define PATIENTSFILE "Patients.txt"
 
 //Debug
-#define TESTADMIT
 #define VISITINSERTTEST_
 #define INSERTALLERGIES_
 #define TESTVISIT__
@@ -33,20 +33,17 @@
 int main()
 {
 
-
-#ifdef TESTADMIT
-
 	List doctors;
 	initList(&doctors);
 	loadDoctors(&doctors, DOCSFILE);
 
 	pTree PatientsTree;
 	initializePTree(&PatientsTree);
-	loadPatients(&PatientsTree, "Patients.txt",&doctors);
+	loadPatients(&PatientsTree, PATIENTSFILE,&doctors);
 
 	pLine PatientsLine;
 	initLine(&PatientsLine);
-	loadLine(&PatientsLine, "Line.txt", &PatientsTree);
+	loadLine(&PatientsLine, LINEFILE, &PatientsTree);
 
 	int choice = -1;
 	while (1)//calling for print menu 
@@ -60,7 +57,7 @@ int main()
 	}
 
 
-#endif // TESTADMIT
+
 
 
 #ifdef VISITINSERTTEST
