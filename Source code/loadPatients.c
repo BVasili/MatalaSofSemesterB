@@ -11,8 +11,8 @@ void loadPatients(pTree* tree, char* FileName,List* DoctorsList)
 		char Allergies_String[LINE_SIZE], Line[LINE_SIZE] = { 0 }, Summary[SUMAMRY_SIZE] = { 0 };
 		char Allergies[ALLERGY_SIZE][ALLERGY_MAX_NAME_SIZE] = { 0 };
 
-		char Day[3] = { 0 }, Month[3] = { 0 }, Year[5] = { 0 };
-		char Hour[3] = { 0 }, Minute[3] = { 0 };
+		char Day[10000] = { 0 }, Month[10000] = { 0 }, Year[10000] = { 0 };
+		char Hour[10000] = { 0 }, Minute[10000] = { 0 };
 		long FileSize = 0, remainingBytes = 0, currentPosition = 0;
 
 		char* NamePtr = NULL;

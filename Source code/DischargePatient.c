@@ -46,7 +46,8 @@ void DischargePatient(pLine* PatientsLine, pTree* PatientsTree, List* DoctorsLis
 	printf("\nPatients Ongoing visit:\n");
 	printVisit(VisistToDischarge);
 
-
+	/*moveToHead(PatientsLine, PatientToDischarge->tpatient.ID);
+	deLine(PatientsLine);*/
 
 	//Adjusts doctor's number of patients 
 	DoctorsNode = searchDoctor(DoctorsList, VisistToDischarge.Doctor->Name); //------> needs to be in patients structure

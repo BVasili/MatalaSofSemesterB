@@ -1,6 +1,6 @@
 Name; ID; Allergies
 ========================
-1.Shuli Abutbul;012345678;
+1.Shuli Abutbul;012345678;Penicillin;Anesthetics;Eggs
 
 Arrival:29/06/2024 14:08
 Dismissed:
@@ -16,7 +16,7 @@ Duration:
 Doctor:Muhammad Yunus
 Summary:
 ========================
-3.Inna Gefen;123456789;
+3.Inna Gefen;123456789;Sulfa;Latex
 
 Arrival:12/05/1990 22:13
 Dismissed:13/05/1990 06:48
@@ -25,8 +25,8 @@ Doctor:Muhammad Yunus
 Summary:Broken right leg. Placed in cast. 
 
 Arrival:28/06/2024 00:26
-Dismissed:08/08/2024 22:51
-Duration:1006:25
+Dismissed:08/08/2024 23:06
+Duration:1006:40
 Doctor:Michal Rappaport
 Summary:Broken finger.
 ========================
