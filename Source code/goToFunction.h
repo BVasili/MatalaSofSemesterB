@@ -14,9 +14,10 @@
 #include "DischargePatient.h"
 
 void goToFunc(int, List*, pLine*, pTree*);
-void Function2(pLine*);
-void Function4(pLine*);
-void Function6(pLine*);
-void Function8(List*, pLine*);
+void CheckForPatientsAllergies(pLine*);
+void DisplayAllPatientsAdmissions(pLine*);
+void AdvancePatientInLine(pLine*);
+void DisplayAllPatientsAssignedToADoctor(List*, pLine*);
+void deletePatient(List*, pLine*, pTree*);
 #endif // !GOTOFUNCTION__
 

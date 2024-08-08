@@ -178,7 +178,7 @@ void insertNewPatientInfo(char* id_str, List* doctors, pLine* PatientsLine, pTre
 	strcpy(new_patient.Name, Name);
 	strcpy(new_patient.ID, id_str);
 	new_patient.Allergies = binVal;
-
+	new_patient.nVisits = 1;
 	new_patient.Visits = malloc(sizeof(Stack));
 	if (!new_patient.Visits)
 	{
@@ -289,7 +289,7 @@ void admitPatient(List* doctors, pLine* PatientsLine, pTree* PatientsTree)
 			if (find(PatientsTree, id_str) == 1)//member is already registered
 			{
 				//check if he is already in line
-				if (searchPatientLine(&PatientsLine, id_str) != NULL)
+				if (searchPatientInLine(PatientsLine, id_str) != NULL)
 				{
 					printf("Patient is already in line\n");
 					return;

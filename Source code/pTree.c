@@ -67,7 +67,8 @@ void destroyPTree(pTree* tree)
 	tree->root = NULL;
 }
 
-int searchInTree(pInTree* root, char* ID) // maybe will be deletd
+//returns 1 if found and 0 else
+int searchInTree(pInTree* root, char* ID) 
 {
 	if (root == NULL) return 0;
 	if (strcmp(root->tpatient.ID, ID) == 0) return 1;
@@ -75,13 +76,15 @@ int searchInTree(pInTree* root, char* ID) // maybe will be deletd
 	else return searchInTree(root->left, ID);
 }
 
-
-int find(pTree* tree, char* ID) // maybe delete?
+//ADT for function above
+int find(pTree* tree, char* ID) 
 {
 	return searchInTree(tree->root, ID);
 }
+
+// Return 1 if its empty, else 0
 int isPTreeEmpty(pTree* tree)
-{ // Return 1 if its empty, else 0
+{
 	return tree->root == NULL;
 }
 
@@ -110,9 +113,9 @@ void printPTree(pTree* tree)
 		return printPInTree(tree->root);
 }
 
-
+// Returns a pointer to a node with the wanted patients structure, if not found  - returns NULL.
 pInTree* searchPatientInTree(pInTree* root, char* ID)
-{ // Returns a pointer to a node with the wanted patients structure, if not found  - returns NULL.
+{ 
 	if (root == NULL) return NULL;
 	if (strcmp(root->tpatient.ID, ID) == 0) return root;
 	if (strcmp(root->tpatient.ID, ID) < 0)
@@ -120,37 +123,38 @@ pInTree* searchPatientInTree(pInTree* root, char* ID)
 	else return searchPatientInTree(root->left, ID);
 }
 
+// Just ADT to function above ^^^^
 pInTree* searchPatient(pTree* tree, char* ID)
-{ // Just ADT to function above ^^^^
+{ 
 	return searchPatientInTree(tree->root, ID);
 }
 
-//
+// Prints Patients info with ONGOING visit of a certain doctor
 void printDoctorsPatient(pInTree* root,char* DoctorName)
-{// Prints Patients info with ONGOING visit of a certain doctor
+{
  
 	if (root != NULL) {
-		// Traverse the left subtree
-
+		// go to the left subtree
 		printDoctorsPatient(root->left, DoctorName);
 
 		// Print the root node's id
 		Patient TempPatient = root->tpatient;
 		Visit TempVisit = peekStack(TempPatient.Visits);
-
+		//prints only active visit
 		if (!strcmp(TempVisit.Doctor, DoctorName) && TempVisit.Duration == -1.0) {
 			printf("Name: %s  ID: %s\n", root->tpatient.Name, root->tpatient.ID);
 			printVisit(TempVisit);
 		}
 		
-		// Traverse the right subtree
+		// go to the right subtree
 		printDoctorsPatient(root->right, DoctorName);
 	}
 
 }
 
+//ADT for function above^^^
 void printDoctorsPatientADT(pTree* Tree, char* DoctorName)
-{ //ADT for function above^^^
+{ 
 	return printDoctorsPatient(Tree->root, DoctorName);
 }
 

@@ -3,7 +3,7 @@
 #include<stdlib.h>
 #include"displayError.h"
 
-//Functions for ADT
+//Deletes pInLine node
 void deletePLine(pInLine* ToBeDeleted)
 {
 	if (ToBeDeleted == NULL) // if address is NULL it returns
@@ -20,6 +20,7 @@ void deletePLine(pInLine* ToBeDeleted)
 	}
 }
 
+//Adds to tail --- used in anoter ADT function
 void AddToTailLine(pLine* q, char* ID, pTree* tree)
 {
 	pInLine* newTail = (pInLine*)calloc(1, sizeof(pInLine));
@@ -46,6 +47,7 @@ void AddToTailLine(pLine* q, char* ID, pTree* tree)
 	q->size++;
 }
 
+//removes from head and returns ptr to the patient
 Patient* RemoveHeadFromLine(pLine* q) {
 
 	if (q == NULL)
@@ -74,49 +76,57 @@ Patient* RemoveHeadFromLine(pLine* q) {
 	return toReturn;
 }
 
+//returns structure from head
 Patient GetFromHead(const pLine* q)
 {
 	Patient toBeReturned = *q->head->lpatient;
 	return toBeReturned;
 }
 
+//check if line is empty
 int CheckLineHead(const pLine* q)
 {
 	return q->head == NULL;
 }
 
-void printLineADT(const pLine* q)
+//prints all Line --- used for another ADT function
+void printLineForADT(const pLine* q)
 {
 	if (q->head == NULL)
 		return;
-
+	int index = 1;
 	pInLine* temp = q->head;
 
 	while (temp != NULL)
 	{
-		printf("%s", temp->lpatient->ID);
+		printf("%d. Name:%s ID:%s\n",index++, temp->lpatient->Name,temp->lpatient->ID);
 		temp = temp->next;
 
-		if (temp != NULL)
-			printf(" | ");
+
 	}
 }
 
-pInLine* searchPatientInLine(pLine* queue, char* ID)
-{
-	return searchPatientLine(queue->head, ID);
-}
 
+
+//searches for patients in line and returns ptr to them
+pInLine* searchPatientLine(pInLine* PatientInLine, char* ID)
+{
+	if (PatientInLine == NULL) return NULL;
+	if (strcmp(PatientInLine->lpatient->ID, ID) == 0) return PatientInLine;
+	else
+		searchPatientLine(PatientInLine->next, ID);
+}
+//prints line with patients ongoing visit
 void printLineWithVisit(const pLine* q) {
 	{
 		if (q->head == NULL)
 			return;
-
+		int index = 1;
 		pInLine* temp = q->head;
 		Visit CurrentVisit;
 		while (temp != NULL)
 		{
-			printf("Name:%s ID:%s\n", temp->lpatient->Name, temp->lpatient->ID);
+			printf("%d.Name:%s ID:%s\n", index++,temp->lpatient->Name, temp->lpatient->ID);
 			CurrentVisit = peekStack(temp->lpatient->Visits);
 
 			printf("Arrival: ");
@@ -126,7 +136,7 @@ void printLineWithVisit(const pLine* q) {
 			if (CurrentVisit.Duration == -1)
 			{
 				printf("Dismissed: ONGOING\n");
-				printf("Duration:ONGING\n");//finish this later
+				printf("Duration:ONGOING\n");//finish this later
 			}
 			else
 			{
@@ -136,58 +146,74 @@ void printLineWithVisit(const pLine* q) {
 
 			printf("Doctor:%s\n", CurrentVisit.Doctor->Name);
 			printf("Summary:%s\n", CurrentVisit.vSummary);
-			printf("--------------------------\n");
+			printf("--------------------------\n\n");
 
 			temp = temp->next;
 		}
 	}
 }
 
-// Public functions
+// ADT Functions
+//initalizes line
 void initLine(pLine* q)
 {
 	q->head = NULL;
 	q->tail = NULL;
 	q->size = 0;
 }
+
+//puts patient into line
 void enLine(pLine* q, char* ID, pTree* tree)
 {
 	AddToTailLine(q, ID, tree);
 }
+
+//remove patient from line
 Patient* deLine(pLine* q)
 {
 	RemoveHeadFromLine(q);
 }
+
+//destorys line
 void destroyLine(pLine* q)
 {
 	deletePLine(q->head);
 	q->size = 0;
 }
+
+//gets patients structure from head of line
 Patient peekLine(const pLine* q)
 {
 	return GetFromHead(q);
 }
+
+//check if line is empty
 int isEmptyLine(const pLine* q)
 {
 	return CheckLineHead(q);
 }
+
+//prints line
 void printLine(const pLine* q)
 {
-	printf("Head of Queue| ");
-	printLineADT(q);
+	printf("Head of Queue| \n");
+	printLineForADT(q);
 	printf(" |Tail of Queue\n\n");
 }
+
+//gets line size
 int getLineSize(const pLine* q)
 {
 	return q->size;
 }
-pInLine* searchPatientLine(pInLine* PatientInLine, char* ID)
+
+//Retunrs ptr to patient in line -- is ADT
+pInLine* searchPatientInLine(pLine* queue, char* ID)
 {
-	if (PatientInLine == NULL) return NULL;
-	if (strcmp(PatientInLine->lpatient->ID, ID) == 0) return PatientInLine;
-	else
-		searchPatientLine(PatientInLine->next, ID);
+	return searchPatientLine(queue->head, ID);
 }
+
+//moves patient to head of line
 void moveToHead(pLine* q, char* ID) {
 
 	if (q == NULL || q->head == NULL) 

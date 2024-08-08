@@ -34,6 +34,7 @@ int isEmptyStack(const Stack* s)
 	return isEmptyList(&(s->sList));
 }
 
+//prints the stack
 void printStack(Stack* s)
 {
 	Stack temp;
@@ -44,7 +45,7 @@ void printStack(Stack* s)
 		push(&temp, popped);
 		printVisit(popped);
 	}
-	
+
 	while (!isEmptyStack(&temp))
 	{
 		push(s, pop(&temp));
@@ -52,11 +53,13 @@ void printStack(Stack* s)
 	destroyStack(&temp);
 }
 
+//get the visit from top of stack
 Visit peekStack(const Stack* s)
 {
 	return Visit_peekList(&(s->sList));
 }
 
+//get stack size
 int getStackSize(const Stack* s)
 {
 	return s->size;

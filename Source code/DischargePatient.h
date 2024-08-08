@@ -4,4 +4,7 @@
 #include"Stack.h"
 #include"Structure.h"
 
+#ifndef DISCHARGEPATIENTS__
+#define DISCHARGEPATIENTS__
 void DischargePatient(pLine* PatientsLine, pTree* PatientsTree, List* DoctorsList);
+#endif //DISCHARGEPATIENTS__

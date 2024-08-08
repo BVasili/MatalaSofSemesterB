@@ -29,7 +29,7 @@ char* TranslateBitWiseIntoString(Patient* Patient)
 }
 
 void InsertPatientsTreeToFile(FILE* file, pInTree* treeNode, int* index)
-{
+{ // via recursia we write tree data to file
 	if (!treeNode)
 		return;
 
@@ -45,7 +45,7 @@ void writePatientToFile(FILE* file, pInTree* treeNode, int* index)
 {
 	int Duration_Hours = 0;
 	Patient Patient = treeNode->tpatient;
-
+	//write patients detail with function that gets allergies 
 	fprintf(file, "%d.%s;%s;%s\n\n", *index, Patient.Name, Patient.ID, TranslateBitWiseIntoString(&Patient));
 
 	Stack* PatientsStack = Patient.Visits;
@@ -60,7 +60,7 @@ void writePatientToFile(FILE* file, pInTree* treeNode, int* index)
 	initStack(TempStack);
 
 	while (!isEmptyStack(PatientsStack)) {
-		TempVisit = pop(PatientsStack);
+		TempVisit = pop(PatientsStack); //poping from patient visit stack to temporary stack
 		push(TempStack, TempVisit);
 	}
 	
@@ -99,7 +99,7 @@ void writePatientToFile(FILE* file, pInTree* treeNode, int* index)
 
 	}
 	fprintf(file, "========================\n");
-	free(TempStack);
+	free(TempStack); //Free stack at end 
 }
 
 void updateFiles(char* DoctorsFile, char* PatientsFile, char* LineFile, List* DoctorsList, pLine* PatientsLine, pTree* PatientsTree)

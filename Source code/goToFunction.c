@@ -24,7 +24,7 @@ void goToFunc(int choice, List* DoctorsList, pLine* PatientsLine, pTree* Patient
 		printf("You chose to check for patients allergies \n\n");
 
 		printLine(PatientsLine);
-		Function2(PatientsLine);
+		CheckForPatientsAllergies(PatientsLine);
 		break;
 
 	case 3:
@@ -36,7 +36,7 @@ void goToFunc(int choice, List* DoctorsList, pLine* PatientsLine, pTree* Patient
 		printf("You chose to display all patient's admissions\n\n");
 		printPTree(PatientsTree);
 		printf("\n");
-		Function4(PatientsLine);
+		DisplayAllPatientsAdmissions(PatientsLine);
 		break;
 
 	case 5:
@@ -46,24 +46,25 @@ void goToFunc(int choice, List* DoctorsList, pLine* PatientsLine, pTree* Patient
 
 	case 6:
 		printf("You chose to advance patient in line\n\n");
-		printLineADT(PatientsLine);
-		Function6(PatientsLine);
+		printLineForADT(PatientsLine);
+		AdvancePatientInLine(PatientsLine);
 		break;
 
 	case 7:
 		printf("You chose to display list of all doctors\n\n");
 		Doc_printList(DoctorsList);
+		printf("\n");
 		break;
 
 	case 8:
 		printf("You chose to dispaly all patients assigned to a doctor\n\n");
 		Doc_printList(DoctorsList);
-		Function8(DoctorsList, PatientsLine);
+		DisplayAllPatientsAssignedToADoctor(DoctorsList, PatientsLine);
 		break;
 
 	case 9:
 		printf("You chose to discharge patient\n\n");
-		printPTree(PatientsTree);
+		printLine(PatientsLine);
 		DischargePatient(PatientsLine, PatientsTree, DoctorsList);
 		break;
 
@@ -86,7 +87,7 @@ void goToFunc(int choice, List* DoctorsList, pLine* PatientsLine, pTree* Patient
 	}
 }
 
-void Function2(pLine* PatientsLine)
+void CheckForPatientsAllergies(pLine* PatientsLine)
 {
 	char ID[ID_SIZE];
 	pInLine* Ptr2PatientsNode;
@@ -94,8 +95,9 @@ void Function2(pLine* PatientsLine)
 
 	do {
 		printf("Enter an ID:");
+		fseek(stdin, 0, SEEK_SET);
 		fgets(ID, 10, stdin);
-		fgets(ID, 10, stdin);
+		
 		Ptr2PatientsNode = searchPatientInLine(PatientsLine, ID);
 
 		if (strcmp(ID, "XXX\n") == 0) {
@@ -104,17 +106,17 @@ void Function2(pLine* PatientsLine)
 		}
 
 		if (Ptr2PatientsNode == NULL)
-			printf("Enter a valid ID!! or enter \"XXX\" to return to menu");
+			printf("Enter a valid ID!! or enter \"XXX\" to return to menu\n");
 
 	} while (Ptr2PatientsNode == NULL);
 
 	PtrPatient = Ptr2PatientsNode->lpatient;
-	printf("Name:%s ID:%s \n", PtrPatient->Name, PtrPatient->ID);
-	printf(" Allergies: ");
-	if (PtrPatient->Allergies & NONE) printf("None ");
+	printf("\nPatients Name:%s ID:%s \n", PtrPatient->Name, PtrPatient->ID);
+	printf("Patients Allergies: ");
+	if (PtrPatient->Allergies & NONE)  printf("None. ");
 	if (PtrPatient->Allergies & PENICILLIN) printf("Penicillin ");
-	if (PtrPatient->Allergies & SULFA) printf("Sulfa ");
-	if (PtrPatient->Allergies & OPIOIDS) printf("Opioids ");
+	if (PtrPatient->Allergies & SULFA)  printf("Sulfa ");
+	if (PtrPatient->Allergies & OPIOIDS)  printf("Opioids ");
 	if (PtrPatient->Allergies & ANESTHETICS) printf("Anesthetics ");
 	if (PtrPatient->Allergies & EGGS) printf("Eggs ");
 	if (PtrPatient->Allergies & LATEX) printf("Latex ");
@@ -122,16 +124,17 @@ void Function2(pLine* PatientsLine)
 	printf("\n\n\n");
 }
 
-void Function4(pLine* PatientsLine) {
+void DisplayAllPatientsAdmissions(pLine* PatientsLine) {
 
 	char ID[ID_SIZE];
 	pInLine* Ptr2PatientsNode;
 	Patient* PtrPatient;
 	do {
 		printf("Enter an ID:");
+		fseek(stdin, 0, SEEK_SET);
 		fgets(ID, 10, stdin);
-		fgets(ID, 10, stdin);
-		printf("\n");
+		
+		
 		Ptr2PatientsNode = searchPatientInLine(PatientsLine, ID);
 
 		if (strcmp(ID, "XXX\n") == 0) {
@@ -140,24 +143,25 @@ void Function4(pLine* PatientsLine) {
 		}
 
 		if (Ptr2PatientsNode == NULL)
-			printf("Enter a valid ID!! or enter \"XXX\"  to return to menu");
+			printf("Enter a valid ID!! or enter \"XXX\"  to return to menu\n");
 
 	} while (Ptr2PatientsNode == NULL);
 	PtrPatient = Ptr2PatientsNode->lpatient;
-	printf("Name:%s ID:%s \n\n", PtrPatient->Name, PtrPatient->ID);
+	printf("\nPatients information:\nName:%s ID:%s \n\n", PtrPatient->Name, PtrPatient->ID);
 	printStack(PtrPatient->Visits);
 }
 
-void Function6(pLine* PatientsLine)
+void AdvancePatientInLine(pLine* PatientsLine)
 {
 	char ID[ID_SIZE];
 	pInLine* Ptr2PatientsNode;
 	Patient* PtrPatient;
 	do {
+
 		printf("\nEnter an ID:");
+		fseek(stdin, 0, SEEK_SET);
 		fgets(ID, 10, stdin);
-		fgets(ID, 10, stdin);
-		printf("\n");
+		
 		Ptr2PatientsNode = searchPatientInLine(PatientsLine, ID);
 
 		if (strcmp(ID, "XXX\n") == 0) {
@@ -166,16 +170,19 @@ void Function6(pLine* PatientsLine)
 		}
 
 		if (Ptr2PatientsNode == NULL)
-			printf("Enter a valid ID!! or enter \"XXX\"  to return to menu");
+			printf("Enter a valid ID!! or enter \"XXX\"  to return to menu\n");
 
 	} while (Ptr2PatientsNode == NULL);
 	moveToHead(PatientsLine, ID);
-	printLineADT(PatientsLine);
+	printLineForADT(PatientsLine);
 	printf("\n");
 }
 
-void Function8(List* DoctorsList, pLine* PatientsLine)
+void DisplayAllPatientsAssignedToADoctor(List* DoctorsList, pLine* PatientsLine)
 {
+	int i = 0;
+	int flag = 0;
+	int capitalizeNext = 1;
 	char DoctorsName[100];
 	Node* DoctorsNode;
 	pInLine* TempLineNode;
@@ -185,25 +192,47 @@ void Function8(List* DoctorsList, pLine* PatientsLine)
 		fseek(stdin, 0, SEEK_SET);
 		fgets(DoctorsName, 100, stdin);
 		DoctorsName[(strlen(DoctorsName) - 1)] = '\0';
-		printf("\n");
+
+		while (DoctorsName[i] != '\0') {
+			if (isspace(DoctorsName[i])) {
+				capitalizeNext = 1;  // Next character should be capitalized
+			}
+			else if (capitalizeNext && isalpha(DoctorsName[i])) {
+				DoctorsName[i] = toupper(DoctorsName[i]);
+				capitalizeNext = 0;  // Only capitalize the first letter of the word
+			}
+			else {
+				DoctorsName[i] = tolower(DoctorsName[i]);
+			}
+			i++;
+		}
+	
 		DoctorsNode = searchDoctor(DoctorsList, DoctorsName);
 
-		if (strcmp(DoctorsName, "XXX\n") == 0) {
+		if (strcmp(DoctorsName, "XXX") == 0) {
 			printf("\n\n");
 			return;
 		}
 
 		if (DoctorsNode == NULL)
-			printf("Enter a valid ID!! or enter \"XXX\"  to return to menu");
+			printf("Enter a valid ID!! or enter \"XXX\"  to return to menu\n");
 
 	} while (DoctorsNode == NULL);
 	TempLineNode = PatientsLine->head;
+	printf("\n");
 	while (TempLineNode) {
 		if (strcmp(TempLineNode->lpatient->Visits->sList.head->Visit.Doctor->Name, DoctorsNode->Doctor.Name) == 0) {
 			printf("Name: %s ID %s\n", TempLineNode->lpatient->Name, TempLineNode->lpatient->ID);
 			printVisit(TempLineNode->lpatient->Visits->sList.head->Visit);
+			flag = 1;
 		}
+
+		
 		TempLineNode = TempLineNode->next;
+	}
+	if (flag == 0) {
+		printf("No active visits!!\n");
+
 	}
 }
 

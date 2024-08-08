@@ -21,8 +21,8 @@ void DischargePatient(pLine* PatientsLine, pTree* PatientsTree, List* DoctorsLis
 
 	//Gets ID from user while search returns NULL pointer
 	do { 
-		printf("\nEnter an ID:");
-		fgets(Patients_ID, 10, stdin);
+		printf("Enter an ID:");
+		fseek(stdin, 0, SEEK_SET);
 		fgets(Patients_ID, 10, stdin);
 		PatientToDischarge = searchPatient(PatientsTree, Patients_ID);
 
@@ -32,7 +32,7 @@ void DischargePatient(pLine* PatientsLine, pTree* PatientsTree, List* DoctorsLis
 		}
 
 		if (PatientToDischarge == NULL)
-			printf("Enter a valid ID!! or enter \"XXX\" to return to menu");
+			printf("Enter a valid ID!! or enter \"XXX\" to return to menu\n");
 
 	} while (PatientToDischarge == NULL);
 
@@ -48,7 +48,7 @@ void DischargePatient(pLine* PatientsLine, pTree* PatientsTree, List* DoctorsLis
 
 	//Asks User to input summary for visit
 	printf("Enter summary for visit:");
-	fgets(TempSummary, SUMMARY_SIZE, stdin);
+	fseek(stdin, 0, SEEK_SET);
 	fgets(TempSummary, SUMMARY_SIZE, stdin);
 
 	char* VisitSummary = (char*)malloc(strlen(TempSummary));
@@ -89,5 +89,6 @@ void DischargePatient(pLine* PatientsLine, pTree* PatientsTree, List* DoctorsLis
 
 	//pushes the visit into the patients stack and prints it
 	push(PatientToDischarge->tpatient.Visits, VisistToDischarge);
+	printf("\n");
 	printVisit(PatientToDischarge->tpatient.Visits->sList.head->Visit);
 }
