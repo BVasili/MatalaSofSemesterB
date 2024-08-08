@@ -38,10 +38,6 @@ int main()
 
 	List doctors;
 	initList(&doctors);
-	//if (doctors.head == NULL) //checking if the initializing the doctors list func worked
-	//{
-	//	printf("INITIALIZED DOCTORS LIST\n\n");
-	//}
 	loadDoctors(&doctors, DOCSFILE);
 
 	pTree PatientsTree;
@@ -59,7 +55,6 @@ int main()
 		goToFunc(choice, &doctors, &PatientsLine, &PatientsTree);
 		if (choice == 12 || choice == 0)
 		{
-			/*exit(1);*///we need to free all memory
 			break;
 		}
 	}

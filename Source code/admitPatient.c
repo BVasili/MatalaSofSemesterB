@@ -188,23 +188,7 @@ void insertNewPatientInfo(char* id_str, List* doctors, pLine* PatientsLine, pTre
 
 	initStack(new_patient.Visits);
 	push(new_patient.Visits, temp);
-	//new_patient.Visits->size = 0;
-	//new_patient.Visits->sList.head = (Node*)malloc(sizeof(Node*));
-	//if (!new_patient.Visits->sList.head)
-	//{
-	//	displayError(ALLOCATION_FAILED);
-	//	return;
-	//}
-
-	//
-	/*new_patient.Visits->sList.head->Visit = temp;
-
-
-	new_patient.nVisits = 1;
-
-
-	new_patient.Visits->sList.head->Visit.vSummary = temp.vSummary;*/
-
+	
 	//initialize all the other fields that hasnt been inserted
 	new_patient.Visits->sList.head->Visit.Duration = -1;
 	new_patient.Visits->sList.head->Visit.tDismissed.Day = -1;
@@ -222,7 +206,7 @@ void insertNewPatientInfo(char* id_str, List* doctors, pLine* PatientsLine, pTre
 	enLine(PatientsLine, id_str, PatientsTree);
 
 	//print line
-	/*printLineWithVisit(PatientsLine);*/
+	printLineWithVisit(PatientsLine);
 	return;
 }
 
@@ -274,7 +258,7 @@ void insertExisPatient(char* id_str, List* doctors, pLine* PatientsLine, pTree* 
 	push(ptr_patient->Visits, temp);
 
 	//update the line
-	AddToTailLine(PatientsLine, id_str, PatientsTree);
+	enLine(PatientsLine, id_str, PatientsTree);
 
 	return;
 }

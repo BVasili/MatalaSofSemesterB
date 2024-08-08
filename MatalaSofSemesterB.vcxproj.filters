@@ -63,9 +63,6 @@
     <ClCompile Include="Source code\admitPatient.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="deletePatient.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="removeVisit.c">
       <Filter>Source Files</Filter>
     </ClCompile>

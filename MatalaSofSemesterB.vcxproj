@@ -19,7 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="deletePatient.c" />
     <ClCompile Include="removeVisit.c" />
     <ClCompile Include="Source code\admitPatient.c" />
     <ClCompile Include="Source code\assignDoctor2case.c" />
