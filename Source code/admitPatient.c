@@ -241,7 +241,8 @@ void insertExisPatient(char* id_str, List* doctors, pLine* PatientsLine, pTree* 
 	printf("please enter the summary of the visit:\t");
 	fseek(stdin, 0, SEEK_END);
 	char summary[LINE_SIZE];
-	scanf("%[^\n]", summary);
+	fseek(stdin, 0, SEEK_END);
+	fgets(summary, 100, stdin);
 	printf("\n");
 
 	temp.vSummary = (char*)malloc(sizeof(strlen(summary)) + 1);
@@ -282,7 +283,7 @@ void admitPatient(List* doctors, pLine* PatientsLine, pTree* PatientsTree)
 	{
 		printf("please enter an id number:\t");
 		fseek(stdin, 0, SEEK_END);
-		fgets(id_str, ID_SIZE + 5, stdin);
+		fgets(id_str, ID_SIZE, stdin);
 		printf("\n");
 
 		//check if the number is valid
