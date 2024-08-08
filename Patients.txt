@@ -25,8 +25,8 @@ Doctor:Muhammad Yunus
 Summary:Broken right leg. Placed in cast. 
 
 Arrival:28/06/2024 00:26
-Dismissed:08/08/2024 22:43
-Duration:1006:17
+Dismissed:08/08/2024 22:51
+Duration:1006:25
 Doctor:Michal Rappaport
 Summary:Broken finger.
 ========================

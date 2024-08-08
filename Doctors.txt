@@ -1,6 +1,6 @@
 Full Name; License Number; Number of Patients
 =================================================
-Michal Rappaport; 112141; 0
+Michal Rappaport; 112141; -1
 Efraim Katz; 216653; 0
 Diana Prokonov; 312247; 1
 Hanni Barlev; 105789; 1
