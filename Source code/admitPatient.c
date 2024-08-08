@@ -8,6 +8,7 @@
 #include <time.h>
 #include "Stack.h"
 #include"admitPatient.h"
+#include "removeVisit.h"
 
 
 int validInput(char* str, char* action)//just for now later will be in a file
@@ -65,7 +66,7 @@ void insertNewPatientInfo(char* id_str, List* doctors, pLine* PatientsLine, pTre
 
 	//get the allergies
 	char* Allergies_String[] = { "Penicillin" , "Sulfa" , "Opioids", "Anesthetics","Eggs","Latex","Preservatives" };
-	char allergyValue[2] = { 0 };
+	char allergyValue[3] = { 0 };
 	char binVal = NULL;
 	//this while loop gets the binary value of the patient's allergies
 	while (1)
@@ -73,17 +74,17 @@ void insertNewPatientInfo(char* id_str, List* doctors, pLine* PatientsLine, pTre
 		int i = 1;
 		printf("if the patient is allergic to something please enter 1, if not enter 2:\t");
 		fseek(stdin, 0, SEEK_END);
-		fgets(allergyValue,2,stdin);
+		fgets(allergyValue, 3, stdin);
 		printf("\n\n");
-		if (atoi(allergyValue) == 1)
+		if ((atoi(allergyValue)) == 1 && (is_all_digits(allergyValue) == 1))
 		{
 			while (1)
 			{
 				printf("is the patient allergic to %s?\n press 1 for yes, and 2 for no:\t", Allergies_String[i - 1]);
 				fseek(stdin, 0, SEEK_END);
-				fgets(allergyValue, 2, stdin);
+				fgets(allergyValue, 3, stdin);
 				printf("\n");
-				if (atoi(allergyValue) == 1)
+				if (atoi(allergyValue) == 1 && (is_all_digits(allergyValue) == 1))
 				{
 					switch (i)
 					{
@@ -111,15 +112,15 @@ void insertNewPatientInfo(char* id_str, List* doctors, pLine* PatientsLine, pTre
 					}
 					i++;
 				}
-				if (atoi(allergyValue) == 2)
+				if (atoi(allergyValue) == 2 && (is_all_digits(allergyValue) == 1))
 					i++;
-				if ((atoi(allergyValue) != 2) && (atoi(allergyValue) != 1))
+				if ((atoi(allergyValue) != 2) && (atoi(allergyValue) != 1) || (is_all_digits(allergyValue) == 0))
 					printf("invalid input try again!\n");
 				if (i == 8)
 					break;
 			}
 		}
-		if (atoi(allergyValue) == 2 && i == 1)
+		if (atoi(allergyValue) == 2 && i == 1 && is_all_digits(allergyValue) == 1)
 		{
 			binVal |= NONE;
 			break;
@@ -128,7 +129,7 @@ void insertNewPatientInfo(char* id_str, List* doctors, pLine* PatientsLine, pTre
 		{
 			break;
 		}
-		if (atoi(allergyValue) != 2 || atoi(allergyValue) != 1)
+		if (atoi(allergyValue) != 2 || atoi(allergyValue) != 1 || is_all_digits(allergyValue) == 0)
 			printf("invalid allergies input please enter  1 or 2\n");
 	}
 
@@ -292,7 +293,7 @@ void admitPatient(List* doctors, pLine* PatientsLine, pTree* PatientsTree)
 				//check if he is already in line
 				if (searchPatientLine(&PatientsLine, id_str) != NULL)
 				{
-					printf("Patient is already in line\n");
+					printf("%s is already in line\n", searchPatientLine(&PatientsLine, id_str)->lpatient->Name);
 					return;
 				}
 				else
