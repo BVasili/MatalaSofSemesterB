@@ -73,43 +73,11 @@ void goToFunc(int choice, List* DoctorsList, pLine* PatientsLine, pTree* Patient
 
 	case 10:
 		printf("You chose to remove a visit\n\n");
-
 		removeVisit(PatientsTree);
 		break;
 
 	case 11:
-		printf("You chose to remove patient\n\n");
-		char id_temp[ID_SIZE] = { 0 };
-		Patient* temp_pat = NULL;
-		// Get the patient ID from the user
-		while (1) {
-			printf("\nPlease enter the ID of the patient: ");
-			scanf("%s", id_temp);
-
-			if (validInput(id_temp, "id") == 1) {
-				if ((temp_pat = searchPatient(PatientsTree, id_temp)) == NULL) {
-					printf("The ID isn't in the list of patients. Please try again.\n");
-				}
-				else
-				{
-					break;
-				}
-			}
-			else
-			{
-				printf("INVALID ID INPUT. TRY AGAIN.\n");
-			}
-		}
-		if (searchPatientLine(&PatientsLine, id_temp) != NULL)
-		{
-			printf("Discharge Patient before deleting records from system");
-			break;
-		}
-		moveToHead(PatientsLine, temp_pat->ID);
-		deLine(PatientsLine);
-		deletePTree(PatientsTree, temp_pat->ID);
-
-
+		deletePatient(DoctorsList, PatientsLine, PatientsTree);
 		break;
 
 	case 12:
@@ -241,4 +209,38 @@ void Function8(List* DoctorsList, pLine* PatientsLine)
 		}
 		TempLineNode = TempLineNode->next;
 	}
+}
+
+void deletePatient(List* DoctorsList, pLine* PatientsLine, pTree* PatientsTree)
+{
+	printf("You chose to remove patient\n\n");
+	char id_temp[ID_SIZE] = { 0 };
+	Patient* temp_pat = NULL;
+	// Get the patient ID from the user
+	while (1) {
+		printf("\nPlease enter the ID of the patient: ");
+		scanf("%s", id_temp);
+
+		if (validInput(id_temp, "id") == 1) {
+			if ((temp_pat = searchPatient(PatientsTree, id_temp)) == NULL) {
+				printf("The ID isn't in the list of patients. Please try again.\n");
+			}
+			else
+			{
+				break;
+			}
+		}
+		else
+		{
+			printf("INVALID ID INPUT. TRY AGAIN.\n");
+		}
+	}
+	if (searchPatientLine(&PatientsLine, id_temp) != NULL)
+	{
+		printf("Discharge Patient before deleting records from system");
+		return;
+	}
+	moveToHead(PatientsLine, temp_pat->ID);
+	deLine(PatientsLine);
+	deletePTree(PatientsTree, temp_pat->ID);
 }
